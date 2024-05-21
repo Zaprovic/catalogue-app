@@ -6,7 +6,7 @@ import style from "../../../styles.module.css";
 const ProductPage = () => {
   return (
     <div className="flex h-full flex-col">
-      <main className=" flex-1 px-8 pt-4 md:px-14">
+      <main className=" flex-1 px-8 pt-4 md:p-6 ">
         <div className="mb-14">
           <h1 className="mb-8 text-3xl font-bold -tracking-wide">
             Mis productos

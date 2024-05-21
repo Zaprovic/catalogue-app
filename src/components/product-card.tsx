@@ -12,7 +12,7 @@ import {
 
 const ProductCard = () => {
   return (
-    <Card className="h-auto max-w-[320px]">
+    <Card className="h-auto w-full max-w-[340px]">
       <CardHeader className="p-5">
         <CardTitle>Product Title</CardTitle>
         <CardDescription>Product Description</CardDescription>

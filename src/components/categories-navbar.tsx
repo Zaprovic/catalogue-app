@@ -9,7 +9,7 @@ const CategoriesNavbar = () => {
       <Button size={"icon"} variant={"secondary"} className="md:hidden">
         <IconFilter />
       </Button>
-      <ul className="hidden gap-2  md:flex">
+      <ul className="hidden gap-2 md:flex">
         <li>
           <Badge variant={"secondary"} className="py-1 hover:cursor-pointer">
             Desmaquillador

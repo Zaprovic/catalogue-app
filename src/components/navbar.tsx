@@ -4,6 +4,7 @@ import {
   IconHome,
   IconInfoCircle,
   IconMenu2,
+  IconSearch,
 } from "@tabler/icons-react";
 import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
@@ -25,6 +26,11 @@ const routes = [
     label: "Home",
     href: "/",
     icon: <IconHome className="lg:hidden" />,
+  },
+  {
+    label: "Products",
+    href: "/products",
+    icon: <IconSearch className="lg:hidden" />,
   },
   {
     label: "About",
@@ -69,6 +75,7 @@ const Navbar = () => {
             {routes.map((route) => (
               <NavbarItem
                 key={route.href}
+                active={pathname === route.href}
                 onclick={() => onclick(route.href)}
                 {...route}
               />

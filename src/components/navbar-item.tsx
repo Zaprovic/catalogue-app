@@ -1,18 +1,27 @@
 import { cn } from "@/lib/utils";
 import Link from "next/link";
+import { DetailedHTMLProps, LiHTMLAttributes } from "react";
 import { Button } from "./ui/button";
 
-type props = {
+interface props
+  extends DetailedHTMLProps<LiHTMLAttributes<HTMLLIElement>, HTMLLIElement> {
   href: string;
   active?: boolean;
   icon: JSX.Element;
   label: string;
   onclick?: (path: string) => void;
-};
+}
 
-const NavbarItem = ({ href, active, icon, label, onclick }: props) => {
+const NavbarItem = ({
+  href,
+  active,
+  icon,
+  label,
+  onclick,
+  ...props
+}: props) => {
   return (
-    <li className="w-full">
+    <li className="w-full" {...props}>
       <Button
         asChild
         variant={"ghost"}

@@ -6,7 +6,7 @@ export const revalidate = 0;
 
 export default function Home() {
   return (
-    <div className="flex h-full flex-col p-6">
+    <main className="flex h-full flex-col p-6">
       <h1 className="text-3xl font-bold -tracking-wider">
         Registra tus productos
       </h1>
@@ -19,6 +19,6 @@ export default function Home() {
           <ProductCategoryForm />
         </div>
       </section>
-    </div>
+    </main>
   );
 }

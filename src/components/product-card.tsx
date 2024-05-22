@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { IconShoppingCart } from "@tabler/icons-react";
+import Link from "next/link";
 import { Button } from "./ui/button";
 import {
   Card,
@@ -15,9 +16,10 @@ type props = {
   description: string | null;
   image: string | null;
   price: number;
+  id: string;
 };
 
-const ProductCard = ({ description, image, price, title }: props) => {
+const ProductCard = ({ description, image, price, title, id }: props) => {
   const formattedPrice = new Intl.NumberFormat("es-CO", {
     currency: "COP",
     style: "currency",
@@ -25,34 +27,36 @@ const ProductCard = ({ description, image, price, title }: props) => {
   }).format(price);
 
   return (
-    <Card className="h-full w-full max-w-[340px] flex-col">
-      <CardHeader className="p-5">
-        <CardTitle>{title}</CardTitle>
-        <CardDescription>{description}</CardDescription>
-      </CardHeader>
-      <CardContent className="w-full flex-1 px-5 pb-2">
-        <figure className="overflow-hidden rounded-lg">
-          <img
-            src={image ?? ""}
-            alt={"Product Image"}
-            width={200}
-            height={200}
-            className="w-full"
-            loading="lazy"
-            decoding="async"
-          />
-        </figure>
-        <h4 className="my-3 text-lg font-bold">{formattedPrice}</h4>
-        <CardFooter className="flex w-full flex-col items-center justify-center gap-3 p-0">
-          <Button className="flex w-full gap-3 py-3">
-            <IconShoppingCart />
-            <span>Add to cart</span>
-          </Button>
-          <Button className="w-full" variant={"link"}>
-            More information
-          </Button>
-        </CardFooter>
-      </CardContent>
+    <Card className="h-full w-full max-w-[340px] flex-col transition-all hover:scale-[0.99]">
+      <Link href={`/products/${id}`}>
+        <CardHeader className="p-5">
+          <CardTitle>{title}</CardTitle>
+        </CardHeader>
+        <CardContent className="w-full flex-1 px-5 pb-2">
+          <figure className="overflow-hidden rounded-lg">
+            <img
+              src={image ?? ""}
+              alt={"Product Image"}
+              width={200}
+              height={200}
+              className="aspect-square h-full w-full"
+              loading="lazy"
+              decoding="async"
+            />
+          </figure>
+          <CardDescription>{description}</CardDescription>
+          <h4 className="my-3 text-lg font-bold">{formattedPrice}</h4>
+          <CardFooter className="flex w-full flex-col items-center justify-center gap-3 p-0">
+            <Button className="flex w-full gap-3 py-3">
+              <IconShoppingCart />
+              <span>Add to cart</span>
+            </Button>
+            <Button className="w-full" variant={"link"}>
+              More information
+            </Button>
+          </CardFooter>
+        </CardContent>
+      </Link>
     </Card>
   );
 };

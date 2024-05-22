@@ -26,6 +26,7 @@ export default async function ProductPage() {
               {products.map((product) => (
                 <ProductCard
                   key={product.id}
+                  id={product.id.toString()}
                   title={product.title}
                   description={product.description}
                   image={product.image}

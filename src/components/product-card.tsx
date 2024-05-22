@@ -27,8 +27,8 @@ const ProductCard = ({ description, image, price, title, id }: props) => {
   }).format(price);
 
   return (
-    <Card className="h-full w-full max-w-[340px] flex-col transition-all hover:scale-[0.99]">
-      <Link href={`/products/${id}`}>
+    <Card className="max-w-[320px] transition-all hover:scale-[0.99]">
+      <Link href={`/products/${id}`} className="h-full w-full">
         <CardHeader className="p-5">
           <CardTitle>{title}</CardTitle>
         </CardHeader>
@@ -39,12 +39,14 @@ const ProductCard = ({ description, image, price, title, id }: props) => {
               alt={"Product Image"}
               width={200}
               height={200}
-              className="aspect-square h-full w-full"
+              className="aspect-square h-full w-full overflow-hidden rounded-lg"
               loading="lazy"
               decoding="async"
             />
           </figure>
-          <CardDescription>{description}</CardDescription>
+          <CardDescription className="mt-3 line-clamp-2">
+            {description}
+          </CardDescription>
           <h4 className="my-3 text-lg font-bold">{formattedPrice}</h4>
           <CardFooter className="flex w-full flex-col items-center justify-center gap-3 p-0">
             <Button className="flex w-full gap-3 py-3">

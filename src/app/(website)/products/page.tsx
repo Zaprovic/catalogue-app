@@ -18,7 +18,7 @@ export default async function ProductPage() {
             Mis productos
           </h1>
 
-          <section className="mx-auto w-full max-w-[1000px] ">
+          <section className="mx-auto w-full max-w-[1000px]">
             <CategoriesNavbar />
             <div
               className={`${style.productContainer} w-full place-items-center`}

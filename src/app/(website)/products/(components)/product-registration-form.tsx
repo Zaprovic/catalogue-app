@@ -18,7 +18,7 @@ import { type InsertProductType } from "@/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
-import { db } from "../../../../db";
+import { db } from "../../../../db/main";
 import { ProductTable } from "../../../../db/schema";
 
 const ProductRegistrationForm = () => {

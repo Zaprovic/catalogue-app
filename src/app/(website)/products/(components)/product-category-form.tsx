@@ -17,6 +17,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { db } from "@/db/main";
+import { CategoryTable, ProductCategoryTable, ProductTable } from "@/db/schema";
 import { SelectCategoryType, SelectProductType } from "@/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { eq } from "drizzle-orm";
@@ -24,12 +26,6 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod";
-import { db } from "../../../../db";
-import {
-  CategoryTable,
-  ProductCategoryTable,
-  ProductTable,
-} from "../../../../db/schema";
 
 const ProductCategorySchema = z.object({
   product: z.string({
@@ -62,7 +58,7 @@ const ProductCategoryForm = () => {
         setCategories(categories);
       } catch (error) {
         if (error instanceof Error) {
-          console.log(error.message);
+          throw new Error(error.message);
         }
         return;
       }

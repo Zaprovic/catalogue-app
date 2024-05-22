@@ -12,39 +12,14 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import { db } from "@/db/main";
+import { CategoryTable } from "@/db/schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { db } from "../../../../db";
-import { CategoryTable } from "../../../../db/schema";
 
-const items = [
-  {
-    id: "recents",
-    label: "Recents",
-  },
-  {
-    id: "home",
-    label: "Home",
-  },
-  {
-    id: "applications",
-    label: "Applications",
-  },
-  {
-    id: "desktop",
-    label: "Desktop",
-  },
-  {
-    id: "downloads",
-    label: "Downloads",
-  },
-  {
-    id: "documents",
-    label: "Documents",
-  },
-] as const;
+// todo: data fetch cannot be performed in the client, only works on the server
 
 const CategoryFormSchema = z.object({
   categories: z
@@ -72,7 +47,7 @@ const CategoryOptions = () => {
         setCategories(allCategories);
       } catch (error) {
         if (error instanceof Error) {
-          console.log(error.message);
+          throw new Error(error.message);
         }
       }
     };

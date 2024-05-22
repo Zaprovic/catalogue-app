@@ -2,7 +2,7 @@
 
 import { InsertCategorySchema } from "@/schemas/category";
 import { revalidatePath } from "next/cache";
-import { db } from "../db";
+import { db } from "../db/main";
 import { CategoryTable } from "../db/schema";
 
 export async function selectAllCategoriesAction(formData: FormData) {

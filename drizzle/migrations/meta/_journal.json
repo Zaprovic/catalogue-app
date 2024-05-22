@@ -1,0 +1,27 @@
+{
+  "version": "6",
+  "dialect": "sqlite",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "6",
+      "when": 1716330756277,
+      "tag": "0000_daffy_firebrand",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1716333455820,
+      "tag": "0001_unknown_silver_fox",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1716349369294,
+      "tag": "0002_legal_bill_hollister",
+      "breakpoints": true
+    }
+  ]
+}

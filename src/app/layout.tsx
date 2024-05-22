@@ -1,4 +1,5 @@
 import Header from "@/components/header";
+import { Toaster } from "@/components/ui/sonner";
 import { ThemeProvider } from "@/providers/theme-provider";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
@@ -27,6 +28,14 @@ export default function RootLayout({
         >
           <Header />
           <div className="h-full flex-1">{children}</div>
+          <Toaster
+            toastOptions={{
+              classNames: {
+                error: "text-red-500",
+                success: "text-emerald-500",
+              },
+            }}
+          />
         </ThemeProvider>
       </body>
     </html>

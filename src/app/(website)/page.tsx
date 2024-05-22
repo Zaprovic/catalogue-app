@@ -1,4 +1,8 @@
+import CategoryRegistrationForm from "./products/(components)/category-registration-form";
+import ProductCategoryForm from "./products/(components)/product-category-form";
 import ProductRegistrationForm from "./products/(components)/product-registration-form";
+
+export const revalidate = 0;
 
 export default function Home() {
   return (
@@ -7,8 +11,13 @@ export default function Home() {
         Registra tus productos
       </h1>
 
-      <section>
-        <ProductRegistrationForm />
+      <section className="mx-auto my-5 grid w-full max-w-[800px] grid-cols-1 gap-3">
+        <CategoryRegistrationForm />
+
+        <div className="flex w-full flex-col gap-3">
+          <ProductRegistrationForm />
+          <ProductCategoryForm />
+        </div>
       </section>
     </div>
   );

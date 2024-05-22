@@ -3,7 +3,9 @@ import Footer from "@/components/footer/footer";
 import ProductCard from "@/components/product-card";
 import style from "../../../styles.module.css";
 
-const ProductPage = () => {
+export const revalidate = 0;
+
+export default async function ProductPage() {
   return (
     <div className="flex h-full flex-col">
       <main className=" flex-1 px-8 pt-4 md:p-6 ">
@@ -27,6 +29,4 @@ const ProductPage = () => {
       <Footer />
     </div>
   );
-};
-
-export default ProductPage;
+}

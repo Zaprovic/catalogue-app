@@ -1,5 +1,6 @@
 import CategoryOptions from "./products/(components)/category-options";
 import CategoryRegistrationForm from "./products/(components)/category-registration-form";
+import ProductCategoryForm from "./products/(components)/product-category-form";
 import ProductRegistrationForm from "./products/(components)/product-registration-form";
 
 export const revalidate = 0;
@@ -17,7 +18,7 @@ export default function Home() {
 
         <div className="flex w-full flex-col gap-3">
           <ProductRegistrationForm />
-          {/* <ProductCategoryForm /> */}
+          <ProductCategoryForm />
         </div>
       </section>
     </main>

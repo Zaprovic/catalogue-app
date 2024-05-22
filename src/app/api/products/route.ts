@@ -1,20 +1,14 @@
 import { db } from "@/db/main";
-import { CategoryTable } from "@/db/schema";
+import { ProductTable } from "@/db/schema";
 import { revalidateTag } from "next/cache";
 import { NextResponse } from "next/server";
 
 export async function GET() {
   try {
-    const allCategories = (await db.select().from(CategoryTable).all()).map(
-      ({ id, name }) => ({
-        id: name.toLowerCase(),
-        name,
-      }),
-    );
+    const allProducts = await db.select().from(ProductTable).all();
+    revalidateTag("products");
 
-    revalidateTag("categories");
-
-    return NextResponse.json(allCategories);
+    return NextResponse.json(allProducts);
   } catch (error) {
     if (error instanceof Error) {
       console.error(error.message);

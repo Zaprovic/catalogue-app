@@ -18,7 +18,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { db } from "@/db/main";
-import { CategoryTable, ProductCategoryTable, ProductTable } from "@/db/schema";
+import { CategoryTable, ProductCategoryTable } from "@/db/schema";
 import { SelectCategoryType, SelectProductType } from "@/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { eq } from "drizzle-orm";
@@ -49,9 +49,24 @@ const ProductCategoryForm = () => {
   useEffect(() => {
     const fetchAll = async () => {
       try {
+        const [productsResponse, categoriesResponse] = await Promise.all([
+          fetch("/api/products", {
+            next: {
+              tags: ["products"],
+              revalidate: 0,
+            },
+          }),
+          fetch("/api/categories", {
+            next: {
+              tags: ["categories"],
+              revalidate: 0,
+            },
+          }),
+        ]);
+
         const [products, categories] = await Promise.all([
-          db.select().from(ProductTable).all(),
-          db.select().from(CategoryTable).all(),
+          productsResponse.json(),
+          categoriesResponse.json(),
         ]);
 
         setProducts(products);

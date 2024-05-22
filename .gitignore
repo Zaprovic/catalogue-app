@@ -30,7 +30,7 @@ yarn-error.log*
 
 .env
 
-.drizzle-copy/
+.drizzle/
 
 # vercel
 .vercel

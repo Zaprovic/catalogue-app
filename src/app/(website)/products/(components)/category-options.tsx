@@ -12,14 +12,12 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { db } from "@/db/main";
-import { CategoryTable } from "@/db/schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
-// todo: data fetch cannot be performed in the client, only works on the server
+// todo: type safety is lost in the fetch call
 
 const CategoryFormSchema = z.object({
   categories: z
@@ -37,12 +35,9 @@ const CategoryOptions = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const allCategories = (await db.select().from(CategoryTable).all()).map(
-          ({ id, name }) => ({
-            id: name.toLowerCase(),
-            name,
-          }),
-        );
+        const response = await fetch("/api/categories");
+        const allCategories: { id: string; name: string }[] =
+          await response.json();
 
         setCategories(allCategories);
       } catch (error) {

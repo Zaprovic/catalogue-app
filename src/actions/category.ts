@@ -1,9 +1,9 @@
 "use server";
 
-import { db } from "@/db/main";
-import { CategoryTable } from "@/db/schema";
 import { InsertCategorySchema } from "@/schemas/category";
 import { revalidatePath } from "next/cache";
+import { db } from "../db";
+import { CategoryTable } from "../db/schema";
 
 export async function selectAllCategoriesAction(formData: FormData) {
   const data = Object.fromEntries(formData.entries());

@@ -12,12 +12,12 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { db } from "@/db/main";
-import { CategoryTable } from "@/db/schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import { db } from "../../../../db";
+import { CategoryTable } from "../../../../db/schema";
 
 const items = [
   {

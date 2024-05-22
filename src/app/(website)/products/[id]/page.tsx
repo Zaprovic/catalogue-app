@@ -1,6 +1,6 @@
-import { db } from "@/db/main";
-import { ProductTable } from "@/db/schema";
 import { eq } from "drizzle-orm";
+import { db } from "../../../../db";
+import { ProductTable } from "../../../../db/schema";
 
 const Page = async ({ params }: { params: { id: string } }) => {
   const product = await db

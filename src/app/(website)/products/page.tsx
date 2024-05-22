@@ -1,8 +1,8 @@
 import CategoriesNavbar from "@/components/categories-navbar";
 import Footer from "@/components/footer/footer";
 import ProductCard from "@/components/product-card";
-import { db } from "@/db/main";
-import { ProductTable } from "@/db/schema";
+import { db } from "../../../db";
+import { ProductTable } from "../../../db/schema";
 import style from "../../../styles.module.css";
 
 export const revalidate = 0;

@@ -13,13 +13,13 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { db } from "@/db/main";
-import { ProductTable } from "@/db/schema";
 import { InsertProductSchema } from "@/schemas/product";
 import { type InsertProductType } from "@/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
+import { db } from "../../../../db";
+import { ProductTable } from "../../../../db/schema";
 
 const ProductRegistrationForm = () => {
   const form = useForm<InsertProductType>({

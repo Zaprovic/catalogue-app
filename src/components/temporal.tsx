@@ -15,9 +15,9 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { db } from "@/db/main";
-import { CategoryTable } from "@/db/schema";
 import { useEffect, useState } from "react";
+import { db } from "../db";
+import { CategoryTable } from "../db/schema";
 // import { toast } from "@/components/ui/use-toast";
 
 const items = [

@@ -1,6 +1,6 @@
-import { ProductTable } from "@/db/schema";
 import { createInsertSchema, createSelectSchema } from "drizzle-zod";
 import { z } from "zod";
+import { ProductTable } from "../db/schema";
 
 const productBaseSchema = {
   title: z.string().trim().min(1, {

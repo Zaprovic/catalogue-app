@@ -1,6 +1,6 @@
-import { db } from "@/db/main";
-import { CategoryTable } from "@/db/schema";
 import { IconFilter } from "@tabler/icons-react";
+import { db } from "../db";
+import { CategoryTable } from "../db/schema";
 import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
 

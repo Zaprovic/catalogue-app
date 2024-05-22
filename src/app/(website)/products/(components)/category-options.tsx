@@ -35,12 +35,7 @@ const CategoryOptions = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await fetch("/api/categories", {
-          next: {
-            tags: ["categories"],
-            revalidate: 0,
-          },
-        });
+        const response = await fetch("/api/categories");
         const allCategories: { id: string; name: string }[] =
           await response.json();
 

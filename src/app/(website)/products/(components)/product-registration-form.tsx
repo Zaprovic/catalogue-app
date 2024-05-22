@@ -16,10 +16,9 @@ import { Textarea } from "@/components/ui/textarea";
 import { InsertProductSchema } from "@/schemas/product";
 import { type InsertProductType } from "@/types";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { IconLoader2 } from "@tabler/icons-react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
-import { db } from "../../../../db/main";
-import { ProductTable } from "../../../../db/schema";
 
 const ProductRegistrationForm = () => {
   const form = useForm<InsertProductType>({
@@ -34,15 +33,33 @@ const ProductRegistrationForm = () => {
 
   const onsubmit = async (data: InsertProductType) => {
     try {
-      await db.insert(ProductTable).values(data);
-      toast.success(`El producto '${data.title}' se ha añadido exitosamente`);
-      form.reset();
-      return;
-    } catch (error) {
-      if (error instanceof Error) {
-        toast.error(error.message);
+      const response = await fetch("/api/products", {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (response.ok) {
+        toast.success(`El producto '${data.title}' se ha añadido exitosamente`);
+        form.reset();
+      } else {
+        const errorData = await response.json(); // Get error details from the response
+        if (errorData.errors) {
+          // If validation errors are returned, display them
+          for (const error of errorData.errors) {
+            toast.error(error.message);
+          }
+        } else {
+          // Display a general error message
+          toast.error(
+            errorData.message || "Hubo un error al registrar el producto",
+          );
+        }
       }
-      return;
+    } catch (error) {
+      toast.error("Ha ocurrido un error, intentalo mas tarde");
     }
   };
 
@@ -150,11 +167,17 @@ const ProductRegistrationForm = () => {
               )}
             />
 
-            {/* <Separator orientation="horizontal" className="my-4" />
-            <CategoryOptions />
-            <Separator orientation="horizontal" className="my-4" /> */}
-
-            <Button className="font-semibold">Registrar producto</Button>
+            <Button
+              disabled={form.formState.isSubmitting}
+              className="font-semibold disabled:pointer-events-none disabled:opacity-50"
+              type="submit"
+            >
+              {form.formState.isSubmitting ? (
+                <IconLoader2 className="animate-spin" />
+              ) : (
+                "Registrar producto"
+              )}
+            </Button>
           </form>
         </Form>
       </CardContent>

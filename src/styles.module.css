@@ -3,3 +3,15 @@
   grid-template-columns: repeat(auto-fit, minmax(232px, 1fr));
   gap: 1rem;
 }
+
+.productContainer figure {
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+}
+
+.productContainer img {
+  object-fit: contain; /* Cover the container, cropping if necessary */
+  /* Other options: contain, fill, scale-down, none */
+  width: 100%;
+  height: 100%;
+}

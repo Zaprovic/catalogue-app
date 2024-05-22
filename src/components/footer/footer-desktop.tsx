@@ -12,7 +12,7 @@ import FooterItem from "./footer-item";
 
 const FooterDesktop = ({ children }: { children?: ReactNode }) => {
   return (
-    <footer className="flex bg-secondary p-8">
+    <footer className="flex bg-secondary p-8 text-sm">
       <FooterItem title="Formas de pago">
         <li className="flex gap-3">
           <IconTransactionDollar />

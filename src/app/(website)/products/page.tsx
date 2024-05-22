@@ -1,11 +1,15 @@
 import CategoriesNavbar from "@/components/categories-navbar";
 import Footer from "@/components/footer/footer";
 import ProductCard from "@/components/product-card";
+import { db } from "@/db/main";
+import { ProductTable } from "@/db/schema";
 import style from "../../../styles.module.css";
 
 export const revalidate = 0;
 
 export default async function ProductPage() {
+  const products = await db.select().from(ProductTable).all();
+
   return (
     <div className="flex h-full flex-col">
       <main className=" flex-1 px-8 pt-4 md:p-6 ">
@@ -19,8 +23,14 @@ export default async function ProductPage() {
             <div
               className={`${style.productContainer} w-full place-items-center`}
             >
-              {Array.from({ length: 30 }).map((item, idx) => (
-                <ProductCard key={idx + 1} />
+              {products.map((product) => (
+                <ProductCard
+                  key={product.id}
+                  title={product.title}
+                  description={product.description}
+                  image={product.image}
+                  price={product.price}
+                />
               ))}
             </div>
           </section>

@@ -1,18 +1,12 @@
-"use client";
-import useFetch from "@/hooks/useFetch";
-import { SelectCategoryType } from "@/types";
+import { db } from "@/db/main";
+import { CategoryTable } from "@/db/schema";
 import { IconFilter } from "@tabler/icons-react";
+import Link from "next/link";
 import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
 
-type props = {
-  onclick: () => void;
-};
-
-const CategoriesNavbar = ({ onclick }: props) => {
-  // const categories = await db.select().from(CategoryTable).all();
-
-  const { data } = useFetch<SelectCategoryType[]>("/api/categories");
+const CategoriesNavbar = async () => {
+  const data = await db.select().from(CategoryTable).all();
 
   return (
     // todo: tweak properly the 'hidden' class if there are more categories
@@ -21,20 +15,24 @@ const CategoriesNavbar = ({ onclick }: props) => {
         <IconFilter />
       </Button>
       <ul className="hidden gap-2 md:flex">
-        {data &&
-          data.map((category) => (
+        <li>
+          <Link href={"/products/"}>
+            <Badge variant={"secondary"} className="py-1">
+              All
+            </Badge>
+          </Link>
+        </li>
+        {data.map((category) => (
+          <>
             <li key={category.id}>
-              <>
-                <Badge
-                  variant={"secondary"}
-                  className="py-1 hover:cursor-pointer"
-                  onClick={() => onclick()}
-                >
+              <Link href={`/products/categories/${category.id}`}>
+                <Badge variant={"secondary"} className="py-1">
                   {category.name}
                 </Badge>
-              </>
+              </Link>
             </li>
-          ))}
+          </>
+        ))}
       </ul>
     </nav>
   );

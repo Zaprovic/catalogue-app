@@ -1,3 +1,4 @@
+import Footer from "@/components/footer/footer";
 import Header from "@/components/header";
 import { Toaster } from "@/components/ui/sonner";
 import { ThemeProvider } from "@/providers/theme-provider";
@@ -27,7 +28,8 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Header />
-          <div className="h-full flex-1">{children}</div>
+          <div className="flex-1 p-6">{children}</div>
+          <Footer />
           <Toaster
             toastOptions={{
               classNames: {

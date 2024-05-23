@@ -1,7 +1,26 @@
 // todo: add skeleton as the loading UI
 
-const Loading = () => {
-  return <div>Loading</div>;
+import { Skeleton } from "@/components/ui/skeleton";
+import { db } from "@/db/main";
+import { ProductTable } from "@/db/schema";
+import styles from "@/styles.module.css";
+
+const Loading = async () => {
+  const products = await db.select().from(ProductTable).all();
+  return (
+    <div className="p-8">
+      <div
+        className={`${styles.productContainer} mx-auto w-full max-w-[800px] place-items-center`}
+      >
+        {products.map((product) => (
+          <Skeleton
+            className="aspect-square h-full w-full overflow-hidden rounded-lg"
+            key={product.id}
+          />
+        ))}
+      </div>
+    </div>
+  );
 };
 
 export default Loading;

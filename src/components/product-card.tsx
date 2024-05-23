@@ -27,10 +27,10 @@ const ProductCard = ({ description, image, price, title, id }: props) => {
   }).format(price);
 
   return (
-    <Card className="max-w-[320px] transition-all hover:scale-[0.99]">
+    <Card className="h-full max-w-[320px] transition-all hover:scale-[0.99]">
       <Link href={`/products/${id}`} className="h-full w-full">
         <CardHeader className="p-5">
-          <CardTitle>{title}</CardTitle>
+          <CardTitle className="text-pretty -tracking-wider">{title}</CardTitle>
         </CardHeader>
         <CardContent className="w-full flex-1 px-5 pb-2">
           <figure className="overflow-hidden rounded-lg">

@@ -1,38 +1,10 @@
 "use client";
-import {
-  IconDashboard,
-  IconHome,
-  IconInfoCircle,
-  IconSearch,
-} from "@tabler/icons-react";
 import { usePathname } from "next/navigation";
 import { useMedia } from "react-use";
 import { ThemeToggle } from "../theme-toggle";
 import NavbarItem from "./navbar-item";
 import NavbarMobile from "./navbar-mobile";
-
-const routes = [
-  {
-    label: "Inicio",
-    href: "/",
-    icon: <IconHome className="lg:hidden" />,
-  },
-  {
-    label: "Productos",
-    href: "/products",
-    icon: <IconSearch className="lg:hidden" />,
-  },
-  {
-    label: "Contacto",
-    href: "/about",
-    icon: <IconInfoCircle className="lg:hidden" />,
-  },
-  {
-    label: "Dashboard",
-    href: "/dashboard",
-    icon: <IconDashboard className="lg:hidden" />,
-  },
-];
+import { routes } from "./routes";
 
 const Navbar = () => {
   const isMobile = useMedia("(max-width: 768px)", false);
@@ -50,6 +22,7 @@ const Navbar = () => {
             active={pathname === route.href}
           />
         ))}
+
         <li>
           <ThemeToggle />
         </li>

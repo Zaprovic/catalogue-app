@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { formatPricetoCOP } from "@/lib/utils";
-import { IconShoppingCart } from "@tabler/icons-react";
 import Link from "next/link";
+import AddCartBtn from "./add-cart-btn";
 import { Button } from "./ui/button";
 import {
   Card,
@@ -24,12 +24,12 @@ const ProductCard = ({ description, image, price, title, id }: props) => {
   const formattedPrice = formatPricetoCOP(price);
 
   return (
-    <Card className="h-full max-w-[320px] transition-all hover:scale-[0.99]">
-      <Link href={`/products/${id}`} className="h-full w-full">
-        <CardHeader className="p-5">
-          <CardTitle className="text-pretty -tracking-wider">{title}</CardTitle>
-        </CardHeader>
-        <CardContent className="w-full flex-1 px-5 pb-2">
+    <Card className="h-full max-w-[320px]">
+      <CardHeader className="p-5">
+        <CardTitle className="text-pretty -tracking-wider">{title}</CardTitle>
+      </CardHeader>
+      <CardContent className="w-full flex-1 px-5 pb-2">
+        <Link href={`/products/${id}`} className="h-full w-full">
           <figure className="overflow-hidden rounded-lg">
             <img
               src={image ?? ""}
@@ -43,17 +43,14 @@ const ProductCard = ({ description, image, price, title, id }: props) => {
             {description}
           </CardDescription>
           <h4 className="my-3 text-lg font-bold">{formattedPrice}</h4>
-          <CardFooter className="flex w-full flex-col items-center justify-center gap-3 p-0">
-            <Button className="flex w-full gap-3 py-3">
-              <IconShoppingCart />
-              <span>Add to cart</span>
-            </Button>
-            <Button className="w-full" variant={"link"}>
-              More information
-            </Button>
-          </CardFooter>
-        </CardContent>
-      </Link>
+        </Link>
+        <CardFooter className="flex w-full flex-col items-center justify-center gap-3 p-0">
+          <AddCartBtn />
+          <Button className="w-full" variant={"link"}>
+            More information
+          </Button>
+        </CardFooter>
+      </CardContent>
     </Card>
   );
 };

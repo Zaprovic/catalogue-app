@@ -13,7 +13,7 @@ const Layout = ({ children }: { children: ReactNode }) => {
         <div className="flex gap-10">
           <Suspense
             fallback={
-              <div className="mx-auto mb-6 flex h-6 w-1/2 items-center justify-center gap-2">
+              <div className="mx-auto mb-6 flex h-40 w-28 flex-col gap-2">
                 {Array.from({ length: 6 }).map((_, i) => (
                   <Skeleton key={i} className="h-full w-full" />
                 ))}

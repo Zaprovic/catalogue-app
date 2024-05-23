@@ -1,11 +1,5 @@
 "use client";
-import {
-  IconDashboard,
-  IconHome,
-  IconInfoCircle,
-  IconMenu2,
-  IconSearch,
-} from "@tabler/icons-react";
+import { IconMenu2 } from "@tabler/icons-react";
 import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 import { useMedia } from "react-use";
@@ -19,29 +13,7 @@ import {
   SheetTrigger,
 } from "../ui/sheet";
 import NavbarItem from "./navbar-item";
-
-const routes = [
-  {
-    label: "Home",
-    href: "/",
-    icon: <IconHome className="lg:hidden" />,
-  },
-  {
-    label: "Products",
-    href: "/products",
-    icon: <IconSearch className="lg:hidden" />,
-  },
-  {
-    label: "About",
-    href: "/about",
-    icon: <IconInfoCircle className="lg:hidden" />,
-  },
-  {
-    label: "Dashboard",
-    href: "/dashboard",
-    icon: <IconDashboard className="lg:hidden" />,
-  },
-];
+import { routes } from "./routes";
 
 const NavbarMobile = () => {
   const [isOpen, setIsOpen] = useState(false);

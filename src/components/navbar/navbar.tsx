@@ -13,17 +13,17 @@ import NavbarMobile from "./navbar-mobile";
 
 const routes = [
   {
-    label: "Home",
+    label: "Inicio",
     href: "/",
     icon: <IconHome className="lg:hidden" />,
   },
   {
-    label: "Products",
+    label: "Productos",
     href: "/products",
     icon: <IconSearch className="lg:hidden" />,
   },
   {
-    label: "About",
+    label: "Contacto",
     href: "/about",
     icon: <IconInfoCircle className="lg:hidden" />,
   },

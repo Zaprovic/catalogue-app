@@ -4,7 +4,7 @@ import FooterDesktop from "./footer-desktop";
 import FooterMobile from "./footer-mobile";
 
 const Footer = () => {
-  const isMobile = useMedia("(max-width: 1200px)", false);
+  const isMobile = useMedia("(max-width: 1000px)", false);
 
   if (isMobile) {
     return <FooterMobile />;

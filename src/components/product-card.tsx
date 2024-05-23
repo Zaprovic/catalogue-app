@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
+import { formatPricetoCOP } from "@/lib/utils";
 import { IconShoppingCart } from "@tabler/icons-react";
 import Link from "next/link";
 import { Button } from "./ui/button";
@@ -20,11 +21,7 @@ type props = {
 };
 
 const ProductCard = ({ description, image, price, title, id }: props) => {
-  const formattedPrice = new Intl.NumberFormat("es-CO", {
-    currency: "COP",
-    style: "currency",
-    minimumFractionDigits: 0,
-  }).format(price);
+  const formattedPrice = formatPricetoCOP(price);
 
   return (
     <Card className="h-full max-w-[320px] transition-all hover:scale-[0.99]">

@@ -10,8 +10,8 @@ export default async function ProductPage() {
 
   return (
     <>
-      <div className="h-fit">
-        <section className="mx-auto h-full w-full max-w-[1000px]">
+      <div className="flex-1">
+        <section className="mx-auto h-full w-full">
           <div
             className={`${style.productContainer} h-full w-full place-items-center`}
           >

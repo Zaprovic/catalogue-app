@@ -1,37 +1,31 @@
 import { db } from "@/db/main";
 import { CategoryTable } from "@/db/schema";
-import { IconFilter } from "@tabler/icons-react";
 import Link from "next/link";
 import { Badge } from "./ui/badge";
-import { Button } from "./ui/button";
 
 const CategoriesNavbar = async () => {
   const data = await db.select().from(CategoryTable).all();
 
   return (
     // todo: tweak properly the 'hidden' class if there are more categories
-    <nav className="mb-5 flex w-full justify-end md:justify-center">
-      <Button size={"icon"} variant={"secondary"} className="md:hidden">
-        <IconFilter />
-      </Button>
-      <ul className="hidden gap-2 md:flex">
+    <nav className="mb-5 flex">
+      {/* <CategoriesFilterBtn /> */}
+      <ul className="hidden flex-col gap-2 md:flex">
         <li>
-          <Link href={"/products/"}>
+          <Link href={"/products/"} key={crypto.randomUUID()}>
             <Badge variant={"secondary"} className="py-1">
               All
             </Badge>
           </Link>
         </li>
         {data.map((category) => (
-          <>
-            <li key={category.id}>
-              <Link href={`/products/categories/${category.id}`}>
-                <Badge variant={"secondary"} className="py-1">
-                  {category.name}
-                </Badge>
-              </Link>
-            </li>
-          </>
+          <li key={category.id}>
+            <Link href={`/products/categories/${category.id}`}>
+              <Badge variant={"secondary"} className="py-1">
+                {category.name}
+              </Badge>
+            </Link>
+          </li>
         ))}
       </ul>
     </nav>

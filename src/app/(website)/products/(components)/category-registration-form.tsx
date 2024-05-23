@@ -87,8 +87,6 @@ const CategoryRegistrationForm = () => {
           </form>
         </Form>
 
-        <ul>{}</ul>
-
         {/* <CategoryOptions /> */}
       </CardContent>
     </Card>

@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { DetailedHTMLProps, LiHTMLAttributes } from "react";
-import { Button } from "./ui/button";
+import { Button } from "../ui/button";
 
 interface props
   extends DetailedHTMLProps<LiHTMLAttributes<HTMLLIElement>, HTMLLIElement> {

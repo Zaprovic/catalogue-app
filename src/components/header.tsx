@@ -1,6 +1,6 @@
 import { IconShoppingBag } from "@tabler/icons-react";
 import Link from "next/link";
-import Navbar from "./navbar";
+import Navbar from "./navbar/navbar";
 
 function Header() {
   return (
@@ -12,6 +12,8 @@ function Header() {
       </div>
 
       <Navbar />
+
+      {/* <ThemeToggle /> */}
     </header>
   );
 }

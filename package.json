@@ -12,6 +12,7 @@
     "db:studio": "bunx drizzle-kit studio"
   },
   "dependencies": {
+    "@clerk/nextjs": "^5.1.2",
     "@hookform/resolvers": "^3.4.2",
     "@libsql/client": "^0.6.0",
     "@radix-ui/react-alert-dialog": "^1.0.5",

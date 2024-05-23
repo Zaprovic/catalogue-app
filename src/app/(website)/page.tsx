@@ -1,3 +1,4 @@
+import Temporal from "@/components/temporal";
 import ProductRegistrationForm from "./products/(components)/product-registration-form";
 
 export const revalidate = 0;
@@ -12,6 +13,8 @@ export default function Home() {
       <section className="mx-auto my-5 grid w-full max-w-[800px] grid-cols-1 gap-3">
         {/* <CategoryRegistrationForm /> */}
         {/* <CategoryOptions /> */}
+
+        <Temporal />
 
         <div className="flex w-full flex-col gap-3">
           <ProductRegistrationForm />

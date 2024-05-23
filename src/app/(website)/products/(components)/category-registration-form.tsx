@@ -86,6 +86,10 @@ const CategoryRegistrationForm = () => {
             </Button>
           </form>
         </Form>
+
+        <ul>{}</ul>
+
+        {/* <CategoryOptions /> */}
       </CardContent>
     </Card>
   );

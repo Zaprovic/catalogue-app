@@ -40,8 +40,6 @@ const ProductCard = ({ description, image, price, title, id }: props) => {
               width={200}
               height={200}
               className="aspect-square h-full w-full overflow-hidden rounded-lg"
-              loading="lazy"
-              decoding="async"
             />
           </figure>
           <CardDescription className="mt-3 line-clamp-2">

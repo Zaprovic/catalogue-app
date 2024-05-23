@@ -10,6 +10,9 @@ const productBaseSchema = {
   image: z.string().url({
     message: "Por favor coloca una URL valida",
   }),
+  specification: z.string().trim().min(1, {
+    message: "Asegurate de colocar una especificacion al producto",
+  }),
 };
 
 export const SelectProductSchema = createSelectSchema(

@@ -19,7 +19,5 @@ export async function selectAllCategoriesAction(formData: FormData) {
   }
 
   await db.insert(CategoryTable).values(result.data);
-  // console.log(result.data);
-  // revalidatePath("/products");
-  revalidatePath("/");
+  revalidatePath("/api/categories");
 }

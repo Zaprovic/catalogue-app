@@ -13,15 +13,15 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { useFormAction } from "@/hooks/useFormAction";
 import { InsertProductSchema } from "@/schemas/product";
 import { type InsertProductType } from "@/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { IconLoader2 } from "@tabler/icons-react";
-import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 
 const ProductRegistrationForm = () => {
-  const form = useForm<InsertProductType>({
+  const form = useFormAction<InsertProductType>({
     resolver: zodResolver(InsertProductSchema),
     defaultValues: {
       title: "",
@@ -40,7 +40,6 @@ const ProductRegistrationForm = () => {
           "Content-Type": "application/json",
         },
       });
-
       if (response.ok) {
         toast.success(`El producto '${data.title}' se ha añadido exitosamente`);
         form.reset();

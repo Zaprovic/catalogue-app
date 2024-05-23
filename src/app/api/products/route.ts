@@ -1,13 +1,37 @@
 import { db } from "@/db/main";
-import { ProductTable } from "@/db/schema";
+import { CategoryTable, ProductCategoryTable, ProductTable } from "@/db/schema";
 import { InsertProductSchema } from "@/schemas/product";
-import { revalidateTag } from "next/cache";
+import { eq } from "drizzle-orm";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function GET() {
+export async function GET(req: NextRequest) {
+  const url = new URL(req.url);
+  const categoryId = url.searchParams.get("categoryId");
+
   try {
-    const allProducts = await db.select().from(ProductTable).all();
-    revalidateTag("products");
+    const allProducts = await db
+      .select({
+        productId: ProductTable.id,
+        categoryId: ProductCategoryTable.categoryId,
+        productName: ProductTable.title,
+        categoryName: CategoryTable.name,
+      })
+      .from(ProductCategoryTable)
+      .innerJoin(
+        ProductTable,
+        eq(ProductTable.id, ProductCategoryTable.productId),
+      )
+      .innerJoin(
+        CategoryTable,
+        eq(CategoryTable.id, ProductCategoryTable.categoryId),
+      );
+
+    if (categoryId) {
+      const filteredProducts = allProducts.filter(
+        (product) => product.categoryId === +categoryId,
+      );
+      return NextResponse.json(filteredProducts);
+    }
 
     return NextResponse.json(allProducts);
   } catch (error) {

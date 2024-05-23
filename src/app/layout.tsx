@@ -2,12 +2,18 @@ import Footer from "@/components/footer/footer";
 import Header from "@/components/header";
 import { Toaster } from "@/components/ui/sonner";
 import { ThemeProvider } from "@/providers/theme-provider";
+import { esMX } from "@clerk/localizations";
 import { ClerkProvider } from "@clerk/nextjs";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Poppins } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Poppins({
+  subsets: ["latin"],
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+  display: "swap",
+  style: ["italic", "normal"],
+});
 
 export const metadata: Metadata = {
   title: "Product Catalogue",
@@ -20,7 +26,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider>
+    <ClerkProvider localization={esMX}>
       <html lang="en" suppressHydrationWarning>
         <body className={`${inter.className} flex h-full flex-col`}>
           <ThemeProvider

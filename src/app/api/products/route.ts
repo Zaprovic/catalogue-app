@@ -15,6 +15,9 @@ export async function GET(req: NextRequest) {
         categoryId: ProductCategoryTable.categoryId,
         productName: ProductTable.title,
         categoryName: CategoryTable.name,
+        productDescription: ProductTable.description,
+        productPrice: ProductTable.price,
+        productImage: ProductTable.image,
       })
       .from(ProductCategoryTable)
       .innerJoin(
@@ -32,7 +35,6 @@ export async function GET(req: NextRequest) {
       );
       return NextResponse.json(filteredProducts);
     }
-
     return NextResponse.json(allProducts);
   } catch (error) {
     if (error instanceof Error) {

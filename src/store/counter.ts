@@ -14,8 +14,6 @@ export const useStoreItems = create(
       pressedProducts: {}, // Initialize an empty object
       toggleProductInCart: (productId: number) =>
         set((state) => {
-          // const wasPressed = state.pressedProducts[productId] || false;
-          // const newItems = wasPressed ? state.items - 1 : state.items + 1;
           return {
             items: state.pressedProducts[productId]
               ? state.items - 1

@@ -20,9 +20,9 @@ const CategoriesNavbar = async () => {
   // }
 
   return (
-    <nav className="flex flex-col gap-3">
+    <nav className="flex min-h-[600px] flex-col gap-3">
       {/* <CategoriesFilterBtn /> */}
-      <h5 className="-tracking-tracking-widest hidden text-sm md:inline-block">
+      <h5 className="-tracking-tracking-widest hidden text-nowrap text-sm md:inline-block">
         Filtrar por categorias
       </h5>
       <ul className="hidden flex-col gap-2 md:flex">

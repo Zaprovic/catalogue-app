@@ -2,6 +2,12 @@ import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { DetailedHTMLProps, LiHTMLAttributes } from "react";
 import { Button } from "../ui/button";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "../ui/tooltip";
 
 interface props
   extends DetailedHTMLProps<LiHTMLAttributes<HTMLLIElement>, HTMLLIElement> {
@@ -36,7 +42,12 @@ const NavbarItem = ({
         onClick={() => onclick && onclick(href)}
       >
         <Link href={href} className="flex gap-2">
-          {icon}
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger asChild>{icon}</TooltipTrigger>
+              <TooltipContent>{label}</TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
           <span className="font-bold md:hidden lg:block">{label}</span>
         </Link>
       </Button>

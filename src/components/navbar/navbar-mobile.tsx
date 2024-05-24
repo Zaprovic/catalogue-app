@@ -1,8 +1,8 @@
 "use client";
+import { SignOutButton } from "@clerk/nextjs";
 import { IconMenu2 } from "@tabler/icons-react";
 import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
-import { useMedia } from "react-use";
 import { Button } from "../ui/button";
 import {
   Sheet,
@@ -18,7 +18,6 @@ import { routes } from "./routes";
 const NavbarMobile = () => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const isMobile = useMedia("(max-width: 768px)", false);
   const pathname = usePathname();
   const router = useRouter();
 
@@ -35,7 +34,9 @@ const NavbarMobile = () => {
       </SheetTrigger>
       <SheetContent>
         <SheetHeader className="pb-8 text-start">
-          <SheetTitle className="text-2xl">Menu</SheetTitle>
+          <div className="flex justify-between gap-2">
+            <SheetTitle className="text-2xl">Menu</SheetTitle>
+          </div>
           <SheetDescription>
             Navigate through the different pages available.
           </SheetDescription>
@@ -50,19 +51,8 @@ const NavbarMobile = () => {
             />
           ))}
           <li className="w-full rounded-full" onClick={() => onclick("/")}>
-            <Button
-              className="w-full"
-              variant={"secondary"}
-              onClick={() => {
-                //todo: add clerk authentication
-                // signOut({
-                //   redirectUrl: "/",
-                // });
-
-                onclick("/");
-              }}
-            >
-              Sign Out
+            <Button className="w-full" asChild variant={"secondary"}>
+              <SignOutButton />
             </Button>
           </li>
         </ul>

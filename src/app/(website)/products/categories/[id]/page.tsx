@@ -38,8 +38,6 @@ const Page = async ({ params }: { params: { id: string } }) => {
     )
     .where(eq(CategoryTable.id, +id));
 
-  console.log(productCategories);
-
   return (
     <div className="flex w-full flex-col">
       <section className="mx-auto w-full max-w-[1000px]">
@@ -56,7 +54,7 @@ const Page = async ({ params }: { params: { id: string } }) => {
               />
             ))
           ) : (
-            <span className="flex w-full justify-start text-sm font-bold -tracking-wider">
+            <span className="flex w-full justify-start text-sm font-semibold -tracking-wider">
               No se encontraron productos
             </span>
           )}

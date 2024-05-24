@@ -3,7 +3,6 @@ import {
   IconInfoCircle,
   IconLayoutDashboard,
   IconSearch,
-  IconShoppingCartCheck,
   IconSquareRoundedPlus,
 } from "@tabler/icons-react";
 
@@ -25,12 +24,6 @@ export const routes = [
     label: "Contacto",
     href: "/about",
     icon: <IconInfoCircle className="lg:hidden" />,
-    isPublic: true,
-  },
-  {
-    label: "Carrito",
-    href: "/cart",
-    icon: <IconShoppingCartCheck className="" />,
     isPublic: true,
   },
   {

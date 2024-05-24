@@ -23,12 +23,7 @@ const NavbarItem = ({
   ...props
 }: props) => {
   return (
-    <li
-      className={cn("w-full", {
-        hidden: !isPublic,
-      })}
-      {...props}
-    >
+    <li className="w-full" {...props}>
       <Button
         asChild
         variant={"ghost"}

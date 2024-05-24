@@ -37,12 +37,12 @@ export const routes = [
     label: "Crear producto",
     href: "/register",
     icon: <IconSquareRoundedPlus className="lg:hidden" />,
-    isPublic: true,
+    isPublic: false,
   },
   {
     label: "Dashboard",
     href: "/dashboard",
     icon: <IconLayoutDashboard className="lg:hidden" />,
-    isPublic: true,
+    isPublic: false,
   },
 ];

@@ -7,6 +7,8 @@
 .productContainer figure {
   aspect-ratio: 1 / 1;
   overflow: hidden;
+  width: 100%;
+  height: 100%;
 }
 
 .productContainer img {
@@ -14,27 +16,4 @@
   /* Other options: contain, fill, scale-down, none */
   width: 100%;
   height: 100%;
-}
-
-/* @media (min-width: 1280px) { */
-.picture {
-  grid-area: "picture";
-}
-
-.container1 {
-  grid-area: "container1";
-}
-
-.container2 {
-  grid-area: "container2";
-}
-
-.gridContainer {
-  margin: 0 auto;
-  max-width: 900px;
-  gap: 1.5rem;
-  display: grid;
-  grid-template-areas:
-    "picture picture container1"
-    "picture picture container2";
 }

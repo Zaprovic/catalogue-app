@@ -1,17 +1,20 @@
 "use client";
 
+import { useStoreItems } from "@/store/counter";
 import { IconCircleCheck, IconShoppingCart } from "@tabler/icons-react";
 import { useState } from "react";
 import { Button } from "./ui/button";
 import { Toggle } from "./ui/toggle";
 
 const AddCartBtn = () => {
+  const { increaseItems, items, decreaseItems } = useStoreItems();
   const [text, setText] = useState("Añadir al carrito");
   const [isPressed, setIsPressed] = useState(false);
 
   const handleOnPressedChange = () => {
     setIsPressed(!isPressed);
     setText(isPressed ? "Añadir al carrito" : "Producto añadido!");
+    isPressed ? decreaseItems(items) : increaseItems(items);
   };
 
   return (

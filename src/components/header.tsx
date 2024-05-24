@@ -1,10 +1,11 @@
 import { UserButton } from "@clerk/nextjs";
-import { IconShoppingBag, IconShoppingCart } from "@tabler/icons-react";
+import { IconShoppingBag } from "@tabler/icons-react";
 import Link from "next/link";
 import Navbar from "./navbar/navbar";
+import ShoppingCartBtn from "./shopping-cart-btn";
 import { ThemeToggle } from "./theme-toggle";
 
-async function Header() {
+function Header() {
   return (
     <header className="flex items-center justify-between bg-primary-foreground px-5 py-5 lg:px-8">
       <Link href={"/"}>
@@ -19,13 +20,7 @@ async function Header() {
         <Navbar />
       </div>
 
-      <div className="hidden items-center gap-3 md:flex">
-        <Link href={"/cart"} className="flex gap-1 rounded-full p-1">
-          <IconShoppingCart className="" />
-        </Link>
-        <UserButton />
-        <ThemeToggle />
-      </div>
+      <ShoppingCartBtn />
     </header>
   );
 }

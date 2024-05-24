@@ -8,9 +8,9 @@ import styles from "@/styles.module.css";
 const Loading = async () => {
   const products = await db.select().from(ProductTable).all();
   return (
-    <div className="p-8">
+    <div className="flex-1">
       <div
-        className={`${styles.productContainer} mx-auto w-full max-w-[800px] place-items-center`}
+        className={`${styles.productContainer} mx-auto w-full place-items-center`}
       >
         {products.map((product) => (
           <Skeleton

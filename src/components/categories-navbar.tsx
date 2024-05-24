@@ -20,9 +20,11 @@ const CategoriesNavbar = async () => {
   // }
 
   return (
-    // todo: tweak properly the 'hidden' class if there are more categories
-    <nav className="mb-5 flex">
+    <nav className="flex flex-col gap-3">
       {/* <CategoriesFilterBtn /> */}
+      <h5 className="-tracking-tracking-widest hidden text-sm md:inline-block">
+        Filtrar por categorias
+      </h5>
       <ul className="hidden flex-col gap-2 md:flex">
         <li>
           <Link href={"/products/"} key={crypto.randomUUID()}>

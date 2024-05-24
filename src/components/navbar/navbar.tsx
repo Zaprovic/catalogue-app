@@ -1,7 +1,8 @@
 "use client";
+import { useUser } from "@clerk/nextjs";
 import { usePathname } from "next/navigation";
+import { useState } from "react";
 import { useMedia } from "react-use";
-import { ThemeToggle } from "../theme-toggle";
 import NavbarItem from "./navbar-item";
 import NavbarMobile from "./navbar-mobile";
 import { routes } from "./routes";
@@ -9,6 +10,11 @@ import { routes } from "./routes";
 const Navbar = () => {
   const isMobile = useMedia("(max-width: 768px)", false);
   const pathname = usePathname();
+  const [isPublic, setIsPublic] = useState(true);
+
+  const { isSignedIn } = useUser();
+
+  // console.log(isSignedIn);
 
   if (isMobile) return <NavbarMobile />;
 
@@ -20,12 +26,9 @@ const Navbar = () => {
             key={route.label}
             {...route}
             active={pathname === route.href}
+            // isPublic={route.isPublic !== isSignedIn}
           />
         ))}
-
-        <li>
-          <ThemeToggle />
-        </li>
       </ul>
     </nav>
   );

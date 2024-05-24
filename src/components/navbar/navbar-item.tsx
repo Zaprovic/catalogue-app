@@ -9,6 +9,7 @@ interface props
   active?: boolean;
   icon: JSX.Element;
   label: string;
+  isPublic?: boolean;
   onclick?: (path: string) => void;
 }
 
@@ -17,11 +18,17 @@ const NavbarItem = ({
   active,
   icon,
   label,
+  isPublic,
   onclick,
   ...props
 }: props) => {
   return (
-    <li className="w-full" {...props}>
+    <li
+      className={cn("w-full", {
+        hidden: !isPublic,
+      })}
+      {...props}
+    >
       <Button
         asChild
         variant={"ghost"}

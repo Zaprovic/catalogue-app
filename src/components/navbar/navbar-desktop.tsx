@@ -6,7 +6,6 @@ import {
 } from "@tabler/icons-react";
 import { usePathname, useRouter } from "next/navigation";
 import { useMedia } from "react-use";
-import { ThemeToggle } from "../theme-toggle";
 import NavbarItem from "./navbar-item";
 
 const routes = [
@@ -47,9 +46,6 @@ const NavbarDesktop = () => {
               active={pathname === route.href}
             />
           ))}
-          <li>
-            <ThemeToggle />
-          </li>
         </ul>
       </nav>
       <div>NavbarDesktop</div>

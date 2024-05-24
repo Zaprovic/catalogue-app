@@ -1,23 +1,34 @@
-import ProductRegistrationForm from "./products/(components)/product-registration-form";
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+import { SignInButton, SignOutButton, SignUpButton } from "@clerk/nextjs";
+import { currentUser } from "@clerk/nextjs/server";
 
 export const revalidate = 0;
 
-export default function Home() {
+export default async function Home() {
+  const user = await currentUser();
+
   return (
-    <main className="flex h-full flex-col">
-      <h1 className="text-3xl font-bold -tracking-wider">
-        Registra tus productos
-      </h1>
-
-      <section className="mx-auto my-5 grid w-full max-w-[1000px] grid-cols-1 gap-3">
-        {/* <CategoryRegistrationForm /> */}
-        {/* <CategoryOptions /> */}
-
-        <div className="flex w-full flex-col gap-3">
-          <ProductRegistrationForm />
-          {/* <ProductCategoryForm /> */}
+    <main>
+      <h1 className="text-3xl font-semibold -tracking-wider">Inicio</h1>
+      <p>Esta ruta debe de ser publica al usuario</p>
+      <p className={cn("font-medium text-red-500", { "text-green-500": user })}>
+        {user ? "Usuario autenticado" : "Usuario no autenticado"}
+      </p>
+      {!user ? (
+        <div className="flex gap-2">
+          <Button asChild>
+            <SignInButton />
+          </Button>
+          <Button asChild>
+            <SignUpButton />
+          </Button>
         </div>
-      </section>
+      ) : (
+        <Button asChild>
+          <SignOutButton />
+        </Button>
+      )}
     </main>
   );
 }

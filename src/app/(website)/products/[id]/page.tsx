@@ -1,5 +1,4 @@
 /* eslint-disable @next/next/no-img-element */
-import DeleteProductBtn from "@/components/delete-product-btn";
 import { db } from "@/db/main";
 import { ProductTable } from "@/db/schema";
 import { formatPricetoCOP } from "@/lib/utils";
@@ -46,14 +45,14 @@ const Page = async ({ params }: { params: { id: string } }) => {
           <h3 className="text-xl font-bold">
             {formatPricetoCOP(product.price)}
           </h3>
-          <div className="hidden w-fit xl:block">
+          {/* <div className="hidden w-fit xl:block">
             <DeleteProductBtn />
-          </div>
+          </div> */}
         </section>
 
-        <div className="w-full sm:w-fit xl:hidden">
+        {/* <div className="w-full sm:w-fit xl:hidden">
           <DeleteProductBtn />
-        </div>
+        </div> */}
       </div>
     </div>
   );

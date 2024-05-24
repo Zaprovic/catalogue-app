@@ -28,8 +28,6 @@ export default async function ProductPage() {
           </div>
         </section>
       </div>
-
-      {/* <Footer /> */}
     </>
   );
 }

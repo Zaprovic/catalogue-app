@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import CategoryOptionsForm from "./category-options-form";
 
-const CategoryOptions = () => {
+const CategoryOptionsCard = () => {
   return (
     <Card>
       <CardHeader>
@@ -14,4 +14,4 @@ const CategoryOptions = () => {
   );
 };
 
-export default CategoryOptions;
+export default CategoryOptionsCard;

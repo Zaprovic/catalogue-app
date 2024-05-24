@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { formatPricetoCOP } from "@/lib/utils";
+import styles from "@/styles.module.css";
 import Link from "next/link";
 import AddCartBtn from "./add-cart-btn";
 import { Button } from "./ui/button";
@@ -39,13 +40,15 @@ const ProductCard = ({ description, image, price, title, id }: props) => {
               className="aspect-square h-full w-full overflow-hidden rounded-lg"
             />
           </figure>
-          <CardDescription className="mt-3 line-clamp-2">
+          <CardDescription
+            className={`${styles.cardDescription} mt-3 line-clamp-2`}
+          >
             {description}
           </CardDescription>
           <h4 className="my-3 text-lg font-bold">{formattedPrice}</h4>
         </Link>
         <CardFooter className="flex w-full flex-col items-center justify-center gap-3 p-0">
-          <AddCartBtn />
+          <AddCartBtn productId={+id} />
           <Button className="w-full" variant={"link"}>
             Mas informacion
           </Button>

@@ -12,7 +12,7 @@ function Header() {
         <IconShoppingBag width={36} height={36} />
       </Link>
 
-      <div className="flex items-center justify-center gap-2 md:flex-row-reverse">
+      <div className="flex flex-1 items-center justify-end gap-2 md:flex-row-reverse md:justify-center">
         <div className="flex items-center gap-3 md:hidden">
           <ThemeToggle />
           <UserButton />

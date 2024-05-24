@@ -47,7 +47,7 @@ const ProductCard = ({ description, image, price, title, id }: props) => {
         <CardFooter className="flex w-full flex-col items-center justify-center gap-3 p-0">
           <AddCartBtn />
           <Button className="w-full" variant={"link"}>
-            More information
+            Mas informacion
           </Button>
         </CardFooter>
       </CardContent>

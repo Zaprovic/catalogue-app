@@ -48,7 +48,7 @@ const FooterDesktop = ({ children }: { children?: ReactNode }) => {
         </li>
         <li className="flex gap-3">
           <IconBrandWhatsapp />
-          <span>{user?.phoneNumbers[0]?.phoneNumber}</span>
+          <span>+573053925741</span>
         </li>
       </FooterItem>
 

@@ -1,3 +1,5 @@
+"use client";
+import { useUser } from "@clerk/nextjs";
 import {
   IconBrandDeliveroo,
   IconBrandWhatsapp,
@@ -11,6 +13,8 @@ import { Separator } from "../ui/separator";
 import FooterItem from "./footer-item";
 
 const FooterMobile = ({ children }: { children?: ReactNode }) => {
+  const { user } = useUser();
+
   return (
     <footer className="grid grid-cols-1 bg-secondary p-6 md:px-10">
       <FooterItem title="Formas de pago">
@@ -40,7 +44,7 @@ const FooterMobile = ({ children }: { children?: ReactNode }) => {
       <FooterItem title="Contacto">
         <li className="flex gap-3">
           <IconMail />
-          <span>yese-jacobo@hotmail.com</span>
+          <span>{user?.emailAddresses[0].emailAddress}</span>
         </li>
         <li className="flex gap-3">
           <IconBrandWhatsapp />

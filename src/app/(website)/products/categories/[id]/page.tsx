@@ -29,6 +29,7 @@ const Page = async ({ params }: { params: { id: string } }) => {
       productSpecification: ProductTable.specification,
       productBrand: ProductTable.brand,
       productImage: ProductTable.image,
+      userId: ProductTable.userId,
     })
     .from(ProductCategoryTable)
     .leftJoin(ProductTable, eq(ProductTable.id, ProductCategoryTable.productId))
@@ -47,6 +48,7 @@ const Page = async ({ params }: { params: { id: string } }) => {
               <ProductCard
                 key={product.productId}
                 id={product.productId}
+                userId={product.userId ?? ""}
                 title={product.productName ?? ""}
                 description={product.productDescription ?? ""}
                 image={product.productImage}

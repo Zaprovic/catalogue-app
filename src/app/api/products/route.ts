@@ -18,6 +18,7 @@ export async function GET(req: NextRequest) {
         productDescription: ProductTable.description,
         productPrice: ProductTable.price,
         productImage: ProductTable.image,
+        userId: ProductTable.userId,
       })
       .from(ProductCategoryTable)
       .innerJoin(

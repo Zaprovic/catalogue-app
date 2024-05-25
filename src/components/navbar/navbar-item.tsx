@@ -36,7 +36,7 @@ const NavbarItem = ({
         className={cn(
           "flex w-full items-center justify-start rounded-lg px-3 md:rounded-xl",
           {
-            "bg-muted-foreground/20": active,
+            "bg-secondary": active,
           },
         )}
         onClick={() => onclick && onclick(href)}

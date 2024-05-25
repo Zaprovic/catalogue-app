@@ -11,7 +11,7 @@ const ShoppingCartBtn = () => {
     <div className="hidden items-center gap-2 md:flex">
       <Link href={"/cart"} className="relative flex gap-1 rounded-full p-1">
         {items > 0 && (
-          <span className="absolute right-0 top-0 grid aspect-square size-4 place-items-center rounded-full bg-blue-600 text-xs text-white">
+          <span className="absolute bottom-4 left-5 grid aspect-square size-4 place-items-center rounded-full bg-secondary text-xs font-semibold">
             {items}
           </span>
         )}

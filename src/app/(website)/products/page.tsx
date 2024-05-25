@@ -16,14 +16,7 @@ export default async function ProductPage() {
             className={`${style.productContainer} h-full w-full place-items-center`}
           >
             {products.map((product) => (
-              <ProductCard
-                key={product.id}
-                id={product.id.toString()}
-                title={product.title}
-                description={product.description}
-                image={product.image}
-                price={product.price}
-              />
+              <ProductCard key={product.id} {...product} />
             ))}
           </div>
         </section>

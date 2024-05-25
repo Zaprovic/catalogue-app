@@ -1,13 +1,15 @@
 // AddCartBtn.tsx
 "use client";
 
+import { cn } from "@/lib/utils";
 import { useStoreItems } from "@/store/counter";
+import { SelectProductType } from "@/types";
 import { IconCircleCheck, IconShoppingCart } from "@tabler/icons-react";
 import { Button } from "./ui/button";
 
-const AddCartBtn = ({ productId }: { productId: number }) => {
+const AddCartBtn = (product: SelectProductType) => {
   const isPressed = useStoreItems(
-    (state) => state.pressedProducts[productId] || false,
+    (state) => state.pressedProducts[product.id] || false,
   );
   const toggleProductInCart = useStoreItems(
     (state) => state.toggleProductInCart,
@@ -16,14 +18,19 @@ const AddCartBtn = ({ productId }: { productId: number }) => {
   return (
     <>
       <Button
-        onClick={() => toggleProductInCart(productId)}
-        className={"flex w-full gap-2"}
+        onClick={() => toggleProductInCart(product.id)}
+        className={cn(
+          "flex w-full gap-2 font-semibold hover:bg-secondary-foreground",
+          {
+            "bg-emerald-500": isPressed,
+          },
+        )}
       >
         {isPressed ? (
-          <>
-            <IconCircleCheck className="text-emerald-500" />
-            <span className="text-emerald-500">Producto añadido!</span>
-          </>
+          <div className="flex w-full items-center justify-center gap-2">
+            <IconCircleCheck />
+            <span>Producto añadido!</span>
+          </div>
         ) : (
           <>
             <IconShoppingCart />

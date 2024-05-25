@@ -1,16 +1,23 @@
+import { SelectProductType } from "@/types";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
+
+type Product = SelectProductType;
 
 type useStoreType = {
   items: number;
   pressedProducts: Record<number, boolean>; // Track pressed state per product ID
   toggleProductInCart: (productId: number) => void; // Combined action
+  cartItems: Product[];
+  addToCart: (product: Product) => void;
+  removeFromCart: (productId: number) => void;
 };
 
 export const useStoreItems = create(
   persist<useStoreType>(
     (set, get) => ({
       items: 0,
+      cartItems: [],
       pressedProducts: {}, // Initialize an empty object
       toggleProductInCart: (productId: number) =>
         set((state) => {
@@ -24,6 +31,14 @@ export const useStoreItems = create(
             },
           };
         }),
+      addToCart: (product: Product) =>
+        set((state) => ({
+          cartItems: [...state.cartItems, product],
+        })),
+      removeFromCart: (productId: number) =>
+        set((state) => ({
+          cartItems: state.cartItems.filter((item) => item.id !== productId),
+        })),
     }),
     {
       name: "cart-storage",

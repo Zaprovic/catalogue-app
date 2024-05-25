@@ -15,14 +15,20 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useFormAction } from "@/hooks/useFormAction";
 import { InsertProductSchema } from "@/schemas/product";
-import { type InsertProductType } from "@/types";
+import { useUser } from "@clerk/nextjs";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { IconLoader2 } from "@tabler/icons-react";
 import { toast } from "sonner";
+import { z } from "zod";
+
+const productSchema = InsertProductSchema.omit({
+  userId: true,
+});
 
 const ProductRegistrationForm = () => {
-  const form = useFormAction<InsertProductType>({
-    resolver: zodResolver(InsertProductSchema),
+  const { user } = useUser();
+  const form = useFormAction<z.infer<typeof productSchema>>({
+    resolver: zodResolver(productSchema),
     defaultValues: {
       title: "",
       description: "",
@@ -31,11 +37,14 @@ const ProductRegistrationForm = () => {
     },
   });
 
-  const onsubmit = async (data: InsertProductType) => {
+  const onsubmit = async (data: z.infer<typeof productSchema>) => {
     try {
       const response = await fetch("/api/products", {
         method: "POST",
-        body: JSON.stringify(data),
+        body: JSON.stringify({
+          ...data,
+          userId: user?.id,
+        }),
         headers: {
           "Content-Type": "application/json",
         },

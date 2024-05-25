@@ -8,6 +8,9 @@ export const ProductTable = sqliteTable("Product", {
   image: text("image", { mode: "text" }),
   specification: text("specification"),
   brand: text("brand"),
+  userId: text("user_id")
+    .notNull()
+    .references(() => UserTable.id, { onDelete: "cascade" }),
 });
 
 export const CategoryTable = sqliteTable("Category", {
@@ -15,11 +18,13 @@ export const CategoryTable = sqliteTable("Category", {
   name: text("name").notNull().unique(),
 });
 
-// export const UserTable = sqliteTable("User", {
-//   id: text("id", { mode: "text" }).primaryKey().notNull(),
-//   username: text("username").notNull().unique(),
-//   email: text("email").notNull().unique(),
-// });
+export const UserTable = sqliteTable("User", {
+  id: text("id", { mode: "text" }).primaryKey().notNull(),
+  username: text("username").unique(),
+  firstName: text("first_name"),
+  lastName: text("last_name"),
+  email: text("email").notNull().unique(),
+});
 
 // many-to-many relation between the tables
 export const ProductCategoryTable = sqliteTable("ProductCategory", {

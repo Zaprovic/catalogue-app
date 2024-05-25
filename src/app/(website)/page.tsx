@@ -8,11 +8,12 @@ export const revalidate = 0;
 export default async function Home() {
   const user = await currentUser();
 
-  console.log(user?.id);
-  console.log(user?.username);
-  console.log(user?.firstName);
-  console.log(user?.lastName);
-  console.log(user?.emailAddresses.map((email) => email.emailAddress));
+  // console.log(user?.id);
+  // console.log(user?.username);
+  // console.log(user?.firstName);
+  // console.log(user?.lastName);
+  // console.log(user?.emailAddresses.map((email) => email.emailAddress));
+  // console.log(user?.passwordEnabled);
 
   return (
     <main>

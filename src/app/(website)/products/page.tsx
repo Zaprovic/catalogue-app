@@ -4,7 +4,7 @@ import { ProductTable } from "@/db/schema";
 import style from "@/styles.module.css";
 import { type SelectProductType } from "@/types";
 import { auth } from "@clerk/nextjs/server";
-import { asc, eq, not } from "drizzle-orm";
+import { asc, eq } from "drizzle-orm";
 
 export const revalidate = 0;
 
@@ -13,13 +13,11 @@ export default async function ProductPage() {
 
   let products: SelectProductType[] = [];
 
-  console.log(String(userId));
-
   if (userId) {
     products = await db
       .select()
       .from(ProductTable)
-      .where(not(eq(ProductTable.userId, userId)));
+      .where(eq(ProductTable.userId, userId));
   } else {
     products = products = await db
       .select()

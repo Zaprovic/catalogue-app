@@ -18,7 +18,7 @@ const ProductCard = (product: SelectProductType) => {
   const formattedPrice = formatPricetoCOP(product.price);
 
   return (
-    <Card className="h-full max-w-[320px]">
+    <Card className="h-auto max-w-[320px]">
       <CardHeader className="p-5">
         <CardTitle className="text-pretty -tracking-wider">
           {product.title}

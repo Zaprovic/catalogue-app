@@ -46,11 +46,13 @@ const Page = async ({ params }: { params: { id: string } }) => {
             productCategories.map((product) => (
               <ProductCard
                 key={product.productId}
-                id={product.productId.toString()}
+                id={product.productId}
                 title={product.productName ?? ""}
                 description={product.productDescription ?? ""}
                 image={product.productImage}
                 price={product.productPrice ?? 0}
+                brand={product.productBrand}
+                specification={product.productSpecification}
               />
             ))
           ) : (

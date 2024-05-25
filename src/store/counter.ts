@@ -7,7 +7,7 @@ type Product = SelectProductType;
 type useStoreType = {
   items: number;
   pressedProducts: Record<number, boolean>; // Track pressed state per product ID
-  toggleProductInCart: (productId: number) => void; // Combined action
+  toggleProductInCart: (product: Product) => void; // Combined action
   cartItems: Product[];
   addToCart: (product: Product) => void;
   removeFromCart: (productId: number) => void;
@@ -19,18 +19,6 @@ export const useStoreItems = create(
       items: 0,
       cartItems: [],
       pressedProducts: {}, // Initialize an empty object
-      toggleProductInCart: (productId: number) =>
-        set((state) => {
-          return {
-            items: state.pressedProducts[productId]
-              ? state.items - 1
-              : state.items + 1,
-            pressedProducts: {
-              ...state.pressedProducts,
-              [productId]: !state.pressedProducts[productId],
-            },
-          };
-        }),
       addToCart: (product: Product) =>
         set((state) => ({
           cartItems: [...state.cartItems, product],
@@ -39,6 +27,30 @@ export const useStoreItems = create(
         set((state) => ({
           cartItems: state.cartItems.filter((item) => item.id !== productId),
         })),
+      toggleProductInCart: (product: Product) =>
+        set((state) => {
+          if (state.pressedProducts[product.id]) {
+            return {
+              items: state.items - 1,
+              cartItems: state.cartItems.filter(
+                (item) => item.id !== product.id,
+              ),
+              pressedProducts: {
+                ...state.pressedProducts,
+                [product.id]: !state.pressedProducts[product.id],
+              },
+            };
+          }
+
+          return {
+            items: state.items + 1,
+            cartItems: [...state.cartItems, product],
+            pressedProducts: {
+              ...state.pressedProducts,
+              [product.id]: !state.pressedProducts[product.id],
+            },
+          };
+        }),
     }),
     {
       name: "cart-storage",

@@ -14,11 +14,17 @@ const AddCartBtn = (product: SelectProductType) => {
   const toggleProductInCart = useStoreItems(
     (state) => state.toggleProductInCart,
   );
+  const addToCart = useStoreItems((state) => state.addToCart);
+
+  const handleClick = () => {
+    toggleProductInCart(product);
+    // addToCart(product);
+  };
 
   return (
     <>
       <Button
-        onClick={() => toggleProductInCart(product.id)}
+        onClick={handleClick}
         className={cn(
           "flex w-full gap-2 font-semibold hover:bg-secondary-foreground",
           {

@@ -11,24 +11,33 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
-import { db } from "@/db/main";
-import { ProductTable } from "@/db/schema";
 import { SelectProductType } from "@/types";
-import { eq } from "drizzle-orm";
+import { useState } from "react";
 import { toast } from "sonner";
 
 const DeleteAlert = ({ id }: { id: SelectProductType["id"] }) => {
+  const [product, setProduct] = useState<SelectProductType[]>([]);
+
   const handleClick = async (id: number) => {
     try {
-      const productToDelete = await db
-        .select()
-        .from(ProductTable)
-        .where(eq(ProductTable.id, id));
+      const response = await fetch(`/api/products/${id}`, {
+        method: "DELETE",
+        next: {
+          tags: ["dashboard-products"],
+        },
+      });
+
+      if (!response.ok) {
+        const text = response.statusText;
+        toast.error(text);
+        return;
+      }
+      const productToDelete = await response.json();
       console.log(productToDelete);
       toast.success("Producto eliminado");
     } catch (error) {
       if (error instanceof Error) {
-        toast.error(error.message);
+        toast.error("EOOREOREOEOEROERER");
       }
     }
   };

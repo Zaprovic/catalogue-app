@@ -3,7 +3,11 @@ import { ProductTable } from "@/db/schema";
 import { InsertProductSchema } from "@/schemas/product";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function GET(req: NextRequest) {
+export async function GET(
+  req: NextRequest,
+  { params }: { params?: { id: string } },
+) {
+  const id = params?.id;
   const products = await db.select().from(ProductTable).all();
   return NextResponse.json(products);
 

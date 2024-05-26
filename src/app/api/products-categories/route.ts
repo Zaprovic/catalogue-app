@@ -12,7 +12,7 @@ export async function POST(request: Request) {
   const data = await request.json();
 
   try {
-    await db.insert(ProductCategoryTable).values(data);
+    await db.insert(ProductCategoryTable).values(data).onConflictDoNothing();
     return NextResponse.json(data);
   } catch (error) {
     if (error instanceof Error) {

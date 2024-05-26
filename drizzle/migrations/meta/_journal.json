@@ -8,6 +8,48 @@
       "when": 1716604134312,
       "tag": "0000_exotic_monster_badoon",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1716737969322,
+      "tag": "0001_next_jubilee",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1716738096054,
+      "tag": "0002_wandering_captain_cross",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "6",
+      "when": 1716738308887,
+      "tag": "0003_red_arclight",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "6",
+      "when": 1716738399991,
+      "tag": "0004_yellow_logan",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "6",
+      "when": 1716739043608,
+      "tag": "0005_natural_rocket_racer",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "6",
+      "when": 1716739866333,
+      "tag": "0006_nosy_sersi",
+      "breakpoints": true
     }
   ]
 }

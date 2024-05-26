@@ -1,4 +1,9 @@
-import { integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
+import {
+  integer,
+  primaryKey,
+  sqliteTable,
+  text,
+} from "drizzle-orm/sqlite-core";
 
 export const ProductTable = sqliteTable("Product", {
   id: integer("id").primaryKey({ autoIncrement: true }).notNull(),
@@ -27,15 +32,20 @@ export const UserTable = sqliteTable("User", {
 });
 
 // many-to-many relation between the tables
-export const ProductCategoryTable = sqliteTable("ProductCategory", {
-  productId: integer("product_id")
-    .notNull()
-    .references(() => ProductTable.id, {
-      onDelete: "cascade",
+export const ProductCategoryTable = sqliteTable(
+  "ProductCategory",
+  {
+    productId: integer("product_id")
+      .notNull()
+      .references(() => ProductTable.id, { onDelete: "cascade" }),
+    categoryId: integer("category_id")
+      .notNull()
+      .references(() => CategoryTable.id, { onDelete: "cascade" }),
+  },
+  (table) => ({
+    pk: primaryKey({
+      columns: [table.productId, table.categoryId],
+      name: "pk_product_category", // Optional, but recommended for clarity
     }),
-  categoryId: integer("category_id")
-    .notNull()
-    .references(() => CategoryTable.id, {
-      onDelete: "cascade",
-    }),
-});
+  }),
+);

@@ -8,29 +8,14 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { db } from "@/db/main";
-import { ProductTable } from "@/db/schema";
 import { formatPricetoCOP } from "@/lib/utils";
 import styles from "@/styles.module.css";
 import { SelectProductType } from "@/types";
-import { eq } from "drizzle-orm";
 import Link from "next/link";
-import { toast } from "sonner";
 import DeleteAlert from "./delete-alert";
 
 const MyProduct = (product: SelectProductType) => {
   const formattedPrice = formatPricetoCOP(product.price);
-
-  const handleClick = async (id: number) => {
-    try {
-      await db.delete(ProductTable).where(eq(ProductTable.id, id));
-      toast.success("Producto eliminado correctamente");
-    } catch (error) {
-      if (error instanceof Error) {
-        toast.error(error.message);
-      }
-    }
-  };
 
   return (
     <Card className="h-auto max-w-[320px] pb-3">

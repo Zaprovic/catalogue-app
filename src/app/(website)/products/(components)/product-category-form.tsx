@@ -17,15 +17,14 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { db } from "@/db/main";
-import { CategoryTable, ProductCategoryTable } from "@/db/schema";
 import { SelectCategoryType, SelectProductType } from "@/types";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { eq } from "drizzle-orm";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod";
+
+//
 
 const ProductCategorySchema = z.object({
   product: z.string({
@@ -64,18 +63,23 @@ const ProductCategoryForm = () => {
           }),
         ]);
 
-        const [products, categories] = await Promise.all([
-          productsResponse.json(),
-          categoriesResponse.json(),
-        ]);
+        if (productsResponse.ok && categoriesResponse.ok) {
+          const [products, categories] = await Promise.all([
+            productsResponse.json(),
+            categoriesResponse.json(),
+          ]);
 
-        setProducts(products);
-        setCategories(categories);
+          setProducts(products);
+          setCategories(categories);
+          console.log(products);
+          console.log(categories);
+        }
+
+        // throw new Error("Error al obtener los datos");
       } catch (error) {
         if (error instanceof Error) {
           throw new Error(error.message);
         }
-        return;
       }
     };
 
@@ -83,19 +87,30 @@ const ProductCategoryForm = () => {
   }, []);
 
   const onsubmit = async (data: ProductCategoryType) => {
-    const category = await db
-      .selectDistinct()
-      .from(CategoryTable)
-      .where(eq(CategoryTable.name, data.category));
-
     const newData = {
-      productId: +data.product,
-      categoryId: category[0].id,
+      ...data,
+      product: +data.product,
+    };
+
+    const categoryId = categories.find(
+      (category) => category.name === newData.category,
+    );
+
+    const submissionObject = {
+      productId: newData.product,
+      categoryId: categoryId?.id,
     };
 
     try {
-      await db.insert(ProductCategoryTable).values(newData);
+      await fetch("/api/products-categories", {
+        method: "POST",
+        body: JSON.stringify(submissionObject),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
       toast.success(`Se ha registrado el producto y su categoria con exito`);
+      form.reset();
     } catch (error) {
       if (error instanceof Error) {
         toast.error(error.message);

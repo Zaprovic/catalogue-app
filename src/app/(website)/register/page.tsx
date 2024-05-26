@@ -1,3 +1,5 @@
+import CategoryRegistrationForm from "../products/(components)/category-registration-form";
+import ProductCategoryForm from "../products/(components)/product-category-form";
 import ProductRegistrationForm from "../products/(components)/product-registration-form";
 
 const Page = () => {
@@ -8,12 +10,12 @@ const Page = () => {
       </h1>
 
       <section className="mx-auto my-5 grid w-full max-w-[1000px] grid-cols-1 gap-3">
-        {/* <CategoryRegistrationForm /> */}
+        <CategoryRegistrationForm />
         {/* <CategoryOptions /> */}
 
         <div className="flex w-full flex-col gap-3">
           <ProductRegistrationForm />
-          {/* <ProductCategoryForm /> */}
+          <ProductCategoryForm />
         </div>
       </section>
     </main>

@@ -1,3 +1,5 @@
+import { db } from "@/db/main";
+import { ProductTable } from "@/db/schema";
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 
@@ -11,4 +13,8 @@ export function formatPricetoCOP(price: number) {
     style: "currency",
     minimumFractionDigits: 0,
   }).format(price);
+}
+
+export async function getProducts() {
+  return db.select().from(ProductTable).all();
 }

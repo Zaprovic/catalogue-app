@@ -1,48 +1,53 @@
 import { db } from "@/db/main";
-import { CategoryTable, ProductCategoryTable, ProductTable } from "@/db/schema";
+import { ProductTable } from "@/db/schema";
 import { InsertProductSchema } from "@/schemas/product";
-import { eq } from "drizzle-orm";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function GET(req: NextRequest) {
-  const url = new URL(req.url);
-  const categoryId = url.searchParams.get("categoryId");
+export async function GET(req?: NextRequest) {
+  const products = await db.select().from(ProductTable).all();
+  return NextResponse.json(products);
 
-  try {
-    const allProducts = await db
-      .select({
-        productId: ProductTable.id,
-        categoryId: ProductCategoryTable.categoryId,
-        productName: ProductTable.title,
-        categoryName: CategoryTable.name,
-        productDescription: ProductTable.description,
-        productPrice: ProductTable.price,
-        productImage: ProductTable.image,
-        userId: ProductTable.userId,
-      })
-      .from(ProductCategoryTable)
-      .innerJoin(
-        ProductTable,
-        eq(ProductTable.id, ProductCategoryTable.productId),
-      )
-      .innerJoin(
-        CategoryTable,
-        eq(CategoryTable.id, ProductCategoryTable.categoryId),
-      );
+  // task: Check what was this being used for before ⬇️
 
-    if (categoryId) {
-      const filteredProducts = allProducts.filter(
-        (product) => product.categoryId === +categoryId,
-      );
-      return NextResponse.json(filteredProducts);
-    }
-    return NextResponse.json(allProducts);
-  } catch (error) {
-    if (error instanceof Error) {
-      console.error(error.message);
-      return new Response("Internal Server Error", { status: 500 });
-    }
-  }
+  // const url = new URL(req.url);
+  // const categoryId = url.searchParams.get("categoryId");
+
+  // try {
+  //   const allProducts = await db
+  //     .select({
+  //       productId: ProductTable.id,
+  //       categoryId: ProductCategoryTable.categoryId,
+  //       productName: ProductTable.title,
+  //       categoryName: CategoryTable.name,
+  //       productDescription: ProductTable.description,
+  //       productPrice: ProductTable.price,
+  //       productImage: ProductTable.image,
+  //       userId: ProductTable.userId,
+  //     })
+  //     .from(ProductCategoryTable)
+  //     .innerJoin(
+  //       ProductTable,
+  //       eq(ProductTable.id, ProductCategoryTable.productId),
+  //     )
+  //     .innerJoin(
+  //       CategoryTable,
+  //       eq(CategoryTable.id, ProductCategoryTable.categoryId),
+  //     );
+
+  //   if (categoryId) {
+  //     const filteredProducts = allProducts.filter(
+  //       (product) => product.categoryId === +categoryId,
+  //     );
+  //     return NextResponse.json(filteredProducts);
+  //   } else {
+  //     return NextResponse.json(allProducts);
+  //   }
+  // } catch (error) {
+  //   if (error instanceof Error) {
+  //     console.error(error.message);
+  //     return new Response("Internal Server Error", { status: 500 });
+  //   }
+  // }
 }
 
 export async function POST(req: NextRequest) {

@@ -7,7 +7,7 @@ import { ThemeToggle } from "./theme-toggle";
 
 function Header() {
   return (
-    <header className="flex items-center justify-between bg-primary px-5 py-5 lg:px-8">
+    <header className="sticky top-0 flex items-center justify-between bg-primary px-5 py-5 lg:px-8">
       <Link href={"/"}>
         <IconShoppingBag width={36} height={36} />
       </Link>

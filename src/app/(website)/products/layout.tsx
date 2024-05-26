@@ -7,7 +7,7 @@ const Layout = ({ children }: { children: ReactNode }) => {
     <>
       <main className="">
         <h1 className="mb-8 text-3xl font-semibold -tracking-wider">
-          Mis productos
+          Todos los productos
         </h1>
 
         <div className="flex justify-center md:gap-12">

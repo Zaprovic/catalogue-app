@@ -21,3 +21,7 @@ export async function selectAllCategoriesAction(formData: FormData) {
   await db.insert(CategoryTable).values(result.data);
   revalidatePath("/api/categories");
 }
+
+export async function getCategoriesAction() {
+  return db.select().from(CategoryTable).all();
+}

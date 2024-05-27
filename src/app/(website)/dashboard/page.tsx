@@ -9,7 +9,7 @@ import { IconRefresh } from "@tabler/icons-react";
 import { eq } from "drizzle-orm";
 import MyProduct from "./(components)/my-product";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 const Page = async () => {
   const session = await auth();

@@ -9,17 +9,15 @@ export default async function Home() {
   const session = await auth();
 
   return (
-    <main>
+    <main className="flex h-full flex-col">
       <h1 className="text-3xl font-semibold -tracking-wider">
         {session ? `Bienvenido, ${session.user?.name}` : "Inicio"}
       </h1>
-      <p>Esta ruta debe de ser publica al usuario</p>
 
-      <div className="flex gap-2">
+      <div className="flex flex-1 items-center justify-center gap-2">
         {session ? <SignOut /> : <SignIn />}
 
         {session && <span>{session.user?.name}</span>}
-        {session && <img src={session.user?.image ?? ""} alt="User image" />}
       </div>
     </main>
   );

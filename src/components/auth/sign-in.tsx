@@ -1,7 +1,6 @@
 "use client";
 import { signInAction } from "@/actions/auth-actions";
-import { IconBrandGoogleFilled } from "@tabler/icons-react";
-import Link from "next/link";
+import IconGoogleColor from "@/icons/icon-google-color";
 import { useForm } from "react-hook-form";
 import { Button } from "../ui/button";
 import {
@@ -18,26 +17,19 @@ const SignIn = () => {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Inicia sesion a Yesecommerce</CardTitle>
+        <CardTitle className="text-center">Inicia sesion</CardTitle>
       </CardHeader>
       <CardContent>
         <Form {...form}>
           <form action={signInAction}>
             <Button className="flex gap-2">
               <span>Iniciar sesion con Google</span>
-              <IconBrandGoogleFilled />
+              <IconGoogleColor width={20} height={20} />
             </Button>
           </form>
         </Form>
       </CardContent>
-      <CardFooter>
-        <div className="text-sm">
-          No tienes cuenta?
-          <Button asChild variant={"link"}>
-            <Link href={"#"}>Crea una aqui</Link>
-          </Button>
-        </div>
-      </CardFooter>
+      <CardFooter></CardFooter>
     </Card>
   );
 };

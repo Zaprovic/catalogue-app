@@ -71,3 +71,7 @@ export async function POST(req: NextRequest) {
     return new Response("Invalid data", { status: 400 });
   }
 }
+
+export async function PATCH(req: NextRequest) {
+  const data = await req.json();
+}

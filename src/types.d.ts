@@ -4,6 +4,7 @@ import { CategoryTable, ProductCategoryTable, ProductTable } from "./db/schema";
 // product
 export type SelectProductType = InferSelectModel<typeof ProductTable>;
 export type InsertProductType = InferInsertModel<typeof ProductTable>;
+export type UpdateProductType = Partial<SelectProductType>;
 
 //category
 export type SelectCategoryType = InferSelectModel<typeof CategoryTable>;

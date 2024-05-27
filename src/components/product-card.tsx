@@ -18,25 +18,25 @@ const ProductCard = (product: SelectProductType) => {
   const formattedPrice = formatPricetoCOP(product.price);
 
   return (
-    <Card className="h-auto max-w-[320px]">
+    <Card className="h-full max-w-[320px]">
       <CardHeader className="p-5">
         <CardTitle className="text-pretty -tracking-wider">
           {product.title}
         </CardTitle>
       </CardHeader>
-      <CardContent className="w-full flex-1 px-5 pb-2">
+      <CardContent className="w-full px-5 pb-2">
         <Link href={`/products/${product.id}`} className="h-full w-full">
-          <figure className="overflow-hidden rounded-lg">
+          <figure className="">
             <img
               src={product.image ?? ""}
               alt={"Product Image"}
-              width={200}
-              height={200}
-              className="aspect-square h-full w-full overflow-hidden rounded-lg"
+              width={50}
+              height={50}
+              className="aspect-square h-auto w-full object-contain"
             />
           </figure>
           <CardDescription
-            className={`${styles.cardDescription} mt-3 line-clamp-2`}
+            className={`${styles.cardDescription} mt-3 line-clamp-1`}
           >
             {product.description}
           </CardDescription>

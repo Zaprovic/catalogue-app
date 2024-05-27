@@ -11,13 +11,6 @@
   height: 100%;
 }
 
-.productContainer img {
-  object-fit: cover; /* Cover the container, cropping if necessary */
-  /* Other options: contain, fill, scale-down, none */
-  width: 100%;
-  height: 100%;
-}
-
 .myProductContainer {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));

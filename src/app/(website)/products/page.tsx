@@ -28,9 +28,9 @@ export default async function ProductPage() {
   return (
     <>
       <div className="flex-1">
-        <section className="mx-auto h-full w-full">
+        <section className="mx-auto w-full">
           <div
-            className={`${style.productContainer} h-full w-full place-items-center`}
+            className={`${style.productContainer} w-full place-items-center`}
           >
             {products.map((product) => (
               <ProductCard key={product.id} {...product} />

@@ -10,7 +10,9 @@ export default async function Home() {
 
   return (
     <main>
-      <h1 className="text-3xl font-semibold -tracking-wider">Inicio</h1>
+      <h1 className="text-3xl font-semibold -tracking-wider">
+        Inicio (app using next auth)
+      </h1>
       <p>Esta ruta debe de ser publica al usuario</p>
       <p className={cn("font-medium text-red-500", { "text-green-500": user })}>
         {user ? "Usuario autenticado" : "Usuario no autenticado"}

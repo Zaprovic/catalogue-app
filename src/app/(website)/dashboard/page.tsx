@@ -1,10 +1,15 @@
+import { revalidateProducts } from "@/actions/revalidate-actions";
+import { Button } from "@/components/ui/button";
 import { db } from "@/db/main";
 import { ProductTable } from "@/db/schema";
 import styles from "@/styles.module.css";
 import { SelectProductType } from "@/types";
 import { auth } from "@clerk/nextjs/server";
+import { IconRefresh } from "@tabler/icons-react";
 import { eq } from "drizzle-orm";
 import MyProduct from "./(components)/my-product";
+
+export const dynamic = "force-dynamic";
 
 const Page = async () => {
   const { userId } = auth();
@@ -26,6 +31,13 @@ const Page = async () => {
         <h2 className="mb-5 text-2xl font-semibold -tracking-wider">
           Mis productos
         </h2>
+
+        <form action={revalidateProducts} className="my-5">
+          <Button className="flex gap-2">
+            <span>Refresh</span>
+            <IconRefresh />
+          </Button>
+        </form>
 
         <div className={`${styles.myProductContainer} mx-auto max-w-[1200px]`}>
           {myProducts.map((product) => (

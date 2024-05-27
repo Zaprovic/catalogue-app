@@ -1,7 +1,6 @@
 import { db } from "@/db/main";
 import { ProductTable } from "@/db/schema";
 import { eq } from "drizzle-orm";
-import { revalidateTag } from "next/cache";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(
@@ -19,7 +18,6 @@ export async function DELETE(
   const { id } = params;
   try {
     await db.delete(ProductTable).where(eq(ProductTable.id, +id));
-    revalidateTag("dashboard-products");
   } catch (error) {
     if (error instanceof Error) {
       return NextResponse.json({ error });

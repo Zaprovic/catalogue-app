@@ -1,4 +1,5 @@
-"use client";
+// "use client";
+import { deleteProductAction } from "@/actions/product-actions";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -12,19 +13,18 @@ import {
 } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
 import { SelectProductType } from "@/types";
-import { useState } from "react";
 import { toast } from "sonner";
 
 const DeleteAlert = ({ id }: { id: SelectProductType["id"] }) => {
-  const [product, setProduct] = useState<SelectProductType[]>([]);
+  // const [product, setProduct] = useState<SelectProductType[]>([]);
+  // const formData = new FormData();
+  // formData.append("id", `${id}`);
 
   const handleClick = async (id: number) => {
     try {
       const response = await fetch(`/api/products/${id}`, {
         method: "DELETE",
-        next: {
-          tags: ["dashboard-products"],
-        },
+        next: { tags: ["delete-product"] },
       });
 
       if (!response.ok) {
@@ -60,9 +60,13 @@ const DeleteAlert = ({ id }: { id: SelectProductType["id"] }) => {
         </AlertDialogHeader>
         <AlertDialogFooter className="flex gap-4">
           <AlertDialogCancel>Cancelar</AlertDialogCancel>
-          <AlertDialogAction asChild onClick={() => handleClick(id)}>
-            <Button>Si, estoy seguro</Button>
-          </AlertDialogAction>
+          <form action={deleteProductAction.bind(null, id)}>
+            <AlertDialogAction asChild>
+              <Button type="submit" variant={"destructive"}>
+                Si, estoy seguro
+              </Button>
+            </AlertDialogAction>
+          </form>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>

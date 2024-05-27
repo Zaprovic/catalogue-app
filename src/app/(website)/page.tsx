@@ -1,12 +1,17 @@
-import { Button } from "@/components/ui/button";
+/* eslint-disable @next/next/no-img-element */
+import { auth } from "@/auth";
+import SignIn from "@/components/auth/sign-in";
+import SignOut from "@/components/auth/sign-out";
 import { cn } from "@/lib/utils";
-import { SignInButton, SignOutButton, SignUpButton } from "@clerk/nextjs";
-import { currentUser } from "@clerk/nextjs/server";
 
 export const revalidate = 0;
 
 export default async function Home() {
-  const user = await currentUser();
+  // const user = await currentUser();
+  const user = null;
+  const session = await auth();
+
+  // console.log(session?.user);
 
   return (
     <main>
@@ -14,10 +19,22 @@ export default async function Home() {
         Inicio (app using next auth) - next auth is open source
       </h1>
       <p>Esta ruta debe de ser publica al usuario</p>
-      <p className={cn("font-medium text-red-500", { "text-green-500": user })}>
-        {user ? "Usuario autenticado" : "Usuario no autenticado"}
-      </p>
-      {!user ? (
+
+      <div className="flex gap-2">
+        <SignIn />
+        <SignOut />
+        <p
+          className={cn("font-medium", {
+            "text-green-500": session,
+            "text-red-500": !session,
+          })}
+        >
+          {session ? "Usuario autenticado" : "Usuario no autenticado"}
+        </p>
+        {session && <span>{session.user?.name}</span>}
+        {session && <img src={session.user?.image ?? ""} alt="User image" />}
+      </div>
+      {/* {!user ? (
         <div className="flex gap-2">
           <Button asChild>
             <SignInButton />
@@ -30,7 +47,7 @@ export default async function Home() {
         <Button asChild>
           <SignOutButton />
         </Button>
-      )}
+      )} */}
     </main>
   );
 }

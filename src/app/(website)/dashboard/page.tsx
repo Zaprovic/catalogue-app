@@ -7,7 +7,6 @@ import styles from "@/styles.module.css";
 import { SelectProductType } from "@/types";
 import { IconRefresh } from "@tabler/icons-react";
 import { eq } from "drizzle-orm";
-import { redirect } from "next/navigation";
 import MyProduct from "./(components)/my-product";
 
 export const revalidate = 0;
@@ -15,11 +14,11 @@ export const revalidate = 0;
 const Page = async () => {
   const session = await auth();
 
-  if (!session) redirect("/");
+  // if (!session) redirect("/");
 
   let myProducts: SelectProductType[] = [];
 
-  if (session.user) {
+  if (session && session.user) {
     myProducts = await db
       .select()
       .from(ProductTable)

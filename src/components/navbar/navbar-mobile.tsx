@@ -1,7 +1,8 @@
 "use client";
 import { useStoreItems } from "@/store/counter";
-import { SignOutButton, useAuth } from "@clerk/nextjs";
+import { SignOutButton } from "@clerk/nextjs";
 import { IconMenu2, IconShoppingCart } from "@tabler/icons-react";
+import { Session } from "next-auth";
 import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 import { Button } from "../ui/button";
@@ -16,16 +17,14 @@ import {
 import NavbarItem from "./navbar-item";
 import { routes } from "./routes";
 
-const NavbarMobile = () => {
+const NavbarMobile = ({ session }: { session: Session | null }) => {
   const [isOpen, setIsOpen] = useState(false);
   const { items } = useStoreItems();
 
   const pathname = usePathname();
   const router = useRouter();
 
-  const { isSignedIn } = useAuth();
-
-  const filteredRoutes = isSignedIn
+  const filteredRoutes = session
     ? routes
     : routes.filter((route) => route.isPublic);
 

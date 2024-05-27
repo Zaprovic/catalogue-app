@@ -4,7 +4,6 @@ import { db } from "@/db/main";
 import { ProductTable } from "@/db/schema";
 import styles from "@/styles.module.css";
 import { SelectProductType } from "@/types";
-import { auth } from "@clerk/nextjs/server";
 import { IconRefresh } from "@tabler/icons-react";
 import { eq } from "drizzle-orm";
 import MyProduct from "./(components)/my-product";
@@ -12,7 +11,7 @@ import MyProduct from "./(components)/my-product";
 export const dynamic = "force-dynamic";
 
 const Page = async () => {
-  const { userId } = auth();
+  const userId = "3";
 
   let myProducts: SelectProductType[] = [];
 

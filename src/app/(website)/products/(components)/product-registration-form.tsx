@@ -18,6 +18,7 @@ import { InsertProductSchema } from "@/schemas/product";
 import { useUser } from "@clerk/nextjs";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { IconLoader2 } from "@tabler/icons-react";
+import { Session } from "next-auth";
 import { toast } from "sonner";
 import { z } from "zod";
 
@@ -25,7 +26,7 @@ const productSchema = InsertProductSchema.omit({
   userId: true,
 });
 
-const ProductRegistrationForm = () => {
+const ProductRegistrationForm = ({ session }: { session: Session | null }) => {
   const { user } = useUser();
   const form = useFormAction<z.infer<typeof productSchema>>({
     resolver: zodResolver(productSchema),
@@ -37,18 +38,21 @@ const ProductRegistrationForm = () => {
     },
   });
 
+  // console.log(session?.user?.id);
+
   const onsubmit = async (data: z.infer<typeof productSchema>) => {
     try {
       const response = await fetch("/api/products", {
         method: "POST",
         body: JSON.stringify({
           ...data,
-          userId: user?.id,
+          userId: session?.user?.id,
         }),
         headers: {
           "Content-Type": "application/json",
         },
       });
+
       if (response.ok) {
         toast.success(`El producto '${data.title}' se ha añadido exitosamente`);
         form.reset();
@@ -67,7 +71,10 @@ const ProductRegistrationForm = () => {
         }
       }
     } catch (error) {
-      toast.error("Ha ocurrido un error, intentalo mas tarde");
+      if (error instanceof Error) {
+        toast.error(error.message);
+        return;
+      }
     }
   };
 

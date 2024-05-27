@@ -1,4 +1,5 @@
 import { revalidateProducts } from "@/actions/revalidate-actions";
+import { auth } from "@/auth";
 import { Button } from "@/components/ui/button";
 import { db } from "@/db/main";
 import { ProductTable } from "@/db/schema";
@@ -11,15 +12,15 @@ import MyProduct from "./(components)/my-product";
 export const dynamic = "force-dynamic";
 
 const Page = async () => {
-  const userId = "3";
+  const session = await auth();
 
   let myProducts: SelectProductType[] = [];
 
-  if (userId) {
+  if (session && session.user) {
     myProducts = await db
       .select()
       .from(ProductTable)
-      .where(eq(ProductTable.userId, userId));
+      .where(eq(ProductTable.userId, session.user.id ?? ""));
   }
 
   return (

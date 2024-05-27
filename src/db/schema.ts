@@ -25,14 +25,6 @@ export const CategoryTable = sqliteTable("Category", {
 });
 
 export const UserTable = sqliteTable("User", {
-  id: text("id", { mode: "text" }).primaryKey().notNull(),
-  username: text("username").unique(),
-  firstName: text("first_name"),
-  lastName: text("last_name"),
-  email: text("email").notNull().unique(),
-});
-
-export const users = sqliteTable("UserAuth", {
   id: text("id")
     .primaryKey()
     .$defaultFn(() => crypto.randomUUID()),
@@ -47,7 +39,7 @@ export const AccountTable = sqliteTable(
   {
     userId: text("user_id")
       .notNull()
-      .references(() => users.id, { onDelete: "cascade" }),
+      .references(() => UserTable.id, { onDelete: "cascade" }),
     type: text("type").$type<AdapterAccountType>().notNull(),
     provider: text("provider").notNull(),
     providerAccountId: text("provider_account_id").notNull(),
@@ -70,7 +62,7 @@ export const SessionTable = sqliteTable("Session", {
   sessionToken: text("session_token").primaryKey(),
   userId: text("user_id")
     .notNull()
-    .references(() => users.id, { onDelete: "cascade" }),
+    .references(() => UserTable.id, { onDelete: "cascade" }),
   expires: integer("expires", { mode: "timestamp_ms" }).notNull(),
 });
 

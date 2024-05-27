@@ -1,8 +1,10 @@
+import { auth } from "@/auth";
 import CategoryRegistrationForm from "../products/(components)/category-registration-form";
 import ProductCategoryForm from "../products/(components)/product-category-form";
 import ProductRegistrationForm from "../products/(components)/product-registration-form";
 
-const Page = () => {
+const Page = async () => {
+  const session = await auth();
   return (
     <main className="flex h-full flex-col">
       <h1 className="text-3xl font-semibold -tracking-wider">
@@ -14,7 +16,7 @@ const Page = () => {
         {/* <CategoryOptions /> */}
 
         <div className="flex w-full flex-col gap-3">
-          <ProductRegistrationForm />
+          <ProductRegistrationForm session={session} />
           <ProductCategoryForm />
         </div>
       </section>

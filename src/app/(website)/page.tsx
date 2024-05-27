@@ -11,7 +11,7 @@ export default async function Home() {
   return (
     <main>
       <h1 className="text-3xl font-semibold -tracking-wider">
-        Inicio (app using next auth)
+        Inicio (app using next auth) - next auth is open source
       </h1>
       <p>Esta ruta debe de ser publica al usuario</p>
       <p className={cn("font-medium text-red-500", { "text-green-500": user })}>

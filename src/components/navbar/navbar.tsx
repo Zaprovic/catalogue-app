@@ -1,21 +1,20 @@
 "use client";
-import { useAuth } from "@clerk/nextjs";
+import { Session } from "next-auth";
 import { usePathname } from "next/navigation";
 import { useMedia } from "react-use";
 import NavbarItem from "./navbar-item";
 import NavbarMobile from "./navbar-mobile";
 import { routes } from "./routes";
 
-const Navbar = () => {
+const Navbar = ({ session }: { session: Session | null }) => {
   const isMobile = useMedia("(max-width: 768px)", false);
   const pathname = usePathname();
-  const { isSignedIn } = useAuth();
 
-  const filteredRoutes = isSignedIn
+  const filteredRoutes = session
     ? routes
     : routes.filter((route) => route.isPublic);
 
-  if (isMobile) return <NavbarMobile />;
+  if (isMobile) return <NavbarMobile session={session} />;
 
   return (
     <nav>

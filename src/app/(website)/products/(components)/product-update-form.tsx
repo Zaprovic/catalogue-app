@@ -13,75 +13,59 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { useFormAction } from "@/hooks/useFormAction";
-import { InsertProductSchema } from "@/schemas/product";
-import { useUser } from "@clerk/nextjs";
+import { UpdateProductSchema } from "@/schemas/product";
+import { type UpdateProductType } from "@/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { IconLoader2 } from "@tabler/icons-react";
-import { Session } from "next-auth";
+import { useForm } from "react-hook-form";
 import { toast } from "sonner";
-import { z } from "zod";
 
-const productSchema = InsertProductSchema.omit({
-  userId: true,
-});
-
-const ProductRegistrationForm = ({ session }: { session: Session | null }) => {
-  const { user } = useUser();
-  const form = useFormAction<z.infer<typeof productSchema>>({
-    resolver: zodResolver(productSchema),
+const ProductUpdateForm = (product: UpdateProductType) => {
+  const form = useForm<UpdateProductType>({
+    resolver: zodResolver(UpdateProductSchema),
     defaultValues: {
-      title: "",
-      description: "",
-      price: 0,
-      image: "",
+      title: product.title,
+      description: product.description,
+      price: product.price,
+      image: product.image,
+      brand: product.brand,
+      specification: product.specification,
     },
   });
 
-  // console.log(session?.user?.id);
+  const onsubmit = async (data: UpdateProductType) => {
+    console.log(data);
 
-  const onsubmit = async (data: z.infer<typeof productSchema>) => {
     try {
-      const response = await fetch("/api/products", {
-        method: "POST",
-        body: JSON.stringify({
-          ...data,
-          userId: session?.user?.id,
-        }),
+      const response = await fetch(`/api/products/${product.id}`, {
+        method: "PATCH",
+        body: JSON.stringify(data),
         headers: {
           "Content-Type": "application/json",
         },
+        cache: "no-cache",
+        next: {
+          revalidate: 0,
+        },
       });
 
-      if (response.ok) {
-        toast.success(`El producto '${data.title}' se ha añadido exitosamente`);
-        form.reset();
-      } else {
-        const errorData = await response.json(); // Get error details from the response
-        if (errorData.errors) {
-          // If validation errors are returned, display them
-          for (const error of errorData.errors) {
-            toast.error(error.message);
-          }
-        } else {
-          // Display a general error message
-          toast.error(
-            errorData.message || "Hubo un error al registrar el producto",
-          );
-        }
+      if (!response.ok) {
+        throw new Error("Error al actualizar el producto");
       }
+
+      await response.json();
     } catch (error) {
-      if (error instanceof Error) {
-        toast.error(error.message);
-        return;
-      }
+      toast.error("Error al actualizar el producto");
+      return;
     }
+
+    toast.success("Producto actualizado correctamente");
   };
 
   return (
     <Card className="w-full">
       <CardHeader>
-        <CardTitle>Crea tu producto (1)</CardTitle>
+        <CardTitle>Actualizar producto</CardTitle>
       </CardHeader>
       <CardContent>
         <Form {...form}>
@@ -190,7 +174,7 @@ const ProductRegistrationForm = ({ session }: { session: Session | null }) => {
               {form.formState.isSubmitting ? (
                 <IconLoader2 className="animate-spin" />
               ) : (
-                "Registrar producto"
+                "Actualizar producto"
               )}
             </Button>
           </form>
@@ -200,4 +184,4 @@ const ProductRegistrationForm = ({ session }: { session: Session | null }) => {
   );
 };
 
-export default ProductRegistrationForm;
+export default ProductUpdateForm;

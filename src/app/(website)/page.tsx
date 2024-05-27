@@ -1,34 +1,24 @@
-import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
-import { SignInButton, SignOutButton, SignUpButton } from "@clerk/nextjs";
-import { currentUser } from "@clerk/nextjs/server";
+/* eslint-disable @next/next/no-img-element */
+import { auth } from "@/auth";
+import SignIn from "@/components/auth/sign-in";
+import SignOut from "@/components/auth/sign-out";
 
 export const revalidate = 0;
 
 export default async function Home() {
-  const user = await currentUser();
+  const session = await auth();
 
   return (
-    <main>
-      <h1 className="text-3xl font-semibold -tracking-wider">Inicio</h1>
-      <p>Esta ruta debe de ser publica al usuario</p>
-      <p className={cn("font-medium text-red-500", { "text-green-500": user })}>
-        {user ? "Usuario autenticado" : "Usuario no autenticado"}
-      </p>
-      {!user ? (
-        <div className="flex gap-2">
-          <Button asChild>
-            <SignInButton />
-          </Button>
-          <Button asChild>
-            <SignUpButton />
-          </Button>
-        </div>
-      ) : (
-        <Button asChild>
-          <SignOutButton />
-        </Button>
-      )}
+    <main className="flex h-full flex-col">
+      <h1 className="text-3xl font-semibold -tracking-wider">
+        {session ? `Bienvenido, ${session.user?.name}` : "Inicio"}
+      </h1>
+
+      <div className="flex flex-1 items-center justify-center gap-2">
+        {session ? <SignOut /> : <SignIn />}
+
+        {session && <span>{session.user?.name}</span>}
+      </div>
     </main>
   );
 }

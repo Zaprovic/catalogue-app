@@ -1,3 +1,4 @@
+import { auth } from "@/auth";
 import { UserButton } from "@clerk/nextjs";
 import { IconShoppingBag } from "@tabler/icons-react";
 import Link from "next/link";
@@ -5,7 +6,8 @@ import Navbar from "./navbar/navbar";
 import ShoppingCartBtn from "./shopping-cart-btn";
 import { ThemeToggle } from "./theme-toggle";
 
-function Header() {
+async function Header() {
+  const session = await auth();
   return (
     <header className="sticky top-0 flex items-center justify-between bg-primary px-5 py-5 text-primary-foreground lg:px-8">
       <Link href={"/"}>
@@ -17,7 +19,7 @@ function Header() {
           <ThemeToggle />
           <UserButton />
         </div>
-        <Navbar />
+        <Navbar session={session} />
       </div>
 
       <ShoppingCartBtn />

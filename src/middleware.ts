@@ -1,12 +1,13 @@
-import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
+import { auth } from "@/auth";
+import { NextResponse } from "next/server";
 
-// const isProtectedRoute = createRouteMatcher(["/(products|cart|about)", "/"]);
-const isProtectedRoute = createRouteMatcher(["/(register|dashboard)"]);
+export default auth((req) => {
+  const isLoggedIn = !!req.auth;
 
-export default clerkMiddleware((auth, req) => {
-  if (isProtectedRoute(req)) auth().protect();
-
-  // return NextResponse.next();
+  if (req.nextUrl.pathname.match("/(dashboard|register)(.*)") && !isLoggedIn) {
+    return NextResponse.redirect(new URL("/", req.url));
+  }
+  return NextResponse.next();
 });
 
 export const config = {

@@ -59,16 +59,19 @@ export async function POST(req: NextRequest) {
 
   try {
     const result = await InsertProductSchema.safeParseAsync(data);
+
     if (!result.success) {
       return new Response("Invalid data", { status: 400 });
     }
 
     await db.insert(ProductTable).values(result.data);
+
     return NextResponse.json(result.data);
   } catch (error) {
-    if (error instanceof Error) {
-      return new Response(error.message, { status: 500 });
-    }
-    return new Response("Internal Server Error", { status: 500 });
+    return new Response("Invalid data", { status: 400 });
   }
+}
+
+export async function PATCH(req: NextRequest) {
+  const data = await req.json();
 }

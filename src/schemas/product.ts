@@ -24,3 +24,5 @@ export const InsertProductSchema = createInsertSchema(
   ProductTable,
   productBaseSchema,
 );
+
+export const UpdateProductSchema = SelectProductSchema.partial();

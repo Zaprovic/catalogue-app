@@ -1,5 +1,3 @@
-import { db } from "@/db/main";
-import { UserTable } from "@/db/schema";
 import { UserJSON, WebhookEvent } from "@clerk/nextjs/server";
 import { headers } from "next/headers";
 import { Webhook } from "svix";
@@ -57,37 +55,37 @@ export async function POST(req: Request) {
 
   const data = evt.data as UserJSON;
 
-  if (evt.type === "user.created") {
-    try {
-      await db.insert(UserTable).values({
-        id: data.id,
-        username: data.username,
-        email: data.email_addresses[0].email_address,
-        firstName: data.first_name,
-        lastName: data.last_name,
-      });
+  // if (evt.type === "user.created") {
+  //   try {
+  //     await db.insert(UserTable).values({
+  //       id: data.id,
+  //       username: data.username,
+  //       email: data.email_addresses[0].email_address,
+  //       firstName: data.first_name,
+  //       lastName: data.last_name,
+  //     });
 
-      console.log("User created");
-    } catch (error) {
-      throw new Error("Error creating user in database");
-    }
-  }
+  //     console.log("User created");
+  //   } catch (error) {
+  //     throw new Error("Error creating user in database");
+  //   }
+  // }
 
-  if (evt.type === "user.updated") {
-    try {
-      await db.update(UserTable).set({
-        id: data.id,
-        username: data.username,
-        email: data.email_addresses[0].email_address,
-        firstName: data.first_name,
-        lastName: data.last_name,
-      });
+  // if (evt.type === "user.updated") {
+  //   try {
+  //     await db.update(UserTable).set({
+  //       id: data.id,
+  //       username: data.username,
+  //       email: data.email_addresses[0].email_address,
+  //       firstName: data.first_name,
+  //       lastName: data.last_name,
+  //     });
 
-      console.log("User updated");
-    } catch (error) {
-      throw new Error("Error updating user in database");
-    }
-  }
+  //     console.log("User updated");
+  //   } catch (error) {
+  //     throw new Error("Error updating user in database");
+  //   }
+  // }
 
   return new Response("", { status: 200 });
 }

@@ -1,26 +1,28 @@
 import { revalidateProducts } from "@/actions/revalidate-actions";
+import { auth } from "@/auth";
 import { Button } from "@/components/ui/button";
 import { db } from "@/db/main";
 import { ProductTable } from "@/db/schema";
 import styles from "@/styles.module.css";
 import { SelectProductType } from "@/types";
-import { auth } from "@clerk/nextjs/server";
 import { IconRefresh } from "@tabler/icons-react";
 import { eq } from "drizzle-orm";
 import MyProduct from "./(components)/my-product";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 const Page = async () => {
-  const { userId } = auth();
+  const session = await auth();
+
+  // if (!session) redirect("/");
 
   let myProducts: SelectProductType[] = [];
 
-  if (userId) {
+  if (session && session.user) {
     myProducts = await db
       .select()
       .from(ProductTable)
-      .where(eq(ProductTable.userId, userId));
+      .where(eq(ProductTable.userId, session.user.id ?? ""));
   }
 
   return (

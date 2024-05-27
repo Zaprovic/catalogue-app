@@ -3,13 +3,13 @@ import { db } from "@/db/main";
 import { ProductTable } from "@/db/schema";
 import style from "@/styles.module.css";
 import { type SelectProductType } from "@/types";
-import { auth } from "@clerk/nextjs/server";
 import { asc, eq } from "drizzle-orm";
 
 export const revalidate = 0;
 
 export default async function ProductPage() {
-  const { userId } = auth();
+  // const { userId } = auth();
+  const userId = undefined;
 
   let products: SelectProductType[] = [];
 

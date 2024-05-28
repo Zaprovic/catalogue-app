@@ -48,7 +48,7 @@ const FooterMobile = ({ children }: { children?: ReactNode }) => {
         </li>
         <li className="flex gap-3">
           <IconBrandWhatsapp />
-          <span>+57 3053925741</span>
+          <span>+57 3002103171</span>
         </li>
       </FooterItem>
       <Separator className="mx-auto my-4" />

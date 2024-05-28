@@ -36,6 +36,7 @@ export default function RootLayout({
             disableTransitionOnChange
           >
             <Header />
+            {/* from p-6 to p-0 */}
             <div className="flex-1 p-6">{children}</div>
             <Footer />
             <Toaster

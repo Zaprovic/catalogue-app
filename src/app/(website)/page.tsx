@@ -1,8 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { auth } from "@/auth";
-import SignIn from "@/components/auth/sign-in";
-import SignOut from "@/components/auth/sign-out";
 import CategoryImage from "@/components/category-image";
+import Link from "next/link";
 
 export const revalidate = 0;
 
@@ -15,11 +14,28 @@ export default async function Home() {
         {session ? `Bienvenido, ${session.user?.name}` : "Inicio"}
       </h1>
 
-      <div className="flex flex-1 items-center justify-center gap-2">
+      {/* <div className="flex flex-1 items-center justify-center gap-2">
         {session ? <SignOut /> : <SignIn />}
 
         {session && <span>{session.user?.name}</span>}
-      </div>
+      </div> */}
+
+      <nav className="flex items-center justify-center sm:hidden">
+        <ul className="flex flex-col items-center justify-center gap-5 text-2xl font-semibold text-primary/40">
+          <li>
+            <Link href="#">Inicio</Link>
+          </li>
+          <li>
+            <Link href="#">Productos</Link>
+          </li>
+          <li>
+            <Link href="#">Contacto</Link>
+          </li>
+          <li>
+            <Link href="#">Dashboard</Link>
+          </li>
+        </ul>
+      </nav>
 
       <section className="flex w-full flex-col justify-center gap-6 sm:hidden">
         <CategoryImage src="/images/img-1.png" alt="img-1" />

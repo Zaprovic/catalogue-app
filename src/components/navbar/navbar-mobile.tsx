@@ -43,7 +43,9 @@ const NavbarMobile = ({ session }: { session: Session | null }) => {
       <SheetContent>
         <SheetHeader className="pb-8 text-start">
           <div className="flex justify-between gap-2">
-            <SheetTitle className="text-2xl">Menu</SheetTitle>
+            <SheetTitle className="text-2xl">
+              <span>Menu</span>
+            </SheetTitle>
           </div>
           <SheetDescription>
             Navigate through the different pages available.

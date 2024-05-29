@@ -3,7 +3,6 @@ import { IconSearch } from "@tabler/icons-react";
 import Link from "next/link";
 import NavbarMobile from "./navbar/navbar-mobile";
 import ShoppingCartBtn from "./shopping-cart-btn";
-import { ThemeToggle } from "./theme-toggle";
 
 async function Header() {
   const session = await auth();
@@ -21,10 +20,10 @@ async function Header() {
       </div> */}
 
       <nav>
-        <ul className="flex items-center gap-5">
-          <li>
+        <ul className="flex items-center gap-4">
+          {/* <li>
             <ThemeToggle />
-          </li>
+          </li> */}
           <li>
             <Link href={"/products"}>
               <IconSearch />

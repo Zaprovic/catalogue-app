@@ -31,13 +31,13 @@ export default function RootLayout({
         <body className={`${inter.className} flex h-full flex-col`}>
           <ThemeProvider
             attribute="class"
-            defaultTheme="dark"
+            defaultTheme="light"
             enableSystem
             disableTransitionOnChange
           >
             <Header />
             {/* from p-6 to p-0 */}
-            <div className="flex-1 p-6">{children}</div>
+            <div className="flex-1 p-0">{children}</div>
             <Footer />
             <Toaster
               toastOptions={{

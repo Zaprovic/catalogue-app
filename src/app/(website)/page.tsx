@@ -35,7 +35,7 @@ export default async function Home() {
         </ul>
       </nav>
 
-      <section className="w-full">
+      <section className="w-full sm:hidden">
         <figure className="relative w-full">
           <Image
             src={"/images/new-collection.jpg"}

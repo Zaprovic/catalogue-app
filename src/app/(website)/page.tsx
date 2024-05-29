@@ -1,9 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
 import { auth } from "@/auth";
-import CategoryImage from "@/components/category-image";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
+import HomeMobile from "./(components)/home-mobile";
 
 export const revalidate = 0;
 
@@ -18,68 +18,29 @@ export default async function Home() {
         {session && <span>{session.user?.name}</span>}
       </div> */}
 
-      <nav className="flex items-center justify-center pt-16 sm:hidden">
-        <ul className="flex flex-col items-center justify-center gap-5 text-2xl font-semibold text-primary/40">
-          <li>
-            <Link href="/">Inicio</Link>
-          </li>
-          <li>
-            <Link href="/products">Productos</Link>
-          </li>
-          <li>
-            <Link href="/about">Contacto</Link>
-          </li>
-          <li>
-            <Link href="/dashboard">Dashboard</Link>
-          </li>
-        </ul>
-      </nav>
+      <HomeMobile />
 
-      <section className="w-full sm:hidden">
-        <figure className="relative w-full">
+      <section className="hidden sm:inline-block">
+        <figure className="relative w-full lg:my-8">
           <Image
-            src={"/images/new-collection.jpg"}
-            alt="New collection"
-            width={412}
-            height={753}
-            className="h-auto w-full"
+            src={"/images/perfume.jpg"}
+            alt="Shop Hero Desktop"
+            width={1440}
+            height={716}
+            className="h-auto max-h-[600px] w-full object-contain"
           />
-
-          <figcaption className="absolute left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 flex-col gap-6 text-center text-white">
+          <figcaption className="absolute left-1/2 top-1/2 flex -translate-x-72 -translate-y-1/2 flex-col gap-3 text-white md:-translate-x-full">
             <span>Summer 2024</span>
             <h4 className="text-4xl font-bold uppercase">New collection</h4>
-            <p>
+            <p className="max-w-[320px]">
               We know how large objects will act, but things on a small scale.
             </p>
 
-            <Button>
+            <Button className="w-fit">
               <Link href="/products">Shop now</Link>
             </Button>
           </figcaption>
         </figure>
-      </section>
-
-      <section className="mb-8 flex w-full flex-col justify-center gap-6 px-6 sm:hidden">
-        <CategoryImage
-          src="/images/img-1.png"
-          alt="img-1"
-          categoryName="Dermatologia"
-        />
-        <CategoryImage
-          src="/images/img-2.png"
-          alt="img-2"
-          categoryName="Proteccion solar"
-        />
-        <CategoryImage
-          src="/images/img-3.png"
-          alt="img-3"
-          categoryName="Cuidado de la piel"
-        />
-        <CategoryImage
-          src="/images/img-4.png"
-          alt="img-4"
-          categoryName="Cuidado del cabello"
-        />
       </section>
     </main>
   );

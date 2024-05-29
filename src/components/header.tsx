@@ -1,5 +1,6 @@
+import { signInAction, signOutAction } from "@/actions/auth-actions";
 import { auth } from "@/auth";
-import { IconMoneybag, IconUser } from "@tabler/icons-react";
+import { IconLogout2, IconMoneybag, IconUser } from "@tabler/icons-react";
 import Link from "next/link";
 import NavbarMobileTrigger from "./navbar/navbar-mobile-trigger";
 import ShoppingCartBtn from "./shopping-cart-btn";
@@ -8,9 +9,9 @@ import { Button } from "./ui/button";
 async function Header() {
   const session = await auth();
   return (
-    <header className="sticky top-0 z-50 flex items-center justify-between bg-primary px-5 py-5 text-primary-foreground lg:px-8">
+    <header className="sticky top-0 z-50 flex items-center justify-between bg-primary px-5 py-5 text-primary-foreground lg:px-8 xl:px-12">
       <div className="flex gap-10 lg:gap-32">
-        <Link href={"/"}>
+        <Link href={"/"} className="flex gap-2">
           <span className="font-bold">YeseCommerce</span>
         </Link>
 
@@ -40,18 +41,33 @@ async function Header() {
         </nav>
       </div>
 
-      <div className="hidden items-center gap-0 lg:flex">
+      <div className="hidden items-center gap-8 lg:flex">
         <div className="hidden items-center gap-4 lg:flex">
-          <Button
-            className="flex gap-2 hover:bg-primary hover:text-primary-foreground"
-            variant={"ghost"}
-          >
-            <IconUser />
-            <span>Iniciar sesion</span>
-          </Button>
+          {!session && (
+            <form action={signInAction}>
+              <Button
+                className="flex gap-2 hover:bg-primary hover:text-primary-foreground"
+                variant={"ghost"}
+              >
+                <IconUser />
+                <span>Iniciar sesion</span>
+              </Button>
+            </form>
+          )}
         </div>
 
         <ShoppingCartBtn />
+        {session && (
+          <form action={signOutAction}>
+            <Button
+              className="flex gap-2 px-0 hover:bg-primary hover:text-primary-foreground"
+              variant={"ghost"}
+            >
+              <IconLogout2 />
+              <span>Salir</span>
+            </Button>
+          </form>
+        )}
       </div>
 
       <nav className="flex items-center gap-4 lg:hidden">

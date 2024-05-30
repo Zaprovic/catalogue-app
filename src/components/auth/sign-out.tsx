@@ -1,15 +1,10 @@
-import { signOut } from "@/auth";
+import { signOutAction } from "@/actions/auth-actions";
 import { Button } from "../ui/button";
 
 const SignOut = () => {
   return (
-    <form
-      action={async () => {
-        "use server";
-        await signOut();
-      }}
-    >
-      <Button>Sign out</Button>
+    <form action={signOutAction}>
+      <Button className="w-full">Sign out</Button>
     </form>
   );
 };

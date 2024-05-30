@@ -3,7 +3,7 @@ import { Session } from "next-auth";
 import { usePathname } from "next/navigation";
 import { useMedia } from "react-use";
 import NavbarItem from "./navbar-item";
-import NavbarMobile from "./navbar-mobile";
+import NavbarMobile from "./navbar-mobile-trigger";
 import { routes } from "./routes";
 
 const Navbar = ({ session }: { session: Session | null }) => {

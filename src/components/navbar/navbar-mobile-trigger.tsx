@@ -1,10 +1,11 @@
 "use client";
+import { signInAction } from "@/actions/auth-actions";
 import { useStoreItems } from "@/store/counter";
-import { SignOutButton } from "@clerk/nextjs";
-import { IconMenu2, IconShoppingCart } from "@tabler/icons-react";
+import { IconMenuDeep, IconShoppingCart } from "@tabler/icons-react";
 import { Session } from "next-auth";
 import { usePathname, useRouter } from "next/navigation";
-import { useState } from "react";
+import { DetailedHTMLProps, HTMLAttributes, useState } from "react";
+import SignOut from "../auth/sign-out";
 import { Button } from "../ui/button";
 import {
   Sheet,
@@ -17,7 +18,12 @@ import {
 import NavbarItem from "./navbar-item";
 import { routes } from "./routes";
 
-const NavbarMobile = ({ session }: { session: Session | null }) => {
+interface props
+  extends DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement> {
+  session: Session | null;
+}
+
+const NavbarMobileTrigger = ({ session }: props) => {
   const [isOpen, setIsOpen] = useState(false);
   const { items } = useStoreItems();
 
@@ -35,14 +41,16 @@ const NavbarMobile = ({ session }: { session: Session | null }) => {
   return (
     <Sheet open={isOpen} onOpenChange={setIsOpen}>
       <SheetTrigger asChild>
-        <Button size={"icon"} variant={"ghost"} className="lg:hidden">
-          <IconMenu2 />
+        <Button size={"icon"} variant={"ghost"} className="p-0 lg:hidden">
+          <IconMenuDeep width={24} height={24} />
         </Button>
       </SheetTrigger>
       <SheetContent>
         <SheetHeader className="pb-8 text-start">
           <div className="flex justify-between gap-2">
-            <SheetTitle className="text-2xl">Menu</SheetTitle>
+            <SheetTitle className="text-2xl">
+              <span>Menu</span>
+            </SheetTitle>
           </div>
           <SheetDescription>
             Navigate through the different pages available.
@@ -72,9 +80,13 @@ const NavbarMobile = ({ session }: { session: Session | null }) => {
           </div>
 
           <li className="w-full rounded-full" onClick={() => onclick("/")}>
-            <Button className="w-full" asChild variant={"secondary"}>
-              <SignOutButton />
-            </Button>
+            {session ? (
+              <SignOut />
+            ) : (
+              <form action={signInAction} className="w-full">
+                <Button className="flex w-full">Iniciar sesion</Button>
+              </form>
+            )}
           </li>
         </ul>
       </SheetContent>
@@ -82,4 +94,4 @@ const NavbarMobile = ({ session }: { session: Session | null }) => {
   );
 };
 
-export default NavbarMobile;
+export default NavbarMobileTrigger;

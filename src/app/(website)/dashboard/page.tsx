@@ -26,7 +26,7 @@ const Page = async () => {
   }
 
   return (
-    <div>
+    <div className="p-6">
       <h1 className="mb-5 text-3xl font-semibold -tracking-wider">Dashboard</h1>
 
       <section>

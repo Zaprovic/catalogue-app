@@ -34,9 +34,9 @@ const NavbarItem = ({
         asChild
         variant={"ghost"}
         className={cn(
-          "flex w-full items-center justify-start rounded-lg px-3 md:rounded-xl",
+          "flex w-full items-center justify-start rounded-lg px-3 lg:rounded-xl",
           {
-            "bg-secondary/80 md:bg-secondary/10": active,
+            "bg-secondary/80 lg:bg-secondary/10": active,
           },
         )}
         onClick={() => onclick && onclick(href)}
@@ -48,7 +48,7 @@ const NavbarItem = ({
               <TooltipContent>{label}</TooltipContent>
             </Tooltip>
           </TooltipProvider>
-          <span className="font-bold md:hidden lg:block">{label}</span>
+          <span className="font-bold lg:hidden">{label}</span>
         </Link>
       </Button>
     </li>

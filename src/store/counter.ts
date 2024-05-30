@@ -53,7 +53,7 @@ export const useStoreItems = create(
         }),
     }),
     {
-      name: "cart-storage",
+      name: "cart-storage", // Unique name for your cookie
     },
   ),
 );

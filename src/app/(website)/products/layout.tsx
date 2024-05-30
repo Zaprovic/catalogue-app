@@ -5,7 +5,7 @@ import { ReactNode, Suspense } from "react";
 const Layout = ({ children }: { children: ReactNode }) => {
   return (
     <>
-      <main className="">
+      <main className="p-6">
         <h1 className="mb-8 text-3xl font-semibold -tracking-wider">
           Todos los productos
         </h1>

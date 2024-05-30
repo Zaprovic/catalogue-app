@@ -34,7 +34,7 @@ const HomeMobile = () => {
             className="h-full w-full"
           />
 
-          <figcaption className="absolute left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 flex-col gap-2 text-center text-white sm:-translate-x-full">
+          <figcaption className="absolute left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 flex-col gap-4 text-center text-white sm:-translate-x-full">
             <span>Summer 2024</span>
             <h4 className="text-xl font-bold uppercase sm:text-3xl">
               New collection

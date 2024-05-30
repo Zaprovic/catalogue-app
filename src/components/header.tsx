@@ -41,7 +41,7 @@ async function Header() {
         </nav>
       </div>
 
-      <div className="hidden items-center gap-8 lg:flex">
+      <div className="hidden items-center gap-3 lg:flex">
         <div className="hidden items-center gap-4 lg:flex">
           {!session && (
             <form action={signInAction}>

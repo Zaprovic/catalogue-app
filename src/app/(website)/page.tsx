@@ -1,6 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
 import { auth } from "@/auth";
 import { Button } from "@/components/ui/button";
+import { db } from "@/db/main";
+import { ProductTable } from "@/db/schema";
 import Image from "next/image";
 import Link from "next/link";
 import HomeMobile from "./(components)/home-mobile";
@@ -9,6 +11,7 @@ export const revalidate = 0;
 
 export default async function Home() {
   const session = await auth();
+  const products = await db.select().from(ProductTable).all();
 
   return (
     <main className="flex h-full flex-col gap-20">

@@ -15,7 +15,6 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useFormAction } from "@/hooks/useFormAction";
 import { InsertProductSchema } from "@/schemas/product";
-import { useUser } from "@clerk/nextjs";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { IconLoader2 } from "@tabler/icons-react";
 import { Session } from "next-auth";
@@ -27,7 +26,6 @@ const productSchema = InsertProductSchema.omit({
 });
 
 const ProductRegistrationForm = ({ session }: { session: Session | null }) => {
-  const { user } = useUser();
   const form = useFormAction<z.infer<typeof productSchema>>({
     resolver: zodResolver(productSchema),
     defaultValues: {
@@ -37,8 +35,6 @@ const ProductRegistrationForm = ({ session }: { session: Session | null }) => {
       image: "",
     },
   });
-
-  // console.log(session?.user?.id);
 
   const onsubmit = async (data: z.infer<typeof productSchema>) => {
     try {

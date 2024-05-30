@@ -10,7 +10,7 @@ const Page = async () => {
   if (!session) redirect("/");
 
   return (
-    <main className="flex h-full flex-col">
+    <main className="flex h-full flex-col p-6">
       <h1 className="text-3xl font-semibold -tracking-wider">
         Crea tus productos
       </h1>

@@ -3,11 +3,15 @@ import { auth } from "@/auth";
 import { IconLogout2, IconMoneybag, IconUser } from "@tabler/icons-react";
 import Link from "next/link";
 import NavbarMobileTrigger from "./navbar/navbar-mobile-trigger";
+import { routes } from "./navbar/routes";
 import ShoppingCartBtn from "./shopping-cart-btn";
 import { Button } from "./ui/button";
 
 async function Header() {
   const session = await auth();
+  const filteredRoutes = session
+    ? routes
+    : routes.filter((route) => route.isPublic);
   return (
     <header className="sticky top-0 z-50 flex items-center justify-between bg-primary px-5 py-5 text-primary-foreground lg:px-8 xl:px-12">
       <div className="flex gap-10 lg:gap-32">
@@ -17,7 +21,14 @@ async function Header() {
 
         <nav className="hidden items-center gap-4 lg:flex">
           <ul className="flex gap-8 font-semibold">
-            <li>
+            {filteredRoutes.map((route) => (
+              <li key={route.href}>
+                <Link href={route.href} className="hover:underline">
+                  {route.label}
+                </Link>
+              </li>
+            ))}
+            {/* <li>
               <Link href={"/"} className="hover:underline">
                 Inicio
               </Link>
@@ -36,7 +47,7 @@ async function Header() {
               <Link href={"/dashboard"} className="hover:underline">
                 Dashboard
               </Link>
-            </li>
+            </li> */}
           </ul>
         </nav>
       </div>

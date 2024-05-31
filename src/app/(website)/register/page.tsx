@@ -1,10 +1,14 @@
 import { auth } from "@/auth";
+import { db } from "@/db/main";
+import { CategoryTable } from "@/db/schema";
 import { redirect } from "next/navigation";
+import CategoryOptionsForm from "../products/(components)/category-options-form";
 import CategoryRegistrationForm from "../products/(components)/category-registration-form";
 import ProductRegistrationForm from "../products/(components)/product-registration-form";
 
 const Page = async () => {
   const session = await auth();
+  const categories = await db.select().from(CategoryTable).all();
 
   if (!session) redirect("/");
 
@@ -14,9 +18,9 @@ const Page = async () => {
         Crea tus productos
       </h1>
 
-      <section className="mx-auto my-5 grid w-full max-w-[800px] grid-cols-1 gap-3">
+      <section className="my-5 grid w-full max-w-3xl grid-cols-1 gap-3">
         <CategoryRegistrationForm session={session} />
-        {/* <CategoryOptions /> */}
+        <CategoryOptionsForm categories={categories} />
 
         <div className="flex w-full flex-col gap-3">
           <ProductRegistrationForm session={session} />

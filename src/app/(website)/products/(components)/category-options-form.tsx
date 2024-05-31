@@ -10,9 +10,8 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import useFetch from "@/hooks/useFetch";
+import { SelectCategoryType } from "@/types";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { IconLoader2 } from "@tabler/icons-react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -26,10 +25,11 @@ const CategoryFormSchema = z.object({
     }),
 });
 
-const CategoryOptionsForm = () => {
-  const { data: categories, isLoading } =
-    useFetch<{ id: string; name: string }[]>("/api/categories");
-
+const CategoryOptionsForm = ({
+  categories,
+}: {
+  categories: SelectCategoryType[];
+}) => {
   const form = useForm<z.infer<typeof CategoryFormSchema>>({
     resolver: zodResolver(CategoryFormSchema),
     defaultValues: {
@@ -55,10 +55,7 @@ const CategoryOptionsForm = () => {
                   Selecciona como minimo una categoria
                 </FormDescription>
               </div>
-              {isLoading ? (
-                <IconLoader2 className="animate-spin" />
-              ) : (
-                categories &&
+              {categories &&
                 categories.length > 0 &&
                 categories.map((item) => (
                   <FormField
@@ -73,13 +70,13 @@ const CategoryOptionsForm = () => {
                         >
                           <FormControl>
                             <Checkbox
-                              checked={field.value?.includes(item.id)}
+                              checked={field.value?.includes(`${item.id}`)}
                               onCheckedChange={(checked) => {
                                 return checked
                                   ? field.onChange([...field.value, item.id])
                                   : field.onChange(
                                       field.value?.filter(
-                                        (value) => value !== item.id,
+                                        (value) => value !== `${item.id}`,
                                       ),
                                     );
                               }}
@@ -92,8 +89,7 @@ const CategoryOptionsForm = () => {
                       );
                     }}
                   />
-                ))
-              )}
+                ))}
               <FormMessage />
             </FormItem>
           )}

@@ -57,7 +57,7 @@ const ProductRegistrationForm = ({ session }: { session: Session | null }) => {
   return (
     <Card className="w-full">
       <CardHeader>
-        <CardTitle>Crea tu producto (1)</CardTitle>
+        <CardTitle>Crea tu producto</CardTitle>
       </CardHeader>
       <CardContent>
         <Form {...form}>

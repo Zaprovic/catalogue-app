@@ -1,10 +1,11 @@
-import CategoryCreationForm from "@/components/forms/category-creation-form";
+import { auth } from "@/auth";
+import CategoryCreationForm from "@/components/forms/categories/category-creation-form";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Session } from "next-auth";
 
 //todo: there is prop drilling in the session
 
-const CategoryRegistrationForm = ({ session }: { session: Session | null }) => {
+const CategoryRegistrationCard = async () => {
+  const session = await auth();
   return (
     <Card className="">
       <CardHeader>
@@ -17,4 +18,4 @@ const CategoryRegistrationForm = ({ session }: { session: Session | null }) => {
   );
 };
 
-export default CategoryRegistrationForm;
+export default CategoryRegistrationCard;

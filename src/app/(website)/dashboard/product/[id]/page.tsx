@@ -1,4 +1,4 @@
-import ProductUpdateForm from "@/app/(website)/products/(components)/product-update-form";
+import ProductUpdateForm from "@/components/forms/products/product-update-form";
 import { db } from "@/db/main";
 import { ProductTable } from "@/db/schema";
 import { eq } from "drizzle-orm";

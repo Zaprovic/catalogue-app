@@ -2,11 +2,11 @@ import { signInAction, signOutAction } from "@/actions/auth-actions";
 import { auth } from "@/auth";
 import { IconLogout2, IconMoneybag, IconUser } from "@tabler/icons-react";
 import Link from "next/link";
-import NavbarMobileTrigger from "./navbar/navbar-mobile-trigger";
-import { routes } from "./navbar/routes";
-import ShoppingCartBtn from "./shopping-cart-btn";
+import NavbarMobileTrigger from "../navbar/navbar-mobile-trigger";
+import { routes } from "../navbar/routes";
+import ShoppingCartBtn from "../shopping-cart-btn";
+import { Button } from "../ui/button";
 import { ThemeToggle } from "./theme-toggle";
-import { Button } from "./ui/button";
 
 async function Header() {
   const session = await auth();

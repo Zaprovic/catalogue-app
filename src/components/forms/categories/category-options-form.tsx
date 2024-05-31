@@ -50,6 +50,14 @@ const CategoryOptionsForm = ({
     name,
   }));
 
+  const userCategories = categories
+    .filter((item) => item.userId === session?.user?.id)
+    .map(({ id, name, userId }) => ({
+      id: id.toString(),
+      name,
+      userId,
+    }));
+
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
@@ -58,10 +66,14 @@ const CategoryOptionsForm = ({
     },
   });
 
+  const userProducts = products.filter(
+    (item) => item.userId === session?.user?.id,
+  );
+
   const onsubmit = async (data: z.infer<typeof FormSchema>) => {
     const { categories, product: productId } = data;
 
-    if (!productId || !newCategories) {
+    if (!productId || !userCategories) {
       return;
     }
     const categoriesId = categories?.map(Number);
@@ -95,18 +107,22 @@ const CategoryOptionsForm = ({
               <FormLabel>Selecciona un producto</FormLabel>
               <Select onValueChange={field.onChange} defaultValue={field.value}>
                 <FormControl>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Selecciona un producto" />
+                  <SelectTrigger disabled={userProducts.length === 0}>
+                    <SelectValue
+                      placeholder={
+                        userProducts.length === 0
+                          ? "No tienes aun ningun producto"
+                          : "Selecciona un producto"
+                      }
+                    />
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
-                  {products
-                    .filter((item) => item.userId === session?.user?.id)
-                    .map((item) => (
-                      <SelectItem key={item.id} value={item.id.toString()}>
-                        {item.id} - {item.title}
-                      </SelectItem>
-                    ))}
+                  {userProducts.map((item) => (
+                    <SelectItem key={item.id} value={item.id.toString()}>
+                      {item.id} - {item.title}
+                    </SelectItem>
+                  ))}
                 </SelectContent>
               </Select>
               <FormDescription>
@@ -126,7 +142,9 @@ const CategoryOptionsForm = ({
                 <div className="mb-4">
                   <FormLabel className="text-base">Categorias</FormLabel>
                   <FormDescription>
-                    Selecciona como minimo una categoria
+                    {newCategories.length === 0
+                      ? "No tienes aun ninguna categoria"
+                      : "Selecciona las categorias para el producto"}
                   </FormDescription>
                 </div>
 

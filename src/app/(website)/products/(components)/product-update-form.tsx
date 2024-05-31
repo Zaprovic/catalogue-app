@@ -29,7 +29,6 @@ const ProductUpdateForm = (product: UpdateProductType) => {
       price: product.price,
       image: product.image,
       brand: product.brand,
-      specification: product.specification,
     },
   });
 
@@ -131,21 +130,6 @@ const ProductUpdateForm = (product: UpdateProductType) => {
                   <FormDescription>
                     Asegurate de colocar la URL de la imagen
                   </FormDescription>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            <FormField
-              control={form.control}
-              name="specification"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Especificacion del producto</FormLabel>
-                  <FormControl>
-                    <Input {...field} value={field.value ?? ""} />
-                  </FormControl>
-
                   <FormMessage />
                 </FormItem>
               )}

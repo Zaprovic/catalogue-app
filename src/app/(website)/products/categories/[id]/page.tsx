@@ -26,7 +26,6 @@ const Page = async ({ params }: { params: { id: string } }) => {
       categoryName: CategoryTable.name,
       productPrice: ProductTable.price,
       productDescription: ProductTable.description,
-      productSpecification: ProductTable.specification,
       productBrand: ProductTable.brand,
       productImage: ProductTable.image,
       userId: ProductTable.userId,
@@ -54,7 +53,6 @@ const Page = async ({ params }: { params: { id: string } }) => {
                 image={product.productImage}
                 price={product.productPrice ?? 0}
                 brand={product.productBrand}
-                specification={product.productSpecification}
               />
             ))
           ) : (

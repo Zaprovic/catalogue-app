@@ -11,8 +11,6 @@ export const revalidate = 0;
 const Page = async () => {
   const session = await auth();
 
-  // if (!session) redirect("/");
-
   let myProducts: SelectProductType[] = [];
 
   if (session && session.user) {

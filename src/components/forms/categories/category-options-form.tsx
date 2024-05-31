@@ -78,7 +78,7 @@ const CategoryOptionsForm = ({
       return;
     }
 
-    toast.success(`El producto se ha añadido exitosamente`);
+    toast.success(`Categorias asignadas correctamente`);
     form.reset();
 
     form.reset();

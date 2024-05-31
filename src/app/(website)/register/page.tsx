@@ -21,7 +21,6 @@ const Page = async () => {
 
           <div className="flex w-full flex-col gap-3">
             <ProductRegistrationCard />
-            {/* <ProductCategoryForm /> */}
           </div>
         </section>
 

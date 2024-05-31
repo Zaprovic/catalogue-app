@@ -86,7 +86,9 @@ const CategoryOptionsForm = ({
     const response = await insertProductCategoryAction(insertionArray);
 
     if ("error" in response) {
-      toast.error(response.error);
+      toast.error(
+        "El producto ya tiene alguna de las categorias que seleccionaste",
+      );
       return;
     }
 
@@ -186,7 +188,7 @@ const CategoryOptionsForm = ({
             )}
           />
         </div>
-        <Button type="submit">Submit</Button>
+        <Button type="submit">Asignar categorias</Button>
       </form>
     </Form>
   );

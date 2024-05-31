@@ -29,7 +29,7 @@ const Page = async () => {
           Mis productos
         </h2>
 
-        <div className={`${styles.myProductContainer} mx-auto max-w-[1200px]`}>
+        <div className={`${styles.myProductContainer} max-w-3xl`}>
           {myProducts.map((product) => (
             <MyProduct key={product.id} {...product} />
           ))}

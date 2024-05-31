@@ -1,4 +1,4 @@
-import ProductUpdateForm from "@/app/(website)/products/(components)/product-update-form";
+import ProductUpdateForm from "@/components/forms/products/product-update-form";
 import { db } from "@/db/main";
 import { ProductTable } from "@/db/schema";
 import { eq } from "drizzle-orm";
@@ -10,9 +10,11 @@ const Page = async ({ params }: { params: { id: string } }) => {
     await db.select().from(ProductTable).where(eq(ProductTable.id, +params.id))
   )[0];
   return (
-    <div>
-      <ProductUpdateForm {...product} />
-    </div>
+    <main className="p-6">
+      <section className="w-full max-w-5xl">
+        <ProductUpdateForm {...product} />
+      </section>
+    </main>
   );
 };
 

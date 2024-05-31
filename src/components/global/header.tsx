@@ -2,10 +2,11 @@ import { signInAction, signOutAction } from "@/actions/auth-actions";
 import { auth } from "@/auth";
 import { IconLogout2, IconMoneybag, IconUser } from "@tabler/icons-react";
 import Link from "next/link";
-import NavbarMobileTrigger from "./navbar/navbar-mobile-trigger";
-import { routes } from "./navbar/routes";
-import ShoppingCartBtn from "./shopping-cart-btn";
-import { Button } from "./ui/button";
+import NavbarMobileTrigger from "../navbar/navbar-mobile-trigger";
+import { routes } from "../navbar/routes";
+import ShoppingCartBtn from "../shopping-cart-btn";
+import { Button } from "../ui/button";
+import { ThemeToggle } from "./theme-toggle";
 
 async function Header() {
   const session = await auth();
@@ -13,8 +14,8 @@ async function Header() {
     ? routes
     : routes.filter((route) => route.isPublic);
   return (
-    <header className="sticky top-0 z-50 flex items-center justify-between bg-primary px-5 py-5 text-primary-foreground lg:px-8 xl:px-12">
-      <div className="flex gap-10 lg:gap-32">
+    <header className="sticky top-0 z-50 flex items-center justify-between bg-primary px-5 py-5 text-primary-foreground lg:px-6">
+      <div className="flex gap-10 lg:gap-16">
         <Link href={"/"} className="flex gap-2">
           <span className="font-bold">YeseCommerce</span>
         </Link>
@@ -28,26 +29,6 @@ async function Header() {
                 </Link>
               </li>
             ))}
-            {/* <li>
-              <Link href={"/"} className="hover:underline">
-                Inicio
-              </Link>
-            </li>
-            <li>
-              <Link href={"/products"} className="hover:underline">
-                Productos
-              </Link>
-            </li>
-            <li>
-              <Link href={"/about"} className="hover:underline">
-                Contacto
-              </Link>
-            </li>
-            <li>
-              <Link href={"/dashboard"} className="hover:underline">
-                Dashboard
-              </Link>
-            </li> */}
           </ul>
         </nav>
       </div>
@@ -79,6 +60,8 @@ async function Header() {
             </Button>
           </form>
         )}
+
+        <ThemeToggle />
       </div>
 
       <nav className="flex items-center gap-4 lg:hidden">

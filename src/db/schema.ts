@@ -12,7 +12,6 @@ export const ProductTable = sqliteTable("Product", {
   description: text("description"),
   price: integer("price").notNull(),
   image: text("image", { mode: "text" }),
-  specification: text("specification"),
   brand: text("brand"),
   userId: text("user_id")
     .notNull()

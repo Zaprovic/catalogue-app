@@ -6,9 +6,32 @@ import { InsertProductType } from "@/types";
 import { eq } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
 
-//! THIS ACTION DOESNT WORK
-export const getAllProductsAction = async (formData: InsertProductType) => {
-  console.log(formData);
+//* THIS ACTION WORKS
+export const getAllProductsAction = async () => {
+  const products = await db.select().from(ProductTable).all();
+
+  // todo: make sure to revalidate
+  return products;
+};
+
+//* THIS ACTION WORKS
+export const insertProductAction = async (data: InsertProductType) => {
+  try {
+    const productToAdd = await db.insert(ProductTable).values(data).returning();
+    revalidatePath("/dashboard");
+    revalidatePath("/products");
+    return productToAdd;
+  } catch (error) {
+    if (error instanceof Error) {
+      return {
+        error: error.message,
+      };
+    } else {
+      return {
+        error: "Unknown error",
+      };
+    }
+  }
 };
 
 //* THIS ACTION WORKS

@@ -1,5 +1,6 @@
 "use client";
 
+import { insertProductAction } from "@/actions/product-actions";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
@@ -37,41 +38,20 @@ const ProductRegistrationForm = ({ session }: { session: Session | null }) => {
   });
 
   const onsubmit = async (data: z.infer<typeof productSchema>) => {
-    try {
-      const response = await fetch("/api/products", {
-        method: "POST",
-        body: JSON.stringify({
-          ...data,
-          userId: session?.user?.id,
-        }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+    const newData = {
+      ...data,
+      userId: session?.user?.id ?? "",
+    };
 
-      if (response.ok) {
-        toast.success(`El producto '${data.title}' se ha añadido exitosamente`);
-        form.reset();
-      } else {
-        const errorData = await response.json(); // Get error details from the response
-        if (errorData.errors) {
-          // If validation errors are returned, display them
-          for (const error of errorData.errors) {
-            toast.error(error.message);
-          }
-        } else {
-          // Display a general error message
-          toast.error(
-            errorData.message || "Hubo un error al registrar el producto",
-          );
-        }
-      }
-    } catch (error) {
-      if (error instanceof Error) {
-        toast.error(error.message);
-        return;
-      }
+    const response = await insertProductAction(newData);
+
+    if ("error" in response) {
+      toast.error(response.error);
+      return;
     }
+
+    toast.success(`El producto se ha añadido exitosamente`);
+    form.reset();
   };
 
   return (
@@ -82,6 +62,7 @@ const ProductRegistrationForm = ({ session }: { session: Session | null }) => {
       <CardContent>
         <Form {...form}>
           <form
+            method="POST"
             onSubmit={form.handleSubmit(onsubmit)}
             className="flex flex-col gap-3"
           >
@@ -120,19 +101,6 @@ const ProductRegistrationForm = ({ session }: { session: Session | null }) => {
 
             <FormField
               control={form.control}
-              name="price"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Precio</FormLabel>
-                  <FormControl>
-                    <Input {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
               name="image"
               render={({ field }) => (
                 <FormItem>
@@ -148,35 +116,36 @@ const ProductRegistrationForm = ({ session }: { session: Session | null }) => {
               )}
             />
 
-            <FormField
-              control={form.control}
-              name="specification"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Especificacion del producto</FormLabel>
-                  <FormControl>
-                    <Input {...field} value={field.value ?? ""} />
-                  </FormControl>
+            <div className="flex w-full flex-col gap-3 md:grid md:grid-cols-2">
+              <FormField
+                control={form.control}
+                name="price"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Precio</FormLabel>
+                    <FormControl>
+                      <Input {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
 
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+              <FormField
+                control={form.control}
+                name="brand"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Marca del producto</FormLabel>
+                    <FormControl>
+                      <Input {...field} value={field.value ?? ""} />
+                    </FormControl>
 
-            <FormField
-              control={form.control}
-              name="brand"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Marca del producto</FormLabel>
-                  <FormControl>
-                    <Input {...field} value={field.value ?? ""} />
-                  </FormControl>
-
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
 
             <Button
               disabled={form.formState.isSubmitting}

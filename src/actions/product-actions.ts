@@ -2,7 +2,7 @@
 
 import { db } from "@/db/main";
 import { ProductTable } from "@/db/schema";
-import { InsertProductType } from "@/types";
+import type { InsertProductType, UpdateProductType } from "@/types";
 import { eq } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
 
@@ -21,6 +21,34 @@ export const insertProductAction = async (data: InsertProductType) => {
     revalidatePath("/dashboard");
     revalidatePath("/products");
     return productToAdd;
+  } catch (error) {
+    if (error instanceof Error) {
+      return {
+        error: error.message,
+      };
+    } else {
+      return {
+        error: "Unknown error",
+      };
+    }
+  }
+};
+
+export const updateProductAction = async (
+  id: number,
+  data: UpdateProductType,
+) => {
+  try {
+    const productToUpdate = await db
+      .update(ProductTable)
+      .set(data)
+      .where(eq(ProductTable.id, id))
+      .returning();
+
+    revalidatePath("/dashboard");
+    revalidatePath("/products");
+
+    return productToUpdate;
   } catch (error) {
     if (error instanceof Error) {
       return {

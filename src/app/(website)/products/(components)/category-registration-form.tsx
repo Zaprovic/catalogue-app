@@ -1,5 +1,5 @@
 "use client";
-import { selectAllCategoriesAction } from "@/actions/category";
+import { insertCategoryAction } from "@/actions/category-actions";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
@@ -12,15 +12,22 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { InsertCategorySchema } from "@/schemas/category";
-import { InsertCategoryType } from "@/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { IconLoader2 } from "@tabler/icons-react";
+import { Session } from "next-auth";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
+import { z } from "zod";
 
-const CategoryRegistrationForm = () => {
+const categorySchema = InsertCategorySchema.omit({
+  userId: true,
+});
+
+type InsertCategoryType = z.infer<typeof categorySchema>;
+
+const CategoryRegistrationForm = ({ session }: { session: Session | null }) => {
   const form = useForm<InsertCategoryType>({
-    resolver: zodResolver(InsertCategorySchema),
+    resolver: zodResolver(categorySchema),
     defaultValues: {
       name: "",
     },
@@ -31,23 +38,20 @@ const CategoryRegistrationForm = () => {
   } = form;
 
   const onsubmit = async (data: InsertCategoryType) => {
-    const formData = new FormData();
+    const newData = {
+      ...data,
+      userId: session?.user?.id ?? "",
+    };
 
-    for (let key in data) {
-      formData.append(key, data[key as keyof InsertCategoryType] as string);
+    const response = await insertCategoryAction(newData);
+
+    if ("error" in response) {
+      toast.error(response.error);
+      return;
     }
 
-    try {
-      await selectAllCategoriesAction(formData);
-      toast.success(`La categoria '${data.name}' se ha creado exitosamente`);
-      form.reset();
-    } catch (error) {
-      if (error instanceof Error) {
-        toast.error(error.message);
-        console.log(error.message);
-        return;
-      }
-    }
+    toast.success(`Se ha creado la categoria '${data.name}' exitosamente`);
+    form.reset();
   };
 
   return (

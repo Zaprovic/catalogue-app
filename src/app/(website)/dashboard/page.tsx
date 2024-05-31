@@ -1,11 +1,8 @@
-import { revalidateProducts } from "@/actions/revalidate-actions";
 import { auth } from "@/auth";
-import { Button } from "@/components/ui/button";
 import { db } from "@/db/main";
 import { ProductTable } from "@/db/schema";
 import styles from "@/styles.module.css";
 import { SelectProductType } from "@/types";
-import { IconRefresh } from "@tabler/icons-react";
 import { eq } from "drizzle-orm";
 import MyProduct from "./(components)/my-product";
 
@@ -34,14 +31,7 @@ const Page = async () => {
           Mis productos
         </h2>
 
-        <form action={revalidateProducts} className="my-5">
-          <Button className="flex gap-2">
-            <span>Refresh</span>
-            <IconRefresh />
-          </Button>
-        </form>
-
-        <div className={`${styles.myProductContainer} mx-auto max-w-[1200px]`}>
+        <div className={`${styles.myProductContainer} max-w-3xl`}>
           {myProducts.map((product) => (
             <MyProduct key={product.id} {...product} />
           ))}

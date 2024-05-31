@@ -17,11 +17,11 @@ import { z } from "zod";
 
 // todo: type safety is lost in the fetch call
 
-const CategoryFormSchema = z.object({
+const FormSchema = z.object({
   categories: z
     .array(z.string())
     .refine((value) => value.some((item) => item), {
-      message: "Debes seleccionar al menos una categoria",
+      message: "You have to select at least one item.",
     }),
 });
 
@@ -30,14 +30,19 @@ const CategoryOptionsForm = ({
 }: {
   categories: SelectCategoryType[];
 }) => {
-  const form = useForm<z.infer<typeof CategoryFormSchema>>({
-    resolver: zodResolver(CategoryFormSchema),
+  const newCategories = categories.map(({ id, name }) => ({
+    id: id.toString(),
+    name,
+  }));
+
+  const form = useForm<z.infer<typeof FormSchema>>({
+    resolver: zodResolver(FormSchema),
     defaultValues: {
       categories: [],
     },
   });
 
-  const onsubmit = async (data: z.infer<typeof CategoryFormSchema>) => {
+  const onsubmit = async (data: z.infer<typeof FormSchema>) => {
     console.log(data);
   };
 
@@ -55,41 +60,39 @@ const CategoryOptionsForm = ({
                   Selecciona como minimo una categoria
                 </FormDescription>
               </div>
-              {categories &&
-                categories.length > 0 &&
-                categories.map((item) => (
-                  <FormField
-                    key={item.id}
-                    control={form.control}
-                    name="categories"
-                    render={({ field }) => {
-                      return (
-                        <FormItem
-                          key={item.id}
-                          className="flex flex-row items-start space-x-3 space-y-0"
-                        >
-                          <FormControl>
-                            <Checkbox
-                              checked={field.value?.includes(`${item.id}`)}
-                              onCheckedChange={(checked) => {
-                                return checked
-                                  ? field.onChange([...field.value, item.id])
-                                  : field.onChange(
-                                      field.value?.filter(
-                                        (value) => value !== `${item.id}`,
-                                      ),
-                                    );
-                              }}
-                            />
-                          </FormControl>
-                          <FormLabel className="text-sm font-normal">
-                            {item.name}
-                          </FormLabel>
-                        </FormItem>
-                      );
-                    }}
-                  />
-                ))}
+              {newCategories.map((item) => (
+                <FormField
+                  key={item.id}
+                  control={form.control}
+                  name="categories"
+                  render={({ field }) => {
+                    return (
+                      <FormItem
+                        key={item.id}
+                        className="flex flex-row items-start space-x-3 space-y-0"
+                      >
+                        <FormControl>
+                          <Checkbox
+                            checked={field.value?.includes(item.id)}
+                            onCheckedChange={(checked) => {
+                              return checked
+                                ? field.onChange([...field.value, item.id])
+                                : field.onChange(
+                                    field.value?.filter(
+                                      (value) => value !== item.id,
+                                    ),
+                                  );
+                            }}
+                          />
+                        </FormControl>
+                        <FormLabel className="text-sm font-normal">
+                          {item.name}
+                        </FormLabel>
+                      </FormItem>
+                    );
+                  }}
+                />
+              ))}
               <FormMessage />
             </FormItem>
           )}

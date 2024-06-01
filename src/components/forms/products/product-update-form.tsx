@@ -44,8 +44,7 @@ const ProductUpdateForm = (product: UpdateProductType) => {
       toast.error(response.error);
       return;
     }
-    toast.success(`El producto se ha añadido exitosamente`);
-    form.reset();
+    toast.success(`El producto se ha actualizado exitosamente`);
   };
 
   return (

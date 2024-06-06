@@ -1,5 +1,6 @@
 import { createClient } from "@libsql/client";
 import { drizzle } from "drizzle-orm/libsql";
+import * as schema from "./schema";
 
 // fix: added NEXT_PUBLIC_ to environment variables
 
@@ -8,4 +9,4 @@ const client = createClient({
   authToken: process.env.DATABASE_AUTH_TOKEN!,
 });
 
-export const db = drizzle(client);
+export const db = drizzle(client, { schema });

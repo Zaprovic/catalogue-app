@@ -26,25 +26,24 @@ const HomeMobile = () => {
       <section className="w-full sm:hidden">
         <figure className="relative w-full">
           <Image
-            src={"/images/perfume.jpg"}
+            src={"/images/home-img.jpg"}
             alt="New collection"
-            width={800}
-            height={600}
+            width={384}
+            height={175}
             quality={100}
             className="h-full w-full"
           />
 
           <figcaption className="absolute left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 flex-col gap-4 text-center text-white sm:-translate-x-full">
-            <span>Summer 2024</span>
-            <h4 className="text-xl font-bold uppercase sm:text-3xl">
+            <h4 className="text-xl font-bold uppercase text-black sm:text-3xl">
               New collection
             </h4>
-            <p className="text-sm">
+            <p className="text-sm text-black">
               We know how large objects will act, but things on a small scale.
             </p>
 
             <Button>
-              <Link href="/products">Shop now</Link>
+              <Link href="/products">Comprar ya</Link>
             </Button>
           </figcaption>
         </figure>

@@ -24,23 +24,27 @@ export default async function Home() {
       <HomeMobile />
 
       <section className="hidden sm:inline-block">
-        <figure className="relative w-full lg:my-8">
+        <figure className="relative w-full">
           <Image
-            src={"/images/perfume.jpg"}
+            src={"/images/home-img.jpg"}
             alt="Shop Hero Desktop"
-            width={1440}
-            height={716}
-            className="h-auto max-h-[600px] w-full object-contain"
+            width={384}
+            height={175}
+            quality={100}
+            className="h-auto max-h-[600px] w-full object-cover"
           />
-          <figcaption className="absolute left-1/2 top-1/2 flex -translate-x-72 -translate-y-1/2 flex-col gap-3 text-white md:-translate-x-full">
-            <span>Summer 2024</span>
-            <h4 className="text-4xl font-bold uppercase">New collection</h4>
-            <p className="max-w-[320px]">
+          <figcaption className="absolute left-0 top-0 flex flex-col gap-4 px-8 py-12 text-white">
+            <h4 className="text-4xl font-bold uppercase text-black">
+              New collection
+            </h4>
+            <p className="max-w-[320px] text-black">
               We know how large objects will act, but things on a small scale.
             </p>
 
             <Button className="w-fit">
-              <Link href="/products">Shop now</Link>
+              <Link href="/products" className="font-bold text-white">
+                Comprar ya
+              </Link>
             </Button>
           </figcaption>
         </figure>

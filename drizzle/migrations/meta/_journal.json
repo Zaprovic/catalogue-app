@@ -155,6 +155,34 @@
       "when": 1716838362777,
       "tag": "0021_many_ulik",
       "breakpoints": true
+    },
+    {
+      "idx": 22,
+      "version": "6",
+      "when": 1717106708722,
+      "tag": "0022_early_scorpion",
+      "breakpoints": true
+    },
+    {
+      "idx": 23,
+      "version": "6",
+      "when": 1717125726931,
+      "tag": "0023_loose_bloodscream",
+      "breakpoints": true
+    },
+    {
+      "idx": 24,
+      "version": "6",
+      "when": 1717125893929,
+      "tag": "0024_little_giant_man",
+      "breakpoints": true
+    },
+    {
+      "idx": 25,
+      "version": "6",
+      "when": 1717125956955,
+      "tag": "0025_abandoned_yellow_claw",
+      "breakpoints": true
     }
   ]
 }

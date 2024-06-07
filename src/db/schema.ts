@@ -12,7 +12,6 @@ export const ProductTable = sqliteTable("Product", {
   description: text("description"),
   price: integer("price").notNull(),
   image: text("image", { mode: "text" }),
-  specification: text("specification"),
   brand: text("brand"),
   userId: text("user_id")
     .notNull()
@@ -22,6 +21,9 @@ export const ProductTable = sqliteTable("Product", {
 export const CategoryTable = sqliteTable("Category", {
   id: integer("id").primaryKey({ autoIncrement: true }).notNull(),
   name: text("name").notNull().unique(),
+  userId: text("user_id")
+    .notNull()
+    .references(() => UserTable.id, { onDelete: "cascade" }),
 });
 
 export const UserTable = sqliteTable("User", {

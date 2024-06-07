@@ -1,5 +1,6 @@
 "use client";
 
+import { updateProductAction } from "@/actions/product-actions";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
@@ -17,10 +18,14 @@ import { UpdateProductSchema } from "@/schemas/product";
 import { type UpdateProductType } from "@/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { IconLoader2 } from "@tabler/icons-react";
+import { usePathname } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 
 const ProductUpdateForm = (product: UpdateProductType) => {
+  const pathname = usePathname();
+  const id = pathname.split("/").at(-1);
+
   const form = useForm<UpdateProductType>({
     resolver: zodResolver(UpdateProductSchema),
     defaultValues: {
@@ -29,37 +34,17 @@ const ProductUpdateForm = (product: UpdateProductType) => {
       price: product.price,
       image: product.image,
       brand: product.brand,
-      specification: product.specification,
     },
   });
 
   const onsubmit = async (data: UpdateProductType) => {
-    console.log(data);
+    const response = await updateProductAction(+id!, data);
 
-    try {
-      const response = await fetch(`/api/products/${product.id}`, {
-        method: "PATCH",
-        body: JSON.stringify(data),
-        headers: {
-          "Content-Type": "application/json",
-        },
-        cache: "no-cache",
-        next: {
-          revalidate: 0,
-        },
-      });
-
-      if (!response.ok) {
-        throw new Error("Error al actualizar el producto");
-      }
-
-      await response.json();
-    } catch (error) {
-      toast.error("Error al actualizar el producto");
+    if ("error" in response) {
+      toast.error(response.error);
       return;
     }
-
-    toast.success("Producto actualizado correctamente");
+    toast.success(`El producto se ha actualizado exitosamente`);
   };
 
   return (
@@ -108,19 +93,6 @@ const ProductUpdateForm = (product: UpdateProductType) => {
 
             <FormField
               control={form.control}
-              name="price"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Precio</FormLabel>
-                  <FormControl>
-                    <Input {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
               name="image"
               render={({ field }) => (
                 <FormItem>
@@ -136,35 +108,36 @@ const ProductUpdateForm = (product: UpdateProductType) => {
               )}
             />
 
-            <FormField
-              control={form.control}
-              name="specification"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Especificacion del producto</FormLabel>
-                  <FormControl>
-                    <Input {...field} value={field.value ?? ""} />
-                  </FormControl>
+            <div className="flex gap-3 sm:grid sm:grid-cols-2">
+              <FormField
+                control={form.control}
+                name="price"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Precio</FormLabel>
+                    <FormControl>
+                      <Input {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
 
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+              <FormField
+                control={form.control}
+                name="brand"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Marca del producto</FormLabel>
+                    <FormControl>
+                      <Input {...field} value={field.value ?? ""} />
+                    </FormControl>
 
-            <FormField
-              control={form.control}
-              name="brand"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Marca del producto</FormLabel>
-                  <FormControl>
-                    <Input {...field} value={field.value ?? ""} />
-                  </FormControl>
-
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
 
             <Button
               disabled={form.formState.isSubmitting}

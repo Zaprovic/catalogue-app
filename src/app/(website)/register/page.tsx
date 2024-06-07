@@ -1,8 +1,8 @@
 import { auth } from "@/auth";
+import CategoryOptionsCard from "@/components/forms/categories/category-options-card";
+import CategoryRegistrationCard from "@/components/forms/categories/category-registration-card";
+import ProductRegistrationCard from "@/components/forms/products/product-registration-card";
 import { redirect } from "next/navigation";
-import CategoryRegistrationForm from "../products/(components)/category-registration-form";
-import ProductCategoryForm from "../products/(components)/product-category-form";
-import ProductRegistrationForm from "../products/(components)/product-registration-form";
 
 const Page = async () => {
   const session = await auth();
@@ -15,15 +15,19 @@ const Page = async () => {
         Crea tus productos
       </h1>
 
-      <section className="mx-auto my-5 grid w-full max-w-[1000px] grid-cols-1 gap-3">
-        <CategoryRegistrationForm />
-        {/* <CategoryOptions /> */}
+      <div className="my-5 grid grid-cols-1 gap-3 sm:grid-cols-2">
+        <section className="grid w-full grid-cols-1 gap-3">
+          <CategoryRegistrationCard />
 
-        <div className="flex w-full flex-col gap-3">
-          <ProductRegistrationForm session={session} />
-          <ProductCategoryForm />
-        </div>
-      </section>
+          <div className="flex w-full flex-col gap-3">
+            <ProductRegistrationCard />
+          </div>
+        </section>
+
+        <section>
+          <CategoryOptionsCard />
+        </section>
+      </div>
     </main>
   );
 };

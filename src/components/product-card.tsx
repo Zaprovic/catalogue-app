@@ -36,7 +36,7 @@ const ProductCard = (product: SelectProductType) => {
             />
           </figure>
           <CardDescription
-            className={`${styles.cardDescription} mt-3 line-clamp-1`}
+            className={`${styles.cardDescription} mt-3 line-clamp-2`}
           >
             {product.description}
           </CardDescription>

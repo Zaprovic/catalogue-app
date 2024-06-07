@@ -32,6 +32,8 @@ const Page = async ({ params }: { params: { id: string } }) => {
           <h2 className="text-2xl font-bold -tracking-wider">
             {product.title}
           </h2>
+
+          <h5 className="text-sm font-bold text-primary/40">{product.brand}</h5>
           <p className="text-sm -tracking-wide">{product.description}</p>
           <h3 className="text-xl font-bold">
             {formatPricetoCOP(product.price)}

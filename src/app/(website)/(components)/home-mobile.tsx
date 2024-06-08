@@ -7,6 +7,7 @@ import Link from "next/link";
 
 const HomeMobile = async () => {
   const categories = await db.select().from(CategoryTable).all();
+
   return (
     <>
       <nav className="flex items-center justify-center pt-16 sm:hidden">

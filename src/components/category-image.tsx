@@ -1,3 +1,4 @@
+import { SelectCategoryType } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -7,12 +8,12 @@ type props = {
   categoryName: string;
 };
 
-const CategoryImage = ({ src, alt, categoryName }: props) => {
+const CategoryImage = ({ id, name }: SelectCategoryType) => {
   return (
     <figure className="relative w-full">
       <Image
-        src={src}
-        alt={alt}
+        src="/images/img-1.png"
+        alt={name}
         width={437}
         height={395}
         quality={100}
@@ -20,8 +21,11 @@ const CategoryImage = ({ src, alt, categoryName }: props) => {
       />
       <figcaption className="absolute left-4 top-4">
         <span className="font-semibold text-emerald-500">5 items</span>
-        <h5 className="text-xl font-bold uppercase">{categoryName}</h5>
-        <Link href={"#"} className="text-sm font-medium">
+        <h5 className="text-xl font-bold uppercase">{name}</h5>
+        <Link
+          href={`/products/categories/${id}`}
+          className="text-sm font-medium hover:underline"
+        >
           Leer mas
         </Link>
       </figcaption>

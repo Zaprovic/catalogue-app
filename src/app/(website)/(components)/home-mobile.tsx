@@ -55,7 +55,11 @@ const HomeMobile = async () => {
 
       <section className="mb-8 flex w-full flex-col justify-center gap-6 px-6 sm:hidden">
         {categories.map((category) => (
-          <CategoryImage key={category.id} {...category} />
+          <CategoryImage
+            key={category.id}
+            {...category}
+            src={`/images/categories/proteccion-solar.jpg`}
+          />
         ))}
       </section>
     </>

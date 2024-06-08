@@ -5,7 +5,11 @@ import { eq, sql } from "drizzle-orm";
 import Image from "next/image";
 import Link from "next/link";
 
-const CategoryImage = async ({ id, name }: SelectCategoryType) => {
+type props = SelectCategoryType & {
+  src: string;
+};
+
+const CategoryImage = async ({ id, name, src }: props) => {
   const categoryCount = await db
     .select({
       name: CategoryTable.name,
@@ -28,7 +32,7 @@ const CategoryImage = async ({ id, name }: SelectCategoryType) => {
   return (
     <figure className="relative w-full">
       <Image
-        src="/images/img-1.png"
+        src={src}
         alt={name}
         width={437}
         height={395}

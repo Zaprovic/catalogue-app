@@ -20,7 +20,7 @@ const ProductCard = (product: SelectProductType) => {
   return (
     <Card className="h-full max-w-[320px]">
       <CardHeader className="p-5">
-        <CardTitle className="text-pretty -tracking-wider">
+        <CardTitle className="line-clamp-1 text-pretty text-sm -tracking-wider">
           {product.title}
         </CardTitle>
       </CardHeader>

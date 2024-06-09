@@ -24,10 +24,26 @@ export const useStoreItems = create(
           cartItems: [...state.cartItems, product],
         })),
       removeFromCart: (productId: number) =>
-        set((state) => ({
-          cartItems: state.cartItems.filter((item) => item.id !== productId),
-          items: state.items - 1,
-        })),
+        set((state) => {
+          const productIndex = state.cartItems.findIndex(
+            (item) => item.id === productId,
+          );
+          if (productIndex !== -1) {
+            const newCartItems = [...state.cartItems];
+            newCartItems.splice(productIndex, 1);
+
+            return {
+              cartItems: newCartItems,
+              items: newCartItems.length,
+              pressedProducts: {
+                ...state.pressedProducts,
+                [productId]: false,
+              },
+            };
+          } else {
+            return state; // If the product doesn't exist, don't modify the state
+          }
+        }),
       toggleProductInCart: (product: Product) =>
         set((state) => {
           if (state.pressedProducts[product.id]) {

@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -11,6 +12,7 @@ import {
 import { formatPricetoCOP } from "@/lib/utils";
 import { useStoreItems } from "@/store/counter";
 import styles from "@/styles.module.css";
+import { IconX } from "@tabler/icons-react";
 
 const AddedProducts = () => {
   const cartItems = useStoreItems((state) => state.cartItems);
@@ -27,14 +29,14 @@ const AddedProducts = () => {
               <CardTitle className="text-pretty -tracking-wider">
                 {product.title}
               </CardTitle>
-              {/* <Button
+              <Button
                 asChild
                 size={"icon"}
                 className="absolute right-2 top-1 h-4 w-4 p-[0.15rem] hover:cursor-pointer"
                 onClick={() => removeFromCart(product.id)}
               >
                 <IconX width={4} height={4} strokeWidth={4} />
-              </Button> */}
+              </Button>
             </CardHeader>
             <CardContent className="w-full flex-1 px-5 pb-2">
               <div className="h-full w-full">

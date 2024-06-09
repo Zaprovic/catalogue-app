@@ -14,17 +14,27 @@ import styles from "@/styles.module.css";
 
 const AddedProducts = () => {
   const cartItems = useStoreItems((state) => state.cartItems);
+  const removeFromCart = useStoreItems((state) => state.removeFromCart);
+
   return (
     <div>
-      <h2>Productos agregados</h2>
+      <h2 className="py-4">Productos agregados</h2>
 
       <section className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
         {cartItems.map((product) => (
-          <Card key={product.id} className="h-full max-w-[180px]">
-            <CardHeader className="p-5">
+          <Card key={product.id} className="relative h-full max-w-[240px]">
+            <CardHeader className="flex items-center justify-between p-5">
               <CardTitle className="text-pretty -tracking-wider">
                 {product.title}
               </CardTitle>
+              {/* <Button
+                asChild
+                size={"icon"}
+                className="absolute right-2 top-1 h-4 w-4 p-[0.15rem] hover:cursor-pointer"
+                onClick={() => removeFromCart(product.id)}
+              >
+                <IconX width={4} height={4} strokeWidth={4} />
+              </Button> */}
             </CardHeader>
             <CardContent className="w-full flex-1 px-5 pb-2">
               <div className="h-full w-full">

@@ -26,6 +26,7 @@ export const useStoreItems = create(
       removeFromCart: (productId: number) =>
         set((state) => ({
           cartItems: state.cartItems.filter((item) => item.id !== productId),
+          items: state.items - 1,
         })),
       toggleProductInCart: (product: Product) =>
         set((state) => {

@@ -6,7 +6,7 @@ const Page = async () => {
   const products = await db.select().from(ProductTable).all();
 
   return (
-    <div>
+    <div className="p-5">
       <h1 className="text-3xl font-semibold -tracking-wider">
         Carrito de compras
       </h1>
@@ -14,9 +14,9 @@ const Page = async () => {
       <div className="flex flex-col md:flex-row">
         <AddedProducts />
 
-        <section>
+        {/* <section>
           <h2>Checkout</h2>
-        </section>
+        </section> */}
       </div>
     </div>
   );

@@ -21,10 +21,13 @@ async function Header() {
         </Link>
 
         <nav className="hidden items-center gap-4 lg:flex">
-          <ul className="flex gap-8 font-semibold">
+          <ul className="flex gap-6 font-semibold">
             {filteredRoutes.map((route) => (
               <li key={route.href}>
-                <Link href={route.href} className="hover:underline">
+                <Link
+                  href={route.href}
+                  className="-tracking-wide hover:underline"
+                >
                   {route.label}
                 </Link>
               </li>
@@ -42,7 +45,9 @@ async function Header() {
                 variant={"ghost"}
               >
                 <IconUser />
-                <span>Iniciar sesion</span>
+                <span className="font-semibold -tracking-wider">
+                  Iniciar sesion
+                </span>
               </Button>
             </form>
           )}

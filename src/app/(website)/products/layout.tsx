@@ -10,11 +10,7 @@ const Layout = async ({ children }: { children: ReactNode }) => {
   return (
     <>
       <main className="p-6">
-        <h1 className="mb-8 text-3xl font-semibold -tracking-wider">
-          Todos los productos
-        </h1>
-
-        <div className="mb-4 flex w-full justify-end">
+        <div className="mb-4 flex w-full justify-end md:hidden">
           <CategoriesFilterBtn categories={categories} />
         </div>
 

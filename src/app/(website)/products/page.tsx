@@ -8,7 +8,6 @@ import { asc, eq } from "drizzle-orm";
 export const revalidate = 0;
 
 export default async function ProductPage() {
-  // const { userId } = auth();
   const userId = undefined;
 
   let products: SelectProductType[] = [];
@@ -27,7 +26,7 @@ export default async function ProductPage() {
 
   return (
     <>
-      <div className="flex-1">
+      <div className="flex flex-1 gap-10">
         <section className="mx-auto w-full">
           <div
             className={`${style.productContainer} w-full place-items-center`}

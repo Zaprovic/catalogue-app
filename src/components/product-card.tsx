@@ -20,7 +20,7 @@ const ProductCard = (product: SelectProductType) => {
   return (
     <Card className="h-full max-w-[320px]">
       <CardHeader className="p-5">
-        <CardTitle className="text-pretty -tracking-wider">
+        <CardTitle className="line-clamp-1 text-pretty text-sm -tracking-wider">
           {product.title}
         </CardTitle>
       </CardHeader>
@@ -45,7 +45,7 @@ const ProductCard = (product: SelectProductType) => {
         <CardFooter className="flex w-full flex-col items-center justify-center gap-3 p-0">
           <AddCartBtn {...product} />
           <Button className="w-full" variant={"link"}>
-            Mas informacion
+            <Link href={`/products/${product.id}`}>Mas informacion</Link>
           </Button>
         </CardFooter>
       </CardContent>

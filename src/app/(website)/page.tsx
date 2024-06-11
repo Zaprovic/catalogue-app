@@ -1,10 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
 import { auth } from "@/auth";
-import { Button } from "@/components/ui/button";
 import { db } from "@/db/main";
 import { ProductTable } from "@/db/schema";
 import Image from "next/image";
-import Link from "next/link";
 import HomeMobile from "./(components)/home-mobile";
 
 export const revalidate = 0;
@@ -26,27 +24,13 @@ export default async function Home() {
       <section className="hidden sm:inline-block">
         <figure className="relative w-full">
           <Image
-            src={"/images/home-img.jpg"}
+            src="https://st1.uvnimg.com/dims4/default/4d597f3/2147483647/thumbnail/1024x576%3E/quality/75/?url=https%3A%2F%2Fuvn-brightspot.s3.amazonaws.com%2Fassets%2Fvixes%2Fp%2Fproductos-basicos-para-tu-rutina-de-skincare.jpg"
             alt="Shop Hero Desktop"
-            width={384}
-            height={175}
+            width={1000}
+            height={563}
             quality={100}
-            className="h-auto max-h-[600px] w-full object-cover"
+            className="h-auto max-h-[600px] w-full object-contain"
           />
-          <figcaption className="absolute left-0 top-0 flex flex-col gap-4 px-8 py-12 text-white">
-            <h4 className="text-4xl font-bold uppercase text-black">
-              New collection
-            </h4>
-            <p className="max-w-[320px] text-black">
-              We know how large objects will act, but things on a small scale.
-            </p>
-
-            <Button className="w-fit">
-              <Link href="/products" className="font-bold text-white">
-                Comprar ya
-              </Link>
-            </Button>
-          </figcaption>
         </figure>
       </section>
     </main>

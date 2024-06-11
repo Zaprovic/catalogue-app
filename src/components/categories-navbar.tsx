@@ -29,7 +29,7 @@ const CategoriesNavbar = async () => {
         <li>
           <Link href={"/products/"} key={crypto.randomUUID()}>
             <Badge variant={"secondary"} className="py-1">
-              All
+              TODAS
             </Badge>
           </Link>
         </li>

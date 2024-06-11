@@ -44,7 +44,7 @@ const FooterDesktop = ({ children }: { children?: ReactNode }) => {
       <FooterItem title="Contacto">
         <li className="flex gap-3">
           <IconMail />
-          <span>{user?.emailAddresses[0].emailAddress}</span>
+          <span>yese-jacobo@hotmail.com</span>
         </li>
         <li className="flex gap-3">
           <IconBrandWhatsapp />

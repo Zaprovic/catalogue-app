@@ -1,14 +1,22 @@
+import CategoriesFilterBtn from "@/components/categories-filter-btn";
 import CategoriesNavbar from "@/components/categories-navbar";
 import { Skeleton } from "@/components/ui/skeleton";
+import { db } from "@/db/main";
+import { CategoryTable } from "@/db/schema";
 import { ReactNode, Suspense } from "react";
 
-const Layout = ({ children }: { children: ReactNode }) => {
+const Layout = async ({ children }: { children: ReactNode }) => {
+  const categories = await db.select().from(CategoryTable).all();
   return (
     <>
       <main className="p-6">
         <h1 className="mb-8 text-3xl font-semibold -tracking-wider">
           Todos los productos
         </h1>
+
+        <div className="mb-4 flex w-full justify-end">
+          <CategoriesFilterBtn categories={categories} />
+        </div>
 
         <div className="flex justify-center md:gap-12">
           <Suspense

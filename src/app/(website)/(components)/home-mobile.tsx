@@ -1,9 +1,13 @@
 import CategoryImage from "@/components/category-image";
 import { Button } from "@/components/ui/button";
+import { db } from "@/db/main";
+import { CategoryTable } from "@/db/schema";
 import Image from "next/image";
 import Link from "next/link";
 
-const HomeMobile = () => {
+const HomeMobile = async () => {
+  const categories = await db.select().from(CategoryTable).all();
+
   return (
     <>
       <nav className="flex items-center justify-center pt-16 sm:hidden">
@@ -50,26 +54,13 @@ const HomeMobile = () => {
       </section>
 
       <section className="mb-8 flex w-full flex-col justify-center gap-6 px-6 sm:hidden">
-        <CategoryImage
-          src="/images/img-1.png"
-          alt="img-1"
-          categoryName="Dermatologia"
-        />
-        <CategoryImage
-          src="/images/img-2.png"
-          alt="img-2"
-          categoryName="Proteccion solar"
-        />
-        <CategoryImage
-          src="/images/img-3.png"
-          alt="img-3"
-          categoryName="Cuidado de la piel"
-        />
-        <CategoryImage
-          src="/images/img-4.png"
-          alt="img-4"
-          categoryName="Cuidado del cabello"
-        />
+        {categories.map((category) => (
+          <CategoryImage
+            key={category.id}
+            {...category}
+            src={`/images/categories/proteccion-solar.jpg`}
+          />
+        ))}
       </section>
     </>
   );

@@ -28,7 +28,7 @@ export default function RootLayout({
   return (
     <ClerkProvider localization={esMX}>
       <html lang="en" suppressHydrationWarning>
-        <body className={`${inter.className} flex h-full flex-col`}>
+        <body className={`${inter.className} flex flex-col`}>
           <ThemeProvider
             attribute="class"
             defaultTheme="light"

@@ -1,5 +1,6 @@
 import { db } from "@/db/main";
 import { ProductTable } from "@/db/schema";
+import { SelectProductType } from "@/types";
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 
@@ -17,4 +18,10 @@ export function formatPricetoCOP(price: number) {
 
 export async function getProducts() {
   return db.select().from(ProductTable).all();
+}
+
+export function calculateTotalPrice(cartItems: SelectProductType[]) {
+  return cartItems
+    .map((item) => item.price)
+    .reduce((acc, price) => acc + price, 0);
 }

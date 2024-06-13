@@ -1,37 +1,44 @@
 /* eslint-disable @next/next/no-img-element */
-import { auth } from "@/auth";
+
+import CategoryImage from "@/components/category-image";
 import { db } from "@/db/main";
-import { ProductTable } from "@/db/schema";
-import Image from "next/image";
-import HomeMobile from "./(components)/home-mobile";
+import { CategoryTable } from "@/db/schema";
+import Link from "next/link";
 
 export const revalidate = 0;
 
 export default async function Home() {
-  const session = await auth();
-  const products = await db.select().from(ProductTable).all();
+  const categories = await db.select().from(CategoryTable).all();
 
   return (
-    <main className="flex h-full flex-col gap-20">
-      {/* <div className="flex flex-1 items-center justify-center gap-2">
-        {session ? <SignOut /> : <SignIn />}
+    <main className="flex h-full flex-col gap-16">
+      {/* <HomeMobile /> */}
 
-        {session && <span>{session.user?.name}</span>}
-      </div> */}
+      <nav className="flex items-center justify-center pt-16 sm:hidden">
+        <ul className="flex flex-col items-center justify-center gap-6 text-2xl font-semibold text-primary/40">
+          <li>
+            <Link href="/">Inicio</Link>
+          </li>
+          <li>
+            <Link href="/products">Productos</Link>
+          </li>
+          <li>
+            <Link href="/about">Contacto</Link>
+          </li>
+          <li>
+            <Link href="/dashboard">Dashboard</Link>
+          </li>
+        </ul>
+      </nav>
 
-      <HomeMobile />
-
-      <section className="hidden sm:inline-block">
-        <figure className="relative w-full">
-          <Image
-            src="https://st1.uvnimg.com/dims4/default/4d597f3/2147483647/thumbnail/1024x576%3E/quality/75/?url=https%3A%2F%2Fuvn-brightspot.s3.amazonaws.com%2Fassets%2Fvixes%2Fp%2Fproductos-basicos-para-tu-rutina-de-skincare.jpg"
-            alt="Shop Hero Desktop"
-            width={1000}
-            height={563}
-            quality={100}
-            className="h-auto max-h-[600px] w-full object-contain"
+      <section className="mb-8 flex w-full max-w-[1000px] grid-cols-2 flex-col justify-center gap-5 px-6 sm:my-8 sm:grid md:grid-cols-3">
+        {categories.map((category) => (
+          <CategoryImage
+            key={category.id}
+            {...category}
+            src={`/images/pink.jpg`}
           />
-        </figure>
+        ))}
       </section>
     </main>
   );

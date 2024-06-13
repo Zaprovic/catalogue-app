@@ -11,6 +11,7 @@ type useStoreType = {
   cartItems: Product[];
   addToCart: (product: Product) => void;
   removeFromCart: (productId: number) => void;
+  removeAllItems: () => void;
 };
 
 export const useStoreItems = create(
@@ -68,6 +69,13 @@ export const useStoreItems = create(
             },
           };
         }),
+
+      removeAllItems: () =>
+        set((state) => ({
+          items: 0,
+          cartItems: [],
+          pressedProducts: {},
+        })),
     }),
     {
       name: "cart-storage", // Unique name for your cookie

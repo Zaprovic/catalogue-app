@@ -1,5 +1,6 @@
 import AddedProducts from "./(components)/added-products";
 import CheckoutCard from "./(components)/checkout-card";
+import CleanCartBtn from "./(components)/clean-cart-btn";
 
 const Page = async () => {
   return (
@@ -7,6 +8,8 @@ const Page = async () => {
       <h1 className="text-3xl font-semibold -tracking-wider">
         Carrito de compras
       </h1>
+
+      <CleanCartBtn />
 
       <div className="mx-auto my-7 flex max-w-[1600px] flex-col gap-8 xl:flex-row">
         <AddedProducts />

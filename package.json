@@ -36,6 +36,7 @@
     "dotenv": "^16.4.5",
     "drizzle-orm": "^0.30.10",
     "drizzle-zod": "^0.5.1",
+    "embla-carousel-react": "^8.1.5",
     "js-cookie": "^3.0.5",
     "next": "14.2.3",
     "next-auth": "^5.0.0-beta.18",

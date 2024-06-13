@@ -10,7 +10,7 @@ const HomeMobile = async () => {
 
   return (
     <>
-      <nav className="flex items-center justify-center pt-16 sm:hidden">
+      <nav className="flex items-center justify-center sm:hidden">
         <ul className="flex flex-col items-center justify-center gap-6 text-2xl font-semibold text-primary/40">
           <li>
             <Link href="/">Inicio</Link>
@@ -30,7 +30,7 @@ const HomeMobile = async () => {
       <section className="w-full sm:hidden">
         <figure className="relative w-full">
           <Image
-            src={"/images/home-img.jpg"}
+            src={"/images/categories/proteccion-solar.jpg"}
             alt="New collection"
             width={384}
             height={175}
@@ -53,12 +53,12 @@ const HomeMobile = async () => {
         </figure>
       </section>
 
-      <section className="mb-8 flex w-full flex-col justify-center gap-6 px-6 sm:hidden">
+      <section className="mb-8 flex w-full grid-cols-2 flex-col justify-center gap-6 px-6 sm:grid">
         {categories.map((category) => (
           <CategoryImage
             key={category.id}
             {...category}
-            src={`/images/categories/proteccion-solar.jpg`}
+            src={`/images/pink.jpg`}
           />
         ))}
       </section>

@@ -21,8 +21,8 @@ const AddedProducts = () => {
 
   return (
     <div
-      className={cn({
-        "flex-1": cartItems.length === 0,
+      className={cn("flex flex-1 justify-center", {
+        "flex-1 justify-start": cartItems.length === 0,
       })}
     >
       {cartItems.length > 0 ? (

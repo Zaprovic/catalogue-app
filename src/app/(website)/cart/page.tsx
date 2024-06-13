@@ -8,9 +8,8 @@ const Page = async () => {
         Carrito de compras
       </h1>
 
-      <div className="my-7 flex flex-col gap-8 md:flex-row">
+      <div className="mx-auto my-7 flex max-w-[1600px] flex-col gap-8 xl:flex-row">
         <AddedProducts />
-
         <CheckoutCard />
       </div>
     </div>

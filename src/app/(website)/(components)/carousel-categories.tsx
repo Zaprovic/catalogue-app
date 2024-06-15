@@ -17,7 +17,7 @@ const CarouselCategories = async () => {
       opts={{
         align: "center",
       }}
-      className="mx-auto mb-8 w-[70%] max-w-[20rem] md:hidden"
+      className="mx-auto mb-8 w-[70%] max-w-[20rem] sm:hidden"
     >
       <CarouselContent>
         {categories.map((category, index) => (

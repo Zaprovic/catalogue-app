@@ -2,14 +2,18 @@ import CategoriesFilterBtn from "@/components/categories-filter-btn";
 import CategoriesNavbar from "@/components/categories-navbar";
 import { Skeleton } from "@/components/ui/skeleton";
 import { db } from "@/db/main";
-import { CategoryTable } from "@/db/schema";
+import { CategoryTable, ProductTable } from "@/db/schema";
 import { ReactNode, Suspense } from "react";
+import SearchProductsForm from "./(components)/search-products-form";
 
 const Layout = async ({ children }: { children: ReactNode }) => {
   const categories = await db.select().from(CategoryTable).all();
+  const products = await db.select().from(ProductTable).all();
+
   return (
     <>
       <main className="p-6">
+        <SearchProductsForm products={products} />
         <div className="mb-4 flex w-full justify-end md:hidden">
           <CategoriesFilterBtn categories={categories} />
         </div>

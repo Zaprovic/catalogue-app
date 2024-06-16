@@ -6,6 +6,10 @@ type Product = SelectProductType;
 
 type useStoreType = {
   items: number;
+  filterSearch: string;
+  setFilteredSearch: (products: string) => void;
+  filteredProducts: Product[];
+  setFilteredProducts: (products: Product[]) => void;
   pressedProducts: Record<number, boolean>; // Track pressed state per product ID
   toggleProductInCart: (product: Product) => void; // Combined action
   cartItems: Product[];
@@ -19,6 +23,10 @@ export const useStoreItems = create(
     (set, get) => ({
       items: 0,
       cartItems: [],
+      filteredProducts: [],
+      setFilteredProducts: (products) => set({ filteredProducts: products }),
+      filterSearch: "",
+      setFilteredSearch: (products) => set({ filterSearch: products }),
       pressedProducts: {}, // Initialize an empty object
       addToCart: (product: Product) =>
         set((state) => ({

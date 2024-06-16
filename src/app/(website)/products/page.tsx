@@ -27,7 +27,7 @@ export default async function ProductPage() {
     <>
       <div className="flex flex-1 gap-10">
         <section className="mx-auto w-full">
-          <ProductCardList />
+          <ProductCardList products={products} />
         </section>
       </div>
     </>

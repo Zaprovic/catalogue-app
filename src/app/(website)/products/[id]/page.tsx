@@ -34,7 +34,7 @@ const Page = async ({ params }: { params: { id: string } }) => {
           </h2>
 
           <h5 className="text-sm font-bold text-primary/50">{product.brand}</h5>
-          <p className="text-sm -tracking-wide">{product.description}</p>
+          <p className="text-sm -tracking-wider font-normal text-pretty">{product.description}</p>
           <h3 className="text-xl font-bold">
             {formatPricetoCOP(product.price)}
           </h3>

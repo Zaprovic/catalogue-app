@@ -1,9 +1,8 @@
-import ProductCard from "@/components/product-card";
 import { db } from "@/db/main";
 import { ProductTable } from "@/db/schema";
-import style from "@/styles.module.css";
 import { type SelectProductType } from "@/types";
 import { asc, eq } from "drizzle-orm";
+import ProductCardList from "./(components)/product-card-list";
 
 export const revalidate = 0;
 
@@ -28,13 +27,7 @@ export default async function ProductPage() {
     <>
       <div className="flex flex-1 gap-10">
         <section className="mx-auto w-full">
-          <div
-            className={`${style.productContainer} w-full place-items-center`}
-          >
-            {products.map((product) => (
-              <ProductCard key={product.id} {...product} />
-            ))}
-          </div>
+          <ProductCardList />
         </section>
       </div>
     </>

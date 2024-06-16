@@ -53,7 +53,7 @@ const NavbarMobileTrigger = ({ session }: props) => {
             </SheetTitle>
           </div>
           <SheetDescription>
-            Navigate through the different pages available.
+            {session && <span>Bienvenido, {session.user?.name}</span>}
           </SheetDescription>
         </SheetHeader>
         <ul className="flex w-full flex-col items-center justify-center gap-4">

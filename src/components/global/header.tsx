@@ -10,6 +10,8 @@ import { ThemeToggle } from "./theme-toggle";
 
 async function Header() {
   const session = await auth();
+  const username = session?.user?.name;
+
   const filteredRoutes = session
     ? routes
     : routes.filter((route) => route.isPublic);
@@ -21,7 +23,7 @@ async function Header() {
         </Link>
 
         <nav className="hidden items-center gap-4 lg:flex">
-          <ul className="flex gap-6 font-semibold">
+          <ul className="flex gap-4 font-semibold">
             {filteredRoutes.map((route) => (
               <li key={route.href}>
                 <Link
@@ -36,12 +38,12 @@ async function Header() {
         </nav>
       </div>
 
-      <div className="hidden items-center gap-3 lg:flex">
+      <div className="hidden items-center gap-2 lg:flex">
         <div className="hidden items-center gap-4 lg:flex">
-          {!session && (
+          {!session ? (
             <form action={signInAction}>
               <Button
-                className="flex gap-2 hover:bg-primary hover:text-primary-foreground"
+                className="flex items-center gap-1 hover:bg-primary hover:text-primary-foreground"
                 variant={"ghost"}
               >
                 <IconUser />
@@ -50,6 +52,10 @@ async function Header() {
                 </span>
               </Button>
             </form>
+          ) : (
+            <span className="text-sm -tracking-wider">
+              {session.user?.name}
+            </span>
           )}
         </div>
 

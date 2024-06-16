@@ -1,6 +1,5 @@
 import {
   IconHome,
-  IconInfoCircle,
   IconLayoutDashboard,
   IconSearch,
   IconSquareRoundedPlus,
@@ -20,12 +19,12 @@ export const routes = [
     icon: <IconSearch className="lg:hidden" />,
     isPublic: true,
   },
-  {
-    label: "Contacto",
-    href: "/about",
-    icon: <IconInfoCircle className="lg:hidden" />,
-    isPublic: true,
-  },
+  // {
+  //   label: "Contacto",
+  //   href: "/about",
+  //   icon: <IconInfoCircle className="lg:hidden" />,
+  //   isPublic: true,
+  // },
   {
     label: "Crear producto",
     href: "/register",

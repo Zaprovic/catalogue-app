@@ -4,7 +4,7 @@ import { Button } from "../ui/button";
 const SignOut = () => {
   return (
     <form action={signOutAction}>
-      <Button className="w-full">Sign out</Button>
+      <Button className="w-full">Salir</Button>
     </form>
   );
 };

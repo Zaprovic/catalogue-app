@@ -37,9 +37,11 @@ const SearchProductsForm = ({
   });
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setFilteredSearch(e.target.value);
+    const searchTerm = e.target.value.toLowerCase();
+    setFilteredSearch(searchTerm);
+
     const filtered = products.filter((product) =>
-      product.title.includes(e.target.value),
+      product.title.toLowerCase().includes(searchTerm),
     );
     setFilteredProducts(filtered);
   };

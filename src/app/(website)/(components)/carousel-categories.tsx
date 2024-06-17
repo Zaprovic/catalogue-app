@@ -21,12 +21,12 @@ const CarouselCategories = async () => {
         }}
         className="mx-auto mb-8 w-[65%] max-w-[20rem] sm:hidden"
       >
-        <CarouselContent>
+        <CarouselContent className="">
           {categories.map((category, index) => (
             <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
               <div className="p-1">
-                <Card className="m-0 grid aspect-square h-auto bg-rose-200 p-0">
-                  <CardContent className="m-0 flex aspect-square items-center justify-center p-0">
+                <Card className="h-fit overflow-hidden">
+                  <CardContent className="m-0 flex aspect-square items-center justify-center p-0 ">
                     <CategoryImage key={category.id} {...category} />
                   </CardContent>
                 </Card>

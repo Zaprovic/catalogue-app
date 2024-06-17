@@ -5,7 +5,7 @@ import ProductRegistrationForm from "./product-registration-form";
 const ProductRegistrationCard = async () => {
   const session = await auth();
   return (
-    <Card className="w-full">
+    <Card className="w-full bg-card/5">
       <CardHeader>
         <CardTitle>Crea tu producto</CardTitle>
       </CardHeader>

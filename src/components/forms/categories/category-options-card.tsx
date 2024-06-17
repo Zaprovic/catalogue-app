@@ -9,7 +9,7 @@ const CategoryOptionsCard = async () => {
   const products = await db.select().from(ProductTable).all();
   const session = await auth();
   return (
-    <Card>
+    <Card className="bg-card/5">
       <CardHeader>
         <CardTitle>Productos & Categorias</CardTitle>
       </CardHeader>

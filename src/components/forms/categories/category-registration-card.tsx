@@ -7,7 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 const CategoryRegistrationCard = async () => {
   const session = await auth();
   return (
-    <Card className="">
+    <Card className="bg-card/5">
       <CardHeader>
         <CardTitle>Crea tus categorias</CardTitle>
       </CardHeader>

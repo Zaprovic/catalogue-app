@@ -120,7 +120,7 @@ const ProductCategoryForm = () => {
   };
 
   return (
-    <Card>
+    <Card className="bg-card/5">
       <CardHeader>
         <CardTitle>Registra las categorias y sus productos</CardTitle>
       </CardHeader>

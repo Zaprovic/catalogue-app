@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import Link from "next/link";
 import CarouselCategories from "./(components)/carousel-categories";
 import CarouselProducts from "./(components)/carousel-products";
 
@@ -37,14 +38,16 @@ export default function Home() {
             quality={100}
             className="h-full w-full object-cover opacity-40"
           />
-          <figcaption className="absolute bottom-9 flex flex-col items-center justify-center gap-6">
-            <h6 className="text-2xl font-bold text-white">
-              Unlock your natural glow
+          <figcaption className="absolute bottom-9 flex flex-col items-center justify-center gap-3 px-6">
+            <h6 className="text-center text-2xl font-bold leading-tight text-white">
+              Desbloquea tu brillo natural
             </h6>
 
-            <Button className="rounded-none border-2 bg-transparent px-4 py-2 text-white hover:bg-transparent">
-              Know more
-            </Button>
+            <p className="text-pretty text-center text-xs text-white">
+              Desvela tu confianza más radiante. Nuestra colección de belleza te
+              impulsa a aceptar tu belleza individual y a que tu luz interior
+              brille
+            </p>
           </figcaption>
         </figure>
       </section>
@@ -54,20 +57,26 @@ export default function Home() {
       <section>
         <figure className="relative flex items-center justify-center bg-black">
           <Image
-            src={"/images/home/mobile/mobile-01.png"}
+            src={"/images/home/mobile/mobile-02.jpg"}
             alt="Mobile image 01"
             width={333}
             height={720}
             quality={100}
             className="h-full w-full object-cover opacity-40"
           />
-          <figcaption className="absolute bottom-9 flex flex-col items-center justify-center gap-6">
+          <figcaption className="absolute bottom-9 flex flex-col items-center justify-center gap-3">
             <h6 className="text-2xl font-bold text-white">
-              Unlock your natural glow
+              Explora tu belleza interior
             </h6>
 
+            <p className="text-pretty px-6 text-center text-xs text-white">
+              La belleza comienza en tu interior. Descubre productos que nutren
+              tu piel y espíritu, revelando una luminosidad que irradia desde
+              adentro hacia afuera.
+            </p>
+
             <Button className="rounded-none border-2 bg-transparent px-4 py-2 text-white hover:bg-transparent">
-              Know more
+              <Link href={"/products"}>Ver productos</Link>
             </Button>
           </figcaption>
         </figure>

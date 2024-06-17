@@ -13,7 +13,7 @@ import { CategoryTable } from "@/db/schema";
 const CarouselCategories = async () => {
   const categories = await db.select().from(CategoryTable).all();
   return (
-    <section className="flex h-full w-full flex-col items-center justify-center">
+    <section className="my-2 flex h-full w-full flex-col items-center justify-center">
       <h3 className="mb-3 text-center text-2xl font-semibold">Categorias</h3>
       <Carousel
         opts={{

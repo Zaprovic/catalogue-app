@@ -6,6 +6,7 @@ import { Session } from "next-auth";
 import { usePathname, useRouter } from "next/navigation";
 import { DetailedHTMLProps, HTMLAttributes, useState } from "react";
 import SignOut from "../auth/sign-out";
+import { ThemeToggle } from "../global/theme-toggle";
 import { Button } from "../ui/button";
 import {
   Sheet,
@@ -53,6 +54,10 @@ const NavbarMobileTrigger = ({ session }: props) => {
             </SheetTitle>
           </div>
           <SheetDescription>
+            <span className="flex items-center gap-3">
+              <span>Cambiar tema</span>
+              <ThemeToggle />
+            </span>
             {session && <span>Bienvenido, {session.user?.name}</span>}
           </SheetDescription>
         </SheetHeader>

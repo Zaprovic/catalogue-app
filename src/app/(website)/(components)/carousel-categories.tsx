@@ -13,13 +13,13 @@ import { CategoryTable } from "@/db/schema";
 const CarouselCategories = async () => {
   const categories = await db.select().from(CategoryTable).all();
   return (
-    <section>
-      <h3 className="mb-3 text-center text-xl font-bold">Categorias</h3>
+    <section className="flex h-full w-full flex-col items-center justify-center">
+      <h3 className="mb-3 text-center text-2xl font-semibold">Categorias</h3>
       <Carousel
         opts={{
           align: "center",
         }}
-        className="mx-auto mb-8 w-[65%] max-w-[20rem] sm:hidden"
+        className="mx-auto my-0 h-fit w-[65%] max-w-[20rem] sm:hidden"
       >
         <CarouselContent className="">
           {categories.map((category, index) => (
@@ -27,7 +27,11 @@ const CarouselCategories = async () => {
               <div className="p-1">
                 <Card className="h-fit border-none shadow-none">
                   <CardContent className="m-0 flex aspect-square items-center justify-center p-0 ">
-                    <CategoryImage key={category.id} {...category} />
+                    <CategoryImage
+                      key={category.id}
+                      {...category}
+                      src="/images/home/mobile/carousel-skincare.jpg"
+                    />
                   </CardContent>
                 </Card>
               </div>

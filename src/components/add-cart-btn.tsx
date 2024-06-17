@@ -33,12 +33,12 @@ const AddCartBtn = (product: SelectProductType) => {
         {isPressed ? (
           <div className="flex w-full items-center justify-center gap-2">
             <IconCircleCheck />
-            <span>Producto añadido!</span>
+            <span className="">Producto añadido!</span>
           </div>
         ) : (
           <>
             <IconShoppingCart />
-            <span>Añadir al carrito</span>
+            <span className="">Añadir al carrito</span>
           </>
         )}
       </Button>

@@ -32,7 +32,7 @@ const CategoryImage = async ({ id, name, src }: props) => {
   return (
     <figure className="overflow-hidden">
       <Image
-        src={"/images/home/mobile/carousel-skincare.jpg"}
+        src={src ?? ""}
         alt={name}
         width={375}
         height={375}
@@ -43,7 +43,7 @@ const CategoryImage = async ({ id, name, src }: props) => {
         <span className="font-semibold -tracking-wider text-primary">
           {count?.productCount as number} productos
         </span>
-        <h5 className="font-bold uppercase -tracking-wider text-zinc-500">
+        <h5 className="text-sm font-bold uppercase -tracking-wider text-zinc-500">
           {name}
         </h5>
         <Link

@@ -25,7 +25,7 @@ const CarouselCategories = async () => {
           {categories.map((category, index) => (
             <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
               <div className="p-1">
-                <Card className="h-fit overflow-hidden">
+                <Card className="h-fit border-none shadow-none">
                   <CardContent className="m-0 flex aspect-square items-center justify-center p-0 ">
                     <CategoryImage key={category.id} {...category} />
                   </CardContent>

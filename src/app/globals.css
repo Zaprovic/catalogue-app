@@ -8,48 +8,48 @@ html {
 
 @layer base {
   :root {
-    --background: 30 40% 90%; /* light brown */
-    --foreground: 30 50% 25%; /* dark brown */
-    --card: 30 40% 89%; /* very light brown */
-    --card-foreground: 30 50% 25%; /* dark brown */
-    --popover: 30 40% 89%; /* very light brown */
-    --popover-foreground: 30 50% 25%; /* dark brown */
-    --primary: 30 60% 40%; /* medium brown */
-    --primary-foreground: 30 30% 95%; /* very light brown */
-    --secondary: 30 40% 80%; /* light brown */
-    --secondary-foreground: 30 50% 25%; /* dark brown */
-    --muted: 30 40% 80%; /* light brown */
-    --muted-foreground: 30 30% 50%; /* medium dark brown */
-    --accent: 30 40% 80%; /* light brown */
-    --accent-foreground: 30 50% 25%; /* dark brown */
-    --destructive: 0 70% 35%; /* red-brown */
-    --destructive-foreground: 30 30% 95%; /* very light brown */
-    --border: 30 20% 85%; /* light brown */
-    --input: 30 30% 70%; /* medium light brown */
-    --ring: 30 60% 40%; /* medium brown */
+    --background: 30 40% 80%; /* Lighter brown */
+    --foreground: 30 50% 15%; /* Darker brown */
+    --card: 30 40% 75%; /* Slightly darker */
+    --card-foreground: 30 50% 15%;
+    --popover: 30 40% 75%;
+    --popover-foreground: 30 50% 15%;
+    --primary: 30 60% 30%; /* Darker primary */
+    --primary-foreground: 30 30% 95%;
+    --secondary: 30 40% 70%;
+    --secondary-foreground: 30 50% 15%;
+    --muted: 30 40% 70%;
+    --muted-foreground: 30 30% 40%; /* Darker text */
+    --accent: 30 40% 70%;
+    --accent-foreground: 30 50% 15%;
+    --destructive: 0 70% 35%;
+    --destructive-foreground: 30 30% 95%;
+    --border: 30 20% 70%; /* Slightly darker */
+    --input: 30 30% 60%; /* Slightly darker */
+    --ring: 30 60% 30%;
     --radius: 0.3rem;
   }
 
   .dark {
-    --background: 30 50% 10%; /* very dark brown */
-    --foreground: 30 30% 90%; /* light brown */
-    --card: 30 50% 15%; /* dark brown */
-    --card-foreground: 30 30% 90%; /* light brown */
-    --popover: 30 50% 15%; /* dark brown */
-    --popover-foreground: 30 30% 90%; /* light brown */
-    --primary: 30 60% 25%; /* medium dark brown */
-    --primary-foreground: 30 30% 90%; /* light brown */
-    --secondary: 30 40% 25%; /* medium brown */
-    --secondary-foreground: 30 30% 90%; /* light brown */
-    --muted: 30 40% 25%; /* medium brown */
-    --muted-foreground: 30 30% 80%; /* medium light brown */
-    --accent: 30 40% 25%; /* medium brown */
-    --accent-foreground: 30 30% 90%; /* light brown */
-    --destructive: 0 70% 25%; /* red-brown */
-    --destructive-foreground: 30 30% 90%; /* light brown */
-    --border: 30 30% 20%; /* dark brown */
-    --input: 30 30% 20%; /* dark brown */
-    --ring: 30 40% 20%; /* dark brown */
+    --background: 30 50% 10%;
+    --foreground: 30 30% 90%;
+    --card: 30 50% 12%; /* Even darker */
+    --card-foreground: 30 30% 90%;
+    --popover: 30 50% 12%;
+    --popover-foreground: 30 30% 90%;
+    --primary: 30 60% 20%; /* Darker primary */
+    --primary-foreground: 30 30% 90%;
+    --secondary: 30 40% 20%; /* Darker secondary */
+    --secondary-foreground: 30 30% 90%;
+    --muted: 30 40% 20%;
+    --muted-foreground: 30 30% 80%;
+    --accent: 30 40% 20%;
+    --accent-foreground: 30 30% 90%;
+    --destructive: 0 70% 25%;
+    --destructive-foreground: 30 30% 90%;
+    --border: 30 30% 15%; /* Darker border */
+    --input: 30 30% 15%; /* Darker input */
+    --ring: 30 40% 15%;
   }
 }
 

@@ -13,28 +13,35 @@ import { CategoryTable } from "@/db/schema";
 const CarouselCategories = async () => {
   const categories = await db.select().from(CategoryTable).all();
   return (
-    <Carousel
-      opts={{
-        align: "center",
-      }}
-      className="mx-auto mb-8 w-[70%] max-w-[20rem] sm:hidden"
-    >
-      <CarouselContent>
-        {categories.map((category, index) => (
-          <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
-            <div className="p-1">
-              <Card className="m-0 bg-rose-300/40 p-0">
-                <CardContent className="m-0 flex aspect-square items-center justify-center p-0">
-                  <CategoryImage key={category.id} {...category} />
-                </CardContent>
-              </Card>
-            </div>
-          </CarouselItem>
-        ))}
-      </CarouselContent>
-      <CarouselPrevious />
-      <CarouselNext />
-    </Carousel>
+    <section className="my-2 flex h-full w-full flex-col items-center justify-center">
+      <h3 className="mb-3 text-center text-2xl font-semibold">Categorias</h3>
+      <Carousel
+        opts={{
+          align: "center",
+        }}
+        className="mx-auto my-0 h-fit w-[65%] max-w-[20rem] sm:hidden"
+      >
+        <CarouselContent className="">
+          {categories.map((category, index) => (
+            <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
+              <div className="p-1">
+                <Card className="h-fit border-none shadow-none">
+                  <CardContent className="m-0 flex aspect-square items-center justify-center p-0 ">
+                    <CategoryImage
+                      key={category.id}
+                      {...category}
+                      src="/images/home/mobile/carousel-skincare.jpg"
+                    />
+                  </CardContent>
+                </Card>
+              </div>
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+        <CarouselPrevious />
+        <CarouselNext />
+      </Carousel>
+    </section>
   );
 };
 

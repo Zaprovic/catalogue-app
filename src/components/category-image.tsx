@@ -39,19 +39,22 @@ const CategoryImage = async ({ id, name, src }: props) => {
         quality={100}
         className="overflow-hidden"
       />
-      <figcaption className="p-3">
-        <span className="font-semibold -tracking-wider text-primary">
+      <figcaption className="flex flex-col gap-2 p-3">
+        <span className="font-semibold -tracking-wider text-primary dark:text-card">
           {count?.productCount as number} productos
         </span>
-        <h5 className="text-sm font-bold uppercase -tracking-wider text-zinc-500">
-          {name}
-        </h5>
-        <Link
-          href={`/products/categories/${id}`}
-          className="text-sm font-medium -tracking-wider text-zinc-600 hover:underline"
-        >
-          Buscar productos
-        </Link>
+
+        <div className="flex flex-col gap-1">
+          <h5 className="text-sm font-bold uppercase -tracking-wider">
+            {name}
+          </h5>
+          <Link
+            href={`/products/categories/${id}`}
+            className="text-sm font-medium -tracking-wider hover:underline"
+          >
+            Buscar productos
+          </Link>
+        </div>
       </figcaption>
     </figure>
   );

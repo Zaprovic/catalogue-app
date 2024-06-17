@@ -6,7 +6,6 @@ import NavbarMobileTrigger from "../navbar/navbar-mobile-trigger";
 import { routes } from "../navbar/routes";
 import ShoppingCartBtn from "../shopping-cart-btn";
 import { Button } from "../ui/button";
-import { ThemeToggle } from "./theme-toggle";
 
 async function Header() {
   const session = await auth();
@@ -72,7 +71,7 @@ async function Header() {
           </form>
         )}
 
-        <ThemeToggle />
+        {/* <ThemeToggle /> */}
       </div>
 
       <nav className="flex items-center gap-4 lg:hidden">

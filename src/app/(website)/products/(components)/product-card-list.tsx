@@ -11,7 +11,6 @@ const ProductCardList = ({ products }: { products: SelectProductType[] }) => {
   return (
     <div className={`${style.productContainer} w-full place-items-center`}>
       {Array.isArray(filteredProducts) &&
-        filteredProducts.map((product) => (
         products.map((product) => (
           <ProductCard key={product.id} {...product} />
         ))}

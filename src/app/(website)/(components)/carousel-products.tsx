@@ -15,7 +15,7 @@ import Image from "next/image";
 const CarouselProducts = async () => {
   const products = await db.select().from(ProductTable).all();
   return (
-    <section className="mb-4 h-fit">
+    <section className="my-2 h-fit">
       <h3 className="mb-0 text-center text-2xl font-semibold">Productos</h3>
       <Carousel
         opts={{

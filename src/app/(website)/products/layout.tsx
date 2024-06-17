@@ -4,7 +4,8 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { db } from "@/db/main";
 import { CategoryTable, ProductTable } from "@/db/schema";
 import { ReactNode, Suspense } from "react";
-import SearchProductsForm from "./(components)/search-products-form";
+
+//? Searchbar not working properly
 
 const Layout = async ({ children }: { children: ReactNode }) => {
   const categories = await db.select().from(CategoryTable).all();
@@ -13,7 +14,7 @@ const Layout = async ({ children }: { children: ReactNode }) => {
   return (
     <>
       <main className="p-6">
-        <SearchProductsForm products={products} />
+        {/* <SearchProductsForm products={products} /> */}
         <div className="mb-4 flex w-full justify-end md:hidden">
           <CategoriesFilterBtn categories={categories} />
         </div>

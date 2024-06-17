@@ -29,9 +29,9 @@ const CategoryImage = async ({ id, name, src }: props) => {
   const count = categoryCount.find((item) => item.name === name);
 
   return (
-    <figure className="relative h-full w-full overflow-hidden">
+    <figure className="relative grid h-full w-full place-content-center">
       <div className="">
-        <figcaption className="absolute left-4 top-4">
+        <figcaption className="absolute -translate-x-1/2 -translate-y-1/2">
           <span className="font-semibold -tracking-wider text-primary">
             {count?.productCount as number} productos
           </span>

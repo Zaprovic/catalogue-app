@@ -1,7 +1,6 @@
 import Footer from "@/components/footer/footer";
 import Header from "@/components/global/header";
 import { Toaster } from "@/components/ui/sonner";
-import { ThemeProvider } from "@/providers/theme-provider";
 import { esMX } from "@clerk/localizations";
 import { ClerkProvider } from "@clerk/nextjs";
 import type { Metadata } from "next";
@@ -29,24 +28,24 @@ export default function RootLayout({
     <ClerkProvider localization={esMX}>
       <html lang="en" suppressHydrationWarning>
         <body className={`${inter.className} flex min-h-screen flex-col`}>
-          <ThemeProvider
+          {/* <ThemeProvider
             attribute="class"
             enableSystem
             disableTransitionOnChange
-          >
-            <Header />
-            {/* from p-6 to p-0 */}
-            <div className="flex-1 p-0">{children}</div>
-            <Footer />
-            <Toaster
-              toastOptions={{
-                classNames: {
-                  error: "text-red-500",
-                  success: "text-emerald-500",
-                },
-              }}
-            />
-          </ThemeProvider>
+          > */}
+          <Header />
+          {/* from p-6 to p-0 */}
+          <div className="flex-1 p-0">{children}</div>
+          <Footer />
+          <Toaster
+            toastOptions={{
+              classNames: {
+                error: "text-red-500",
+                success: "text-emerald-500",
+              },
+            }}
+          />
+          {/* </ThemeProvider> */}
         </body>
       </html>
     </ClerkProvider>

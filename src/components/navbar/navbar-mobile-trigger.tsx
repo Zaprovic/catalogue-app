@@ -6,7 +6,6 @@ import { Session } from "next-auth";
 import { usePathname, useRouter } from "next/navigation";
 import { DetailedHTMLProps, HTMLAttributes, useState } from "react";
 import SignOut from "../auth/sign-out";
-import { ThemeToggle } from "../global/theme-toggle";
 import { Button } from "../ui/button";
 import {
   Sheet,
@@ -54,10 +53,10 @@ const NavbarMobileTrigger = ({ session }: props) => {
             </SheetTitle>
           </div>
           <SheetDescription>
-            <span className="flex items-center gap-3">
+            {/* <span className="flex items-center gap-3">
               <span>Cambiar tema</span>
               <ThemeToggle />
-            </span>
+            </span> */}
             {session && <span>Bienvenido, {session.user?.name}</span>}
           </SheetDescription>
         </SheetHeader>
@@ -79,7 +78,7 @@ const NavbarMobileTrigger = ({ session }: props) => {
               icon={<IconShoppingCart />}
               label="Carrito"
             />
-            <span className="absolute left-6 top-0 grid aspect-square size-4 place-items-center rounded-full bg-blue-600 text-xs text-white">
+            <span className="absolute left-6 top-0 grid aspect-square size-4 place-items-center rounded-full bg-primary text-xs text-white">
               {items}
             </span>
           </div>

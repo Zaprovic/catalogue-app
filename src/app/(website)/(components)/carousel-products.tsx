@@ -27,7 +27,7 @@ const CarouselProducts = async () => {
           {products.map((product, index) => (
             <CarouselItem key={index} className="">
               <div className="p-2">
-                <Card className="h-full border-none shadow-none">
+                <Card className="h-full border-none bg-transparent shadow-none">
                   <CardContent className="flex aspect-square h-full items-center justify-center p-0">
                     <figure className="overflow-hidden p-3">
                       <Image

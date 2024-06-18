@@ -2,7 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import { SelectCategoryType } from "@/types";
-import { IconFilter } from "@tabler/icons-react";
+import { IconAdjustmentsHorizontal } from "@tabler/icons-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
@@ -30,26 +30,37 @@ const CategoriesFilterBtn = ({
     setIsOpen(false);
   };
 
-  const category = categories.find((category) => {
-    return pathname.includes(`/products/categories/${category.id}`);
-  });
-
   return (
-    <div className="flex w-full items-center justify-between">
-      <h4 className="text-xs font-bold text-primary">{category?.name}</h4>
+    <div className="flex items-center justify-between">
       <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
         <DropdownMenuTrigger asChild>
-          <Button variant={"secondary"} className="flex gap-2 px-4 md:hidden">
+          <Button
+            variant={"secondary"}
+            className="flex w-full gap-2 px-4 md:hidden"
+          >
             <span className="text-sm font-semibold -tracking-wide">
               Filtrar
             </span>
-            <IconFilter />
+            <IconAdjustmentsHorizontal />
           </Button>
         </DropdownMenuTrigger>
 
         <DropdownMenuContent className="w-fit">
           <DropdownMenuLabel>Categorias</DropdownMenuLabel>
-          <DropdownMenuGroup className="flex flex-col items-start gap-0">
+          <DropdownMenuGroup className="flex flex-col items-start justify-start gap-0">
+            <DropdownMenuItem className="w-full">
+              <Toggle
+                asChild
+                aria-label="Toggle All Categories"
+                className={cn("w-full font-semibold", {
+                  "bg-primary/20 text-primary": pathname === "/products", // Active when on main /products page
+                })}
+              >
+                <Link href="/products" onClick={onclick}>
+                  <span className="w-full">TODOS</span>
+                </Link>
+              </Toggle>
+            </DropdownMenuItem>
             {categories.map((category) => (
               <DropdownMenuItem key={category.id} className="w-full">
                 <Toggle
@@ -65,7 +76,7 @@ const CategoriesFilterBtn = ({
                     href={`/products/categories/${category.id}`}
                     onClick={onclick}
                   >
-                    {category.name}
+                    <span className="w-full">{category.name}</span>
                   </Link>
                 </Toggle>
               </DropdownMenuItem>

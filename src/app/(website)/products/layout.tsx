@@ -5,7 +5,7 @@ import { db } from "@/db/main";
 import { CategoryTable, ProductTable } from "@/db/schema";
 import { ReactNode, Suspense } from "react";
 
-//? Searchbar not working properly
+//! Searchbar not working properly
 
 const Layout = async ({ children }: { children: ReactNode }) => {
   const categories = await db.select().from(CategoryTable).all();
@@ -15,8 +15,9 @@ const Layout = async ({ children }: { children: ReactNode }) => {
     <>
       <main className="p-6">
         {/* <SearchProductsForm products={products} /> */}
-        <div className="mb-4 flex w-full justify-end md:hidden">
+        <div className="mb-4 flex w-full justify-end  gap-4 md:hidden">
           <CategoriesFilterBtn categories={categories} />
+          {/* <SortProductBtn products={products} /> */}
         </div>
 
         <div className="flex justify-center md:gap-12">

@@ -40,7 +40,10 @@ const Page = async ({ params }: { params: { id: string } }) => {
 
   return (
     <div className="flex w-full flex-col">
-      <section className="mx-auto w-full max-w-[1000px]">
+      <section className="mx-auto w-full">
+        <h4 className="my-4 text-xl font-semibold md:my-0 md:mb-5">
+          {categories[0].categoryName}
+        </h4>
         <div className={`${style.productContainer} w-full place-items-center`}>
           {productCategories.length > 0 ? (
             productCategories.map((product) => (

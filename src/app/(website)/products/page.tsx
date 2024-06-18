@@ -27,6 +27,9 @@ export default async function ProductPage() {
     <>
       <div className="flex flex-1 gap-10">
         <section className="mx-auto w-full">
+          <h4 className="my-4 text-xl font-semibold md:my-0 md:mb-5">
+            TODOS LOS PRODUCTOS
+          </h4>
           <ProductCardList products={products} />
         </section>
       </div>

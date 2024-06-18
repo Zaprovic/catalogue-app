@@ -30,7 +30,8 @@ const CarouselCategories = async () => {
                     <CategoryImage
                       key={category.id}
                       {...category}
-                      src="/images/home/mobile/carousel-skincare.jpg"
+                      src={`/images/home/mobile/category-0${index + 1}.png`}
+                      // src={`/images/home/mobile/default.jpg`}
                     />
                   </CardContent>
                 </Card>

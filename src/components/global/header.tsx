@@ -1,6 +1,6 @@
 import { signInAction, signOutAction } from "@/actions/auth-actions";
 import { auth } from "@/auth";
-import { IconLogout2, IconMoneybag, IconUser } from "@tabler/icons-react";
+import { IconLogout2, IconUser } from "@tabler/icons-react";
 import Link from "next/link";
 import NavbarMobileTrigger from "../navbar/navbar-mobile-trigger";
 import { routes } from "../navbar/routes";
@@ -75,12 +75,12 @@ async function Header() {
       </div>
 
       <nav className="flex items-center gap-4 lg:hidden">
-        <ul className="flex items-center gap-4">
-          <li>
+        <ul className="flex items-center gap-1">
+          {/* <li>
             <Link href={"/products"}>
               <IconMoneybag />
             </Link>
-          </li>
+          </li> */}
           <li>
             <ShoppingCartBtn />
           </li>

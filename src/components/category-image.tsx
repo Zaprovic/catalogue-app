@@ -32,12 +32,12 @@ const CategoryImage = async ({ id, name, src }: props) => {
   return (
     <figure className="overflow-hidden">
       <Image
-        src={src ?? "/images/home/mobile/default.jpg"}
+        src={src ?? ""}
         alt={name}
-        width={256}
-        height={342}
+        width={375}
+        height={375}
         quality={100}
-        className="object-contain"
+        className="overflow-hidden"
       />
       <figcaption className="flex flex-col gap-2 p-3">
         <span className="font-semibold -tracking-wider text-primary dark:text-card">

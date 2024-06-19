@@ -35,6 +35,9 @@ const ProductCard = (product: SelectProductType) => {
               className="aspect-square h-auto w-full object-contain"
             />
           </figure>
+          <h6 className="mt-3 font-bold text-primary opacity-45">
+            {product.brand}
+          </h6>
           <CardDescription
             className={`${styles.cardDescription} mt-3 line-clamp-2`}
           >

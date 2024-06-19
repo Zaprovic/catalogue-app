@@ -39,13 +39,13 @@ export default function Home() {
             className="h-full w-full object-cover opacity-40"
           />
           <figcaption className="absolute bottom-9 flex flex-col items-center justify-center gap-3 px-6 text-center">
-            <h6 className=" text-2xl font-bold leading-tight text-white">
-              Desbloquea tu brillo natural
+            <h6 className=" text-3xl font-bold leading-tight text-white">
+              Cuidar tu piel
             </h6>
 
-            <p className="text-pretty text-center text-xs text-white">
-              Cuidar tu piel es un acto de amor propio que se refleja en tu
-              belleza exterior e interior
+            <p className="text-pretty text-center text-sm text-white">
+              Es un acto de amor propio que se refleja en tu belleza exterior e
+              interior
             </p>
           </figcaption>
         </figure>

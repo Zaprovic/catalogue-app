@@ -29,7 +29,10 @@ const AddedProducts = () => {
         {cartItems.length > 0 ? (
           <section className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
             {cartItems.map((product) => (
-              <Card key={product.id} className="relative h-full max-w-[240px]">
+              <Card
+                key={product.id}
+                className="relative h-full max-w-[240px] bg-card/5"
+              >
                 <CardHeader className="flex items-center justify-between py-5">
                   <CardTitle className="text-pretty text-start -tracking-wider">
                     {product.title}

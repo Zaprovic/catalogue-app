@@ -8,48 +8,48 @@ html {
 
 @layer base {
   :root {
-    --background: 30 40% 80%; /* Lighter brown */
-    --foreground: 30 50% 15%; /* Darker brown */
-    --card: 30 40% 75%; /* Slightly darker */
-    --card-foreground: 30 50% 15%;
-    --popover: 30 40% 75%;
-    --popover-foreground: 30 50% 15%;
-    --primary: 30 60% 30%; /* Darker primary */
-    --primary-foreground: 30 30% 95%;
-    --secondary: 30 40% 70%;
-    --secondary-foreground: 30 50% 15%;
-    --muted: 30 40% 70%;
-    --muted-foreground: 30 30% 40%; /* Darker text */
-    --accent: 30 40% 70%;
-    --accent-foreground: 30 50% 15%;
-    --destructive: 0 70% 35%;
-    --destructive-foreground: 30 30% 95%;
-    --border: 30 20% 70%; /* Slightly darker */
-    --input: 30 20% 70%; /* Slightly darker */
-    --ring: 30 60% 30%;
+    --background: 340 30% 95%; /* Light background */
+    --foreground: 340 40% 20%; /* Darker text */
+    --card: 340 30% 90%; /* Light card */
+    --card-foreground: 340 40% 20%;
+    --popover: 340 30% 90%; /* Light popover */
+    --popover-foreground: 340 40% 20%;
+    --primary: 340 50% 40%; /* Burgundy primary */
+    --primary-foreground: 340 20% 95%;
+    --secondary: 340 30% 80%; /* Lighter secondary */
+    --secondary-foreground: 340 40% 20%;
+    --muted: 340 30% 85%; /* Muted light background */
+    --muted-foreground: 340 40% 50%; /* Darker muted text */
+    --accent: 340 50% 40%; /* Burgundy accent */
+    --accent-foreground: 340 20% 95%;
+    --destructive: 0 70% 45%; /* Bright red */
+    --destructive-foreground: 340 20% 95%;
+    --border: 340 20% 90%; /* Light border */
+    --input: 340 40% 90%; /* Light input */
+    --ring: 340 50% 40%; /* Burgundy ring */
     --radius: 0.3rem;
   }
 
   .dark {
-    --background: 30 50% 10%;
-    --foreground: 30 30% 90%;
-    --card: 30 50% 12%; /* Even darker */
-    --card-foreground: 30 30% 90%;
-    --popover: 30 50% 12%;
-    --popover-foreground: 30 30% 90%;
-    --primary: 30 60% 20%; /* Darker primary */
-    --primary-foreground: 30 30% 90%;
-    --secondary: 30 40% 20%; /* Darker secondary */
-    --secondary-foreground: 30 30% 90%;
-    --muted: 30 40% 20%;
-    --muted-foreground: 30 30% 80%;
-    --accent: 30 40% 20%;
-    --accent-foreground: 30 30% 90%;
+    --background: 340 30% 10%; /* Darker background */
+    --foreground: 340 50% 90%; /* Light text */
+    --card: 340 30% 15%; /* Even darker card */
+    --card-foreground: 340 50% 90%;
+    --popover: 340 30% 15%;
+    --popover-foreground: 340 50% 90%;
+    --primary: 340 50% 25%; /* Darker primary */
+    --primary-foreground: 340 50% 90%;
+    --secondary: 340 30% 25%; /* Darker secondary */
+    --secondary-foreground: 340 50% 90%;
+    --muted: 340 30% 20%; /* Darker muted */
+    --muted-foreground: 340 50% 80%; /* Light muted text */
+    --accent: 340 50% 25%;
+    --accent-foreground: 340 50% 90%;
     --destructive: 0 70% 25%;
-    --destructive-foreground: 30 30% 90%;
-    --border: 30 30% 15%; /* Darker border */
-    --input: 30 30% 15%; /* Darker input */
-    --ring: 30 40% 15%;
+    --destructive-foreground: 340 50% 90%;
+    --border: 340 30% 15%; /* Darker border */
+    --input: 340 30% 15%; /* Darker input */
+    --ring: 340 40% 15%;
   }
 }
 

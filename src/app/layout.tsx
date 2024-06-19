@@ -19,6 +19,12 @@ export const metadata: Metadata = {
     "Yesecommerce | Productos Faciales, Capilares y Dermatológicos para una Belleza Integral",
   description:
     "Descubre nuestra completa selección de productos faciales, capilares y dermatológicos de alta calidad, diseñados para realzar tu belleza natural y cuidar tu piel y cabello.",
+  icons: [
+    {
+      rel: "icon",
+      url: "/favicon.ico",
+    },
+  ],
 };
 
 export default function RootLayout({

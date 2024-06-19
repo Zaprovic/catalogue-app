@@ -1,8 +1,11 @@
 import CategoriesFilterBtn from "@/components/categories-filter-btn";
 import CategoriesNavbar from "@/components/categories-navbar";
+import PrevBtn from "@/components/prev-btn";
+import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { db } from "@/db/main";
 import { CategoryTable, ProductTable } from "@/db/schema";
+import Link from "next/link";
 import { ReactNode, Suspense } from "react";
 
 //! Searchbar not working properly
@@ -15,7 +18,8 @@ const Layout = async ({ children }: { children: ReactNode }) => {
     <>
       <main className="p-6">
         {/* <SearchProductsForm products={products} /> */}
-        <div className="mb-4 flex w-full justify-end  gap-4 md:hidden">
+        <div className="mb-4 flex w-full justify-between  gap-4 md:hidden">
+          <PrevBtn />
           <CategoriesFilterBtn categories={categories} />
           {/* <SortProductBtn products={products} /> */}
         </div>

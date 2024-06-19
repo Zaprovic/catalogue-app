@@ -15,8 +15,10 @@ const inter = Montserrat({
 });
 
 export const metadata: Metadata = {
-  title: "Yesecommerce | Productos Faciales, Capilares y Dermatológicos para una Belleza Integral",
-  description: "Descubre nuestra completa selección de productos faciales, capilares y dermatológicos de alta calidad, diseñados para realzar tu belleza natural y cuidar tu piel y cabello.",
+  title:
+    "Yesecommerce | Productos Faciales, Capilares y Dermatológicos para una Belleza Integral",
+  description:
+    "Descubre nuestra completa selección de productos faciales, capilares y dermatológicos de alta calidad, diseñados para realzar tu belleza natural y cuidar tu piel y cabello.",
 };
 
 export default function RootLayout({

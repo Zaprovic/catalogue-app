@@ -38,15 +38,14 @@ export default function Home() {
             quality={100}
             className="h-full w-full object-cover opacity-40"
           />
-          <figcaption className="absolute bottom-9 flex flex-col items-center justify-center gap-3 px-6">
-            <h6 className="text-center text-2xl font-bold leading-tight text-white">
-              Desbloquea tu brillo natural
+          <figcaption className="absolute bottom-9 flex flex-col items-center justify-center gap-3 px-6 text-center">
+            <h6 className=" text-3xl font-bold leading-tight text-white">
+              Cuidar tu piel
             </h6>
 
-            <p className="text-pretty text-center text-xs text-white">
-              Desvela tu confianza más radiante. Nuestra colección de belleza te
-              impulsa a aceptar tu belleza individual y a que tu luz interior
-              brille
+            <p className="text-pretty text-center text-sm text-white">
+              Es un acto de amor propio que se refleja en tu belleza exterior e
+              interior
             </p>
           </figcaption>
         </figure>
@@ -64,15 +63,13 @@ export default function Home() {
             quality={100}
             className="h-full w-full object-cover opacity-40"
           />
-          <figcaption className="absolute bottom-9 flex flex-col items-center justify-center gap-3">
-            <h6 className="text-2xl font-bold text-white">
+          <figcaption className="absolute bottom-9 flex flex-col items-center justify-center gap-3 px-6 text-center">
+            <h6 className="text-3xl font-bold text-white">
               Explora tu belleza interior
             </h6>
 
-            <p className="text-pretty px-6 text-center text-xs text-white">
-              La belleza comienza en tu interior. Descubre productos que nutren
-              tu piel y espíritu, revelando una luminosidad que irradia desde
-              adentro hacia afuera.
+            <p className="text-pretty text-center text-sm text-white">
+              La belleza está en la salud de tu piel, no en la perfección
             </p>
 
             <Button className="rounded-none border-2 bg-transparent px-4 py-2 text-white hover:bg-transparent">

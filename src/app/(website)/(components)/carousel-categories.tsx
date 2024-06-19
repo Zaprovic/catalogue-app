@@ -13,17 +13,17 @@ import { CategoryTable } from "@/db/schema";
 const CarouselCategories = async () => {
   const categories = await db.select().from(CategoryTable).all();
   return (
-    <section className="my-2 flex h-full w-full flex-col items-center justify-center">
+    <section className="mx-auto my-2 flex h-full w-full max-w-[1500px] flex-col items-center justify-center">
       <h3 className="mb-3 text-center text-2xl font-semibold">Categorias</h3>
       <Carousel
         opts={{
           align: "center",
         }}
-        className="mx-auto my-0 h-fit w-[65%] max-w-[20rem] sm:hidden"
+        className="mx-auto my-0 h-fit w-[55%] min-w-[65%]"
       >
         <CarouselContent className="">
           {categories.map((category, index) => (
-            <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
+            <CarouselItem key={index} className="sm:basis-1/2 md:basis-1/3">
               <div className="p-1">
                 <Card className="h-fit rounded-none border-none bg-transparent shadow-none">
                   <CardContent className="m-0 flex aspect-square items-center justify-center p-0 ">

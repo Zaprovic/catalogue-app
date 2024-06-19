@@ -15,17 +15,17 @@ import Image from "next/image";
 const CarouselProducts = async () => {
   const products = await db.select().from(ProductTable).all();
   return (
-    <section className="my-2 h-fit">
+    <section className="mx-auto my-2 flex h-full w-full max-w-[1500px] flex-col items-center justify-center md:mt-8">
       <h3 className="mb-0 text-center text-2xl font-semibold">Productos</h3>
       <Carousel
         opts={{
           align: "center",
         }}
-        className="mx-auto my-0 h-fit w-[65%] max-w-[20rem] sm:hidden"
+        className="mx-auto my-0 h-full w-[70%]"
       >
         <CarouselContent className="">
           {products.map((product, index) => (
-            <CarouselItem key={index} className="">
+            <CarouselItem key={index} className="sm:basis-1/2 lg:basis-1/3">
               <div className="p-2">
                 <Card className="h-full border-none bg-transparent shadow-none">
                   <CardContent className="flex aspect-square h-full items-center justify-center p-0">

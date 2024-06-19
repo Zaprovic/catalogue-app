@@ -10,26 +10,9 @@ export const revalidate = 0;
 
 export default function Home() {
   return (
-    <main className="flex h-full flex-col gap-4">
-      {/* <nav className="flex items-center justify-center pt-16 sm:hidden">
-        <ul className="flex flex-col items-center justify-center gap-6 text-2xl font-semibold text-primary/40">
-          <li>
-            <Link href="/">Inicio</Link>
-          </li>
-          <li>
-            <Link href="/products">Productos</Link>
-          </li>
-          <li>
-            <Link href="/about">Contacto</Link>
-          </li>
-          <li>
-            <Link href="/dashboard">Dashboard</Link>
-          </li>
-        </ul>
-      </nav> */}
-
+    <main className="mx-auto flex h-full max-w-[1460px] flex-col gap-4">
       <section>
-        <figure className="relative flex items-center justify-center bg-black">
+        <figure className="relative flex items-center justify-center bg-black sm:hidden">
           <Image
             src={"/images/home/mobile/mobile-01.png"}
             alt="Mobile image 01"
@@ -49,14 +32,34 @@ export default function Home() {
             </p>
           </figcaption>
         </figure>
+        <figure className="relative hidden items-center justify-center bg-black sm:flex">
+          <Image
+            src={"/images/home/desktop/desktop-01.png"}
+            alt="Mobile image 01"
+            width={1440}
+            height={629}
+            quality={100}
+            className="h-full max-h-[520px] w-full object-cover opacity-40"
+          />
+          <figcaption className="absolute bottom-9 flex w-full max-w-[440px] flex-col items-center justify-center gap-1 text-center">
+            <h6 className=" text-4xl font-semibold leading-tight text-white lg:text-5xl">
+              Cuidar tu piel
+            </h6>
+
+            <p className="text-pretty text-center text-base font-light text-white lg:text-xl">
+              Es un acto de amor propio que se refleja en tu belleza exterior e
+              interior
+            </p>
+          </figcaption>
+        </figure>
       </section>
 
       <CarouselCategories />
 
       <section>
-        <figure className="relative flex items-center justify-center bg-black">
+        <figure className="relative flex items-center justify-center bg-black sm:hidden">
           <Image
-            src={"/images/home/mobile/mobile-02.jpg"}
+            src={"/images/home/mobile/mobile-03.jpg"}
             alt="Mobile image 01"
             width={333}
             height={720}
@@ -77,6 +80,49 @@ export default function Home() {
             </Button>
           </figcaption>
         </figure>
+
+        <div className="mx-10 flex max-w-[1200px] gap-3 lg:mx-auto">
+          <figure className="relative hidden items-center justify-center rounded-xl bg-black sm:flex">
+            <Image
+              src={"/images/home/desktop/desktop-02.jpg"}
+              alt="Mobile image 01"
+              width={1440}
+              height={629}
+              quality={100}
+              className="object-cover opacity-40"
+            />
+            <figcaption className="absolute bottom-9 flex w-[75%] min-w-[500px] flex-col items-center justify-center gap-1 text-center">
+              <h6 className=" text-2xl font-semibold leading-tight text-white lg:text-3xl xl:text-4xl">
+                Cuidar tu piel
+              </h6>
+
+              <p className="text-pretty text-center text-xs font-light text-white lg:px-20 lg:text-sm">
+                Es un acto de amor propio que se refleja en tu belleza exterior
+                e interior
+              </p>
+            </figcaption>
+          </figure>
+          <figure className="relative mx-auto hidden max-w-[1200px] items-center justify-center rounded-xl bg-black sm:flex">
+            <Image
+              src={"/images/home/desktop/desktop-02.jpg"}
+              alt="Mobile image 01"
+              width={1440}
+              height={629}
+              quality={100}
+              className="object-cover opacity-40"
+            />
+            <figcaption className="absolute bottom-9 flex w-[75%] min-w-[500px] flex-col items-center justify-center gap-1 text-center">
+              <h6 className=" text-2xl font-semibold leading-tight text-white lg:text-3xl xl:text-4xl">
+                Cuidar tu piel
+              </h6>
+
+              <p className="text-pretty text-center text-xs font-light text-white lg:px-20 lg:text-sm">
+                Es un acto de amor propio que se refleja en tu belleza exterior
+                e interior
+              </p>
+            </figcaption>
+          </figure>
+        </div>
       </section>
 
       <CarouselProducts />

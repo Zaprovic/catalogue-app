@@ -10,7 +10,7 @@ export const revalidate = 0;
 
 export default function Home() {
   return (
-    <main className="mx-auto flex h-full max-w-[1460px] flex-col gap-4">
+    <main className="mx-auto flex h-full flex-col gap-4">
       <section>
         <figure className="relative flex items-center justify-center bg-black sm:hidden">
           <Image
@@ -19,7 +19,7 @@ export default function Home() {
             width={333}
             height={720}
             quality={100}
-            className="h-full w-full object-cover opacity-40"
+            className="h-full w-full object-cover opacity-45"
           />
           <figcaption className="absolute bottom-9 flex flex-col items-center justify-center gap-3 px-6 text-center">
             <h6 className=" text-3xl font-bold leading-tight text-white">
@@ -89,7 +89,7 @@ export default function Home() {
               width={1440}
               height={629}
               quality={100}
-              className="object-cover opacity-40"
+              className="object-cover opacity-45"
             />
             <figcaption className="absolute bottom-9 flex w-[75%] min-w-[500px] flex-col items-center justify-center gap-1 text-center">
               <h6 className=" text-2xl font-semibold leading-tight text-white lg:text-3xl xl:text-4xl">
@@ -109,7 +109,7 @@ export default function Home() {
               width={1440}
               height={629}
               quality={100}
-              className="object-cover opacity-40"
+              className="object-cover opacity-45"
             />
             <figcaption className="absolute bottom-9 flex w-[75%] min-w-[500px] flex-col items-center justify-center gap-1 text-center">
               <h6 className=" text-2xl font-semibold leading-tight text-white lg:text-3xl xl:text-4xl">

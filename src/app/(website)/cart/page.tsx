@@ -10,9 +10,8 @@ const Page = async () => {
         Carrito de compras
       </h1>
 
-
-      <div className="flex justify-between items-center mt-5">
-        <PrevBtn/>
+      <div className="mt-5 flex items-center justify-between">
+        <PrevBtn />
         <CleanCartBtn />
       </div>
 

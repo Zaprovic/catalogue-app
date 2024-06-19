@@ -7,7 +7,7 @@ const CleanCartBtn = () => {
   const removeAll = useStoreItems((state) => state.removeAllItems);
 
   return (
-    <Button className="mt-5" onClick={() => removeAll()}>
+    <Button className="mt-0" onClick={() => removeAll()}>
       Limpiar el carrito
     </Button>
   );

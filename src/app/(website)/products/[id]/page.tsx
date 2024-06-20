@@ -5,6 +5,8 @@ import { ProductTable } from "@/db/schema";
 import { formatPricetoCOP } from "@/lib/utils";
 import { eq } from "drizzle-orm";
 
+export const revalidate = 0;
+
 const Page = async ({ params }: { params: { id: string } }) => {
   const product = (
     await db.select().from(ProductTable).where(eq(ProductTable.id, +params.id))

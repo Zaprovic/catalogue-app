@@ -26,7 +26,7 @@ const ProductCard = (product: SelectProductType) => {
       </CardHeader>
       <CardContent className="w-full px-5 pb-2">
         <Link href={`/products/${product.id}`} className="h-full w-full">
-          <figure className="bg-primary/15">
+          <figure className="">
             <img
               src={product.image ?? ""}
               alt={"Product Image"}

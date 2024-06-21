@@ -32,6 +32,7 @@ const ProductUpdateForm = (product: UpdateProductType) => {
       title: product.title,
       description: product.description,
       price: product.price,
+      discountPercentage: product.discountPercentage,
       image: product.image,
       brand: product.brand,
     },
@@ -118,6 +119,22 @@ const ProductUpdateForm = (product: UpdateProductType) => {
                     <FormControl>
                       <Input {...field} />
                     </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="discountPercentage"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Descuento</FormLabel>
+                    <FormControl>
+                      <Input {...field} value={field.value ?? 0} />
+                    </FormControl>
+                    <FormDescription>
+                      Porcentaje de descuento (En caso de aplicar)
+                    </FormDescription>
                     <FormMessage />
                   </FormItem>
                 )}

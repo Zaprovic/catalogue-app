@@ -1,7 +1,7 @@
 import { db } from "@/db/main";
 import { ProductTable } from "@/db/schema";
 import { SelectProductType } from "@/types";
-import { type ClassValue, clsx } from "clsx";
+import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 
 export function cn(...inputs: ClassValue[]) {
@@ -24,4 +24,8 @@ export function calculateTotalPrice(cartItems: SelectProductType[]) {
   return cartItems
     .map((item) => item.price)
     .reduce((acc, price) => acc + price, 0);
+}
+
+export function calculatePriceWithDiscount(price: number, discount: number) {
+  return formatPricetoCOP(price - (price * discount) / 100);
 }

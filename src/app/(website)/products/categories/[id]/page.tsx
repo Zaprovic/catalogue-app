@@ -28,6 +28,7 @@ const Page = async ({ params }: { params: { id: string } }) => {
       productDescription: ProductTable.description,
       productBrand: ProductTable.brand,
       productImage: ProductTable.image,
+      productDiscountPercentage: ProductTable.discountPercentage,
       userId: ProductTable.userId,
     })
     .from(ProductCategoryTable)
@@ -56,6 +57,7 @@ const Page = async ({ params }: { params: { id: string } }) => {
                 image={product.productImage}
                 price={product.productPrice ?? 0}
                 brand={product.productBrand}
+                discountPercentage={product.productDiscountPercentage}
               />
             ))
           ) : (

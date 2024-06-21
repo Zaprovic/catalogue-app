@@ -64,7 +64,7 @@ const ProductCard = (product: SelectProductType) => {
             )}
           </div>
           {product.discountPercentage !== 0 && (
-            <div className="absolute right-3 top-6 grid aspect-square place-items-center rounded-full bg-primary p-2">
+            <div className="absolute right-3 top-12 grid aspect-square place-items-center rounded-full  bg-secondary-foreground p-2">
               <span className="text-lg font-bold text-secondary">
                 {product.discountPercentage}%
               </span>

@@ -1,8 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
 import AddCartBtn from "@/components/add-cart-btn";
+import { Badge } from "@/components/ui/badge";
 import { db } from "@/db/main";
 import { ProductTable } from "@/db/schema";
-import { formatPricetoCOP } from "@/lib/utils";
+import { calculatePriceWithDiscount, cn, formatPricetoCOP } from "@/lib/utils";
 import { eq } from "drizzle-orm";
 
 export const revalidate = 0;
@@ -18,7 +19,7 @@ const Page = async ({ params }: { params: { id: string } }) => {
         className={`mx-auto grid max-w-[1100px] grid-cols-1 place-content-center gap-6 rounded-lg p-5 xl:grid-cols-2`}
       >
         <section className="size-full">
-          <figure className="grid size-full place-items-center overflow-hidden rounded-lg">
+          <figure className="relative grid size-full place-items-center overflow-hidden rounded-lg">
             <img
               src={product.image ?? ""}
               width={100}
@@ -40,10 +41,39 @@ const Page = async ({ params }: { params: { id: string } }) => {
           <p className="text-pretty text-sm font-normal -tracking-wider">
             {product.description}
           </p>
-          <div className="flex items-center gap-5">
-            <h3 className="text-xl font-bold">
-              {formatPricetoCOP(product.price)}
-            </h3>
+          <div
+            className={cn("flex items-center gap-5", {
+              "mb-4 inline-block": product.discountPercentage !== 0,
+            })}
+          >
+            <div
+              className={cn(" flex items-center gap-4", {
+                "mb-4": product.discountPercentage !== 0,
+              })}
+            >
+              <h3
+                className={cn("text-xl font-bold", {
+                  "text-lg line-through": product.discountPercentage !== 0,
+                })}
+              >
+                {formatPricetoCOP(product.price)}
+              </h3>
+              {product.discountPercentage &&
+              product.discountPercentage !== 0 ? (
+                <>
+                  <h2 className="text-xl font-bold">
+                    {calculatePriceWithDiscount(
+                      product.price,
+                      product.discountPercentage,
+                    )}
+                  </h2>
+                  <Badge className="bg-secondary-foreground hover:bg-secondary-foreground">
+                    {product.discountPercentage}%
+                  </Badge>
+                </>
+              ) : null}
+            </div>
+
             <div>
               <AddCartBtn {...product} />
             </div>

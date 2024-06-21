@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import { formatPricetoCOP } from "@/lib/utils";
+import { calculatePriceWithDiscount, cn, formatPricetoCOP } from "@/lib/utils";
 import styles from "@/styles.module.css";
 import { SelectProductType } from "@/types";
 import Link from "next/link";
@@ -18,7 +18,7 @@ const ProductCard = (product: SelectProductType) => {
   const formattedPrice = formatPricetoCOP(product.price);
 
   return (
-    <Card className="h-full max-w-[320px] bg-card/5">
+    <Card className="relative h-full max-w-[320px] bg-card/5">
       <CardHeader className="p-5">
         <CardTitle className="line-clamp-1 text-pretty text-sm -tracking-wider">
           {product.title}
@@ -26,7 +26,7 @@ const ProductCard = (product: SelectProductType) => {
       </CardHeader>
       <CardContent className="w-full px-5 pb-2">
         <Link href={`/products/${product.id}`} className="h-full w-full">
-          <figure className="">
+          <figure className="bg-primary/15">
             <img
               src={product.image ?? ""}
               alt={"Product Image"}
@@ -43,7 +43,33 @@ const ProductCard = (product: SelectProductType) => {
           >
             {product.description}
           </CardDescription>
-          <h4 className="my-3 text-lg font-bold">{formattedPrice}</h4>
+          <div className="flex items-center gap-4">
+            <h4
+              className={cn("my-3 text-lg font-bold", {
+                "text-sm text-primary line-through":
+                  product.discountPercentage !== 0,
+              })}
+            >
+              {formattedPrice}
+            </h4>
+
+            {product.discountPercentage !== 0 && (
+              <h4 className="my-3 text-lg font-bold">
+                {product.discountPercentage &&
+                  calculatePriceWithDiscount(
+                    product.price,
+                    product.discountPercentage,
+                  )}
+              </h4>
+            )}
+          </div>
+          {product.discountPercentage !== 0 && (
+            <div className="absolute right-3 top-6 grid aspect-square place-items-center rounded-full bg-primary p-2">
+              <span className="text-lg font-bold text-secondary">
+                {product.discountPercentage}%
+              </span>
+            </div>
+          )}
         </Link>
         <CardFooter className="flex w-full flex-col items-center justify-center gap-3 p-0">
           <AddCartBtn {...product} />

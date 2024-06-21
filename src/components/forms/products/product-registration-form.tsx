@@ -32,6 +32,7 @@ const ProductRegistrationForm = ({ session }: { session: Session | null }) => {
       title: "",
       description: "",
       price: 0,
+      discountPercentage: 0,
       image: "",
     },
   });
@@ -121,6 +122,22 @@ const ProductRegistrationForm = ({ session }: { session: Session | null }) => {
                   <FormControl>
                     <Input {...field} />
                   </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="discountPercentage"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Descuento</FormLabel>
+                  <FormControl>
+                    <Input {...field} value={field.value ?? 0} />
+                  </FormControl>
+                  <FormDescription>
+                    Porcentaje de descuento (En caso de aplicar)
+                  </FormDescription>
                   <FormMessage />
                 </FormItem>
               )}

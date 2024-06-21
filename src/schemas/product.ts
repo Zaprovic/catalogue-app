@@ -7,6 +7,7 @@ const productBaseSchema = {
     message: "Asegurate de colocar un titulo no vacio",
   }),
   price: z.coerce.number().min(0),
+  discountPercentage: z.coerce.number().min(0).max(100),
   image: z.string().url({
     message: "Por favor coloca una URL valida",
   }),

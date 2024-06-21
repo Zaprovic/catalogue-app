@@ -5,7 +5,7 @@ import { SelectProductType } from "@/types";
 import Link from "next/link";
 import AddCartBtn from "./add-cart-btn";
 import { Button } from "./ui/button";
-import {Badge} from "./ui/badge.tsx"
+import {Badge} from "./ui/badge"
 import {
   Card,
   CardContent,

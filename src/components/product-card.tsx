@@ -5,6 +5,7 @@ import { SelectProductType } from "@/types";
 import Link from "next/link";
 import AddCartBtn from "./add-cart-btn";
 import { Button } from "./ui/button";
+import {Badge} from "./ui/badge.tsx"
 import {
   Card,
   CardContent,
@@ -18,7 +19,7 @@ const ProductCard = (product: SelectProductType) => {
   const formattedPrice = formatPricetoCOP(product.price);
 
   return (
-    <Card className="relative h-full max-w-[320px] bg-card/5">
+    <Card className="relative h-full max-w-[320px] bg-card/15">
       <CardHeader className="p-5">
         <CardTitle className="line-clamp-1 text-pretty text-sm -tracking-wider">
           {product.title}
@@ -26,7 +27,7 @@ const ProductCard = (product: SelectProductType) => {
       </CardHeader>
       <CardContent className="w-full px-5 pb-2">
         <Link href={`/products/${product.id}`} className="h-full w-full">
-          <figure className="">
+          <figure className="bg-card/30">
             <img
               src={product.image ?? ""}
               alt={"Product Image"}
@@ -64,12 +65,15 @@ const ProductCard = (product: SelectProductType) => {
             )}
           </div>
           {product.discountPercentage !== 0 && (
-            <div className="absolute right-3 top-12 grid aspect-square place-items-center rounded-full  bg-secondary-foreground p-2">
-              <span className="text-lg font-bold text-secondary">
+            <Badge className="absolute right-3 hover:bg-secondary-foreground top-12 grid aspect-square place-items-center rounded-xl text-base bg-secondary-foreground p-1">
+              
                 {product.discountPercentage}%
-              </span>
-            </div>
-          )}
+              
+            </Badge>
+
+            
+
+            )}
         </Link>
         <CardFooter className="flex w-full flex-col items-center justify-center gap-3 p-0">
           <AddCartBtn {...product} />

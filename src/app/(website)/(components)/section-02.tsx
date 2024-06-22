@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const Section02 = () => {
   return (
-    <section className="md:mx-5 sm:mx-auto max-w-[1100px]">
+    <section className="md:mx-5 sm:mx-auto lg:mx-auto max-w-[1100px]">
       <figure className="relative flex items-center justify-center bg-black sm:hidden">
         <Image
           src={"/images/home/mobile/mobile-03.jpg"}

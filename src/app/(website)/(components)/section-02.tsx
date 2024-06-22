@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const Section02 = () => {
   return (
-    <section>
+    <section className="md:mx-5 sm:mx-auto max-w-[1100px]">
       <figure className="relative flex items-center justify-center bg-black sm:hidden">
         <Image
           src={"/images/home/mobile/mobile-03.jpg"}
@@ -39,12 +39,12 @@ const Section02 = () => {
             quality={100}
             className="rounded-xl object-cover opacity-45"
           />
-          <figcaption className="absolute bottom-9 flex w-[75%] min-w-[500px] flex-col items-center justify-center gap-1 text-center">
+          <figcaption className="absolute bottom-9 flex flex-col items-center justify-center gap-1 text-center">
             <h6 className=" text-2xl font-semibold leading-tight text-white lg:text-3xl xl:text-4xl">
               Cuidar tu piel
             </h6>
 
-            <p className="text-pretty text-center text-xs font-light text-white lg:px-20 lg:text-sm">
+            <p className="text-pretty text-center md:text-base lg:text-lg px-8 lg:px-16 text-xs font-light text-white">
               Es un acto de amor propio que se refleja en tu belleza exterior e
               interior
             </p>
@@ -59,12 +59,12 @@ const Section02 = () => {
             quality={100}
             className="rounded-xl object-cover opacity-45"
           />
-          <figcaption className="absolute bottom-9 flex w-[75%] min-w-[500px] flex-col items-center justify-center gap-1 text-center">
+          <figcaption className="absolute bottom-9 flex flex-col items-center justify-center gap-1 text-center">
             <h6 className=" text-2xl font-semibold leading-tight text-white lg:text-3xl xl:text-4xl">
               Cuidar tu piel
             </h6>
 
-            <p className="text-pretty text-center text-xs font-light text-white lg:px-20 lg:text-sm">
+            <p className="text-pretty text-center md:text-base lg:text-lg px-8 lg:px-16 text-xs font-light text-white">
               Es un acto de amor propio que se refleja en tu belleza exterior e
               interior
             </p>

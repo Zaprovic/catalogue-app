@@ -1,12 +1,11 @@
 import CategoriesFilterBtn from "@/components/categories-filter-btn";
 import CategoriesNavbar from "@/components/categories-navbar";
 import PrevBtn from "@/components/prev-btn";
-import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { db } from "@/db/main";
 import { CategoryTable, ProductTable } from "@/db/schema";
-import Link from "next/link";
 import { ReactNode, Suspense } from "react";
+import SearchProductsForm from "./(components)/search-products-form";
 
 //! Searchbar not working properly
 
@@ -24,6 +23,9 @@ const Layout = async ({ children }: { children: ReactNode }) => {
           {/* <SortProductBtn products={products} /> */}
         </div>
 
+        <div>
+          <SearchProductsForm products={products} />
+        </div>
         <div className="flex justify-center md:gap-12">
           <Suspense
             fallback={

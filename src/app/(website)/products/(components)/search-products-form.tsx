@@ -40,10 +40,14 @@ const SearchProductsForm = ({
     const searchTerm = e.target.value.toLowerCase();
     setFilteredSearch(searchTerm);
 
-    const filtered = products.filter((product) =>
-      product.title.toLowerCase().includes(searchTerm),
-    );
-    setFilteredProducts(filtered);
+    const filter =
+      searchTerm === ""
+        ? products
+        : products.filter((product) =>
+            product.title.toLowerCase().includes(searchTerm),
+          );
+
+    setFilteredProducts(filter);
   };
 
   return (

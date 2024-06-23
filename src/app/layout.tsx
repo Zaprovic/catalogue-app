@@ -1,8 +1,10 @@
 import Footer from "@/components/footer/footer";
 import Header from "@/components/global/header";
 import { Toaster } from "@/components/ui/sonner";
+import ReactQueryProvider from "@/providers/react-query-provider";
 import { esMX } from "@clerk/localizations";
 import { ClerkProvider } from "@clerk/nextjs";
+import { QueryClient } from "@tanstack/react-query";
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import "./globals.css";
@@ -27,6 +29,8 @@ export const metadata: Metadata = {
   ],
 };
 
+const queryClient = new QueryClient();
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -40,10 +44,12 @@ export default function RootLayout({
             attribute="class"
             enableSystem
             disableTransitionOnChange
-          > */}
+            > */}
           <Header />
           {/* from p-6 to p-0 */}
-          <div className="flex-1 overflow-visible p-0">{children}</div>
+          <ReactQueryProvider>
+            <div className="flex-1 overflow-visible p-0">{children}</div>
+          </ReactQueryProvider>
           <Footer />
           <Toaster
             toastOptions={{

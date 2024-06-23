@@ -7,32 +7,28 @@ import { NextRequest, NextResponse } from "next/server";
 export async function GET(req: NextRequest) {
   const searchParams = req.nextUrl.searchParams;
   const categoryId = searchParams.get("categoryId");
-  const products = await db
-    .select()
-    .from(ProductTable)
-    .orderBy(asc(ProductTable.title));
-
-  const productsFilteredByCategory = await db
-    .select({
-      productId: ProductCategoryTable.productId,
-      categoryId: ProductCategoryTable.categoryId,
-      title: ProductTable.title,
-      description: ProductTable.description,
-      price: ProductTable.price,
-      brand: ProductTable.brand,
-      image: ProductTable.image,
-      userId: ProductTable.userId,
-      discountPercentage: ProductTable.discountPercentage,
-    })
-    .from(ProductCategoryTable)
-    .innerJoin(
-      ProductTable,
-      eq(ProductTable.id, ProductCategoryTable.productId),
-    )
-    .where(eq(ProductCategoryTable.categoryId, Number(categoryId)))
-    .orderBy(asc(ProductTable.title));
 
   if (categoryId) {
+    const productsFilteredByCategory = await db
+      .select({
+        productId: ProductCategoryTable.productId,
+        categoryId: ProductCategoryTable.categoryId,
+        title: ProductTable.title,
+        description: ProductTable.description,
+        price: ProductTable.price,
+        brand: ProductTable.brand,
+        image: ProductTable.image,
+        userId: ProductTable.userId,
+        discountPercentage: ProductTable.discountPercentage,
+      })
+      .from(ProductCategoryTable)
+      .innerJoin(
+        ProductTable,
+        eq(ProductTable.id, ProductCategoryTable.productId),
+      )
+      .where(eq(ProductCategoryTable.categoryId, Number(categoryId)))
+      .orderBy(asc(ProductTable.title));
+
     return NextResponse.json(
       productsFilteredByCategory.map((p) => ({
         title: p.title,
@@ -46,6 +42,10 @@ export async function GET(req: NextRequest) {
       })),
     );
   } else {
+    const products = await db
+      .select()
+      .from(ProductTable)
+      .orderBy(asc(ProductTable.title));
     return NextResponse.json(products);
   }
 }

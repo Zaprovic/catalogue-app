@@ -1,86 +1,72 @@
 "use client";
 import ProductCard from "@/components/product-card";
+import { useProducts } from "@/hooks/useProducts";
 import style from "@/styles.module.css";
 import { SelectCategoryType, SelectProductType } from "@/types";
 import { useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 type props = {
   categoryId?: number;
 };
 
 const ProductListAll = () => {
-  // const products = await getProducts();
-  const [products, setProducts] = useState<SelectProductType[]>([]);
-  const [categories, setCategories] = useState<SelectCategoryType[]>([]);
+  // const [products, setProducts] = useState<SelectProductType[]>([]);
+  // const [categories, setCategories] = useState<SelectCategoryType[]>([]);
   const [loading, setLoading] = useState(true);
 
   const searchParams = useSearchParams();
   const categoryID = searchParams.get("categoryId");
+  const { categoriesQuery, productsQuery } = useProducts(categoryID);
 
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const response = categoryID
-          ? await fetch(`/api/products?categoryId=${categoryID}`)
-          : await fetch(`/api/products`);
+  const categories = categoriesQuery.data as SelectCategoryType[];
+  const products = productsQuery.data as SelectProductType[];
 
-        if (!response.ok) {
-          throw new Error("Failed to fetch products");
-        }
-        const data: SelectProductType[] = await response.json();
-        setProducts(data);
-      } catch (error) {
-        console.error("Error fetching products:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchAll = async () => {
+  //     try {
+  //       const productFetch = categoryID
+  //         ? fetch(`/api/products?categoryId=${categoryID}`)
+  //         : fetch(`/api/products`);
 
-    const fetchAll = async () => {
-      try {
-        const productFetch = categoryID
-          ? fetch(`/api/products?categoryId=${categoryID}`)
-          : fetch(`/api/products`);
+  //       const categoryFetch = fetch(`/api/categories`);
 
-        const categoryFetch = fetch(`/api/categories`);
+  //       const [productResponse, categoryResponse] = await Promise.all([
+  //         productFetch,
+  //         categoryFetch,
+  //       ]);
 
-        const [productResponse, categoryResponse] = await Promise.all([
-          productFetch,
-          categoryFetch,
-        ]);
+  //       if (!productResponse.ok) {
+  //         throw new Error("Failed to fetch products");
+  //       }
 
-        if (!productResponse.ok) {
-          throw new Error("Failed to fetch products");
-        }
+  //       if (!categoryResponse.ok) {
+  //         throw new Error("Failed to fetch categories");
+  //       }
 
-        if (!categoryResponse.ok) {
-          throw new Error("Failed to fetch categories");
-        }
+  //       const productsData: SelectProductType[] = await productResponse.json();
+  //       const categoriesData: SelectCategoryType[] =
+  //         await categoryResponse.json();
 
-        const productsData: SelectProductType[] = await productResponse.json();
-        const categoriesData: SelectCategoryType[] =
-          await categoryResponse.json();
+  //       setProducts(productsData);
+  //       setCategories(categoriesData);
 
-        setProducts(productsData);
-        setCategories(categoriesData);
+  //       console.log(categoriesData);
+  //     } catch (error) {
+  //       throw new Error("Error fetching data");
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
 
-        console.log(categoriesData);
-      } catch (error) {
-        throw new Error("Error fetching data");
-      } finally {
-        setLoading(false);
-      }
-    };
+  //   fetchAll();
+  // }, [categoryID]);
 
-    fetchAll();
-  }, [categoryID]);
-
-  const category = categories.find((c) => c.id === Number(categoryID));
+  const category = categories?.find((c) => c.id === Number(categoryID));
 
   return (
     <>
-      {loading ? (
+      {productsQuery.isLoading ? (
         <span>Loading...</span>
       ) : (
         <>

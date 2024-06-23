@@ -14,8 +14,8 @@ const Layout = async ({ children }: { children: ReactNode }) => {
 
   return (
     <>
-      <main className="p-6">
-        <div className="mb-4 flex w-full justify-between  gap-4 md:hidden">
+      <main className="relative overflow-visible p-0">
+        <div className="sticky top-[calc(76px-0rem)] z-10 mb-2 flex w-full justify-between gap-4 bg-background p-6 md:hidden">
           <PrevBtn />
           <CategoriesFilterBtn categories={categories} />
         </div>
@@ -23,20 +23,23 @@ const Layout = async ({ children }: { children: ReactNode }) => {
         {/* <div>
           <SearchProductsForm products={products} />
         </div> */}
-        <div className="flex justify-center md:gap-12">
-          <Suspense
-            fallback={
-              <div className="mx-auto mb-6 flex h-40 w-28 flex-col gap-2">
-                {Array.from({ length: 6 }).map((_, i) => (
-                  <Skeleton key={i} className="h-full w-full" />
-                ))}
-              </div>
-            }
-          >
-            <CategoriesNavbar />
-          </Suspense>
 
-          {children}
+        <div className="p-6">
+          <div className="flex justify-center md:gap-12">
+            <Suspense
+              fallback={
+                <div className="mx-auto mb-6 flex h-40 w-28 flex-col gap-2">
+                  {Array.from({ length: 6 }).map((_, i) => (
+                    <Skeleton key={i} className="h-full w-full" />
+                  ))}
+                </div>
+              }
+            >
+              <CategoriesNavbar />
+            </Suspense>
+
+            {children}
+          </div>
         </div>
       </main>
     </>

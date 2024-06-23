@@ -43,7 +43,7 @@ export default function RootLayout({
           > */}
           <Header />
           {/* from p-6 to p-0 */}
-          <div className="flex-1 p-0">{children}</div>
+          <div className="flex-1 overflow-visible p-0">{children}</div>
           <Footer />
           <Toaster
             toastOptions={{

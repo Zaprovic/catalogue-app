@@ -7,7 +7,7 @@ const CategoriesNavbar = async () => {
   const data = await db.select().from(CategoryTable).all();
 
   return (
-    <nav className="flex min-h-[600px] w-auto flex-col gap-3">
+    <nav className="flex w-auto flex-col gap-3 overflow-hidden">
       {/* <CategoriesFilterBtn /> */}
       <h5 className="-tracking-tracking-widest hidden text-nowrap text-sm md:inline-block">
         Filtrar por categorias

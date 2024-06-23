@@ -1,57 +1,53 @@
 import { db } from "@/db/main";
-import { ProductTable } from "@/db/schema";
+import { ProductCategoryTable, ProductTable } from "@/db/schema";
 import { InsertProductSchema } from "@/schemas/product";
+import { asc, eq } from "drizzle-orm";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function GET(
-  req: NextRequest,
-  { params }: { params?: { id: string } },
-) {
-  const id = params?.id;
-  const products = await db.select().from(ProductTable).all();
-  return NextResponse.json(products);
+export async function GET(req: NextRequest) {
+  const searchParams = req.nextUrl.searchParams;
+  const categoryId = searchParams.get("categoryId");
+  const products = await db
+    .select()
+    .from(ProductTable)
+    .orderBy(asc(ProductTable.title));
 
-  // task: Check what was this being used for before ⬇️
+  const productsFilteredByCategory = await db
+    .select({
+      productId: ProductCategoryTable.productId,
+      categoryId: ProductCategoryTable.categoryId,
+      title: ProductTable.title,
+      description: ProductTable.description,
+      price: ProductTable.price,
+      brand: ProductTable.brand,
+      image: ProductTable.image,
+      userId: ProductTable.userId,
+      discountPercentage: ProductTable.discountPercentage,
+    })
+    .from(ProductCategoryTable)
+    .innerJoin(
+      ProductTable,
+      eq(ProductTable.id, ProductCategoryTable.productId),
+    )
+    .where(eq(ProductCategoryTable.categoryId, Number(categoryId)))
+    .orderBy(asc(ProductTable.title));
 
-  // const url = new URL(req.url);
-  // const categoryId = url.searchParams.get("categoryId");
-
-  // try {
-  //   const allProducts = await db
-  //     .select({
-  //       productId: ProductTable.id,
-  //       categoryId: ProductCategoryTable.categoryId,
-  //       productName: ProductTable.title,
-  //       categoryName: CategoryTable.name,
-  //       productDescription: ProductTable.description,
-  //       productPrice: ProductTable.price,
-  //       productImage: ProductTable.image,
-  //       userId: ProductTable.userId,
-  //     })
-  //     .from(ProductCategoryTable)
-  //     .innerJoin(
-  //       ProductTable,
-  //       eq(ProductTable.id, ProductCategoryTable.productId),
-  //     )
-  //     .innerJoin(
-  //       CategoryTable,
-  //       eq(CategoryTable.id, ProductCategoryTable.categoryId),
-  //     );
-
-  //   if (categoryId) {
-  //     const filteredProducts = allProducts.filter(
-  //       (product) => product.categoryId === +categoryId,
-  //     );
-  //     return NextResponse.json(filteredProducts);
-  //   } else {
-  //     return NextResponse.json(allProducts);
-  //   }
-  // } catch (error) {
-  //   if (error instanceof Error) {
-  //     console.error(error.message);
-  //     return new Response("Internal Server Error", { status: 500 });
-  //   }
-  // }
+  if (categoryId) {
+    return NextResponse.json(
+      productsFilteredByCategory.map((p) => ({
+        title: p.title,
+        productId: p.productId,
+        description: p.description,
+        brand: p.brand,
+        image: p.image,
+        discountPercentage: p.discountPercentage,
+        userId: p.userId,
+        price: p.price,
+      })),
+    );
+  } else {
+    return NextResponse.json(products);
+  }
 }
 
 export async function POST(req: NextRequest) {

@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 import { SelectCategoryType } from "@/types";
 import { IconAdjustmentsHorizontal } from "@tabler/icons-react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import { useState } from "react";
 import { Button } from "./ui/button";
 import {
@@ -25,6 +25,23 @@ const CategoriesFilterBtn = ({
   const [isOpen, setIsOpen] = useState(false);
 
   const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const categorySearchParam = searchParams.get("categoryId");
+
+  const buildUrl = (categoryId: string | null) => {
+    const params = new URLSearchParams(searchParams);
+    if (categoryId) {
+      params.set("categoryId", categoryId);
+    } else {
+      params.delete("categoryId");
+    }
+    const paramString = params.toString();
+    return paramString ? `${pathname}?${paramString}` : pathname;
+  };
+
+  const url = buildUrl(categorySearchParam);
+
+  console.log(url);
 
   const onclick = () => {
     setIsOpen(false);
@@ -52,9 +69,12 @@ const CategoriesFilterBtn = ({
               <Toggle
                 asChild
                 aria-label="Toggle All Categories"
-                className={cn("w-full font-semibold", {
-                  "bg-primary/20 text-primary": pathname === "/products", // Active when on main /products page
-                })}
+                className={cn(
+                  "w-full font-semibold hover:bg-transparent hover:text-primary-foreground",
+                  {
+                    "bg-primary/20 text-primary": url === "/products", // Active when on main /products page
+                  },
+                )}
               >
                 <Link href="/products" onClick={onclick}>
                   <span className="w-full">TODOS</span>
@@ -66,14 +86,19 @@ const CategoriesFilterBtn = ({
                 <Toggle
                   asChild
                   aria-label={`Toggle ${category.name}`}
-                  className={cn("w-full font-semibold", {
-                    "bg-primary/20 text-primary": pathname.includes(
-                      `/products/categories/${category.id}`,
-                    ),
-                  })}
+                  className={cn(
+                    "w-full font-semibold hover:bg-transparent hover:text-primary-foreground",
+                    {
+                      "bg-primary/20 text-primary": url.endsWith(
+                        // `/products/categories/${category.id}`,
+                        `categoryId=${category.id}`,
+                      ),
+                    },
+                  )}
                 >
                   <Link
-                    href={`/products/categories/${category.id}`}
+                    // href={`/products/categories/${category.id}`}
+                    href={`/products?categoryId=${category.id}`}
                     onClick={onclick}
                   >
                     <span className="w-full">{category.name}</span>

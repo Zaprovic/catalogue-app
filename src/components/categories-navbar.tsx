@@ -8,7 +8,6 @@ const CategoriesNavbar = async () => {
 
   return (
     <nav className="flex w-auto flex-col gap-3 overflow-hidden">
-      {/* <CategoriesFilterBtn /> */}
       <h5 className="-tracking-tracking-widest hidden text-nowrap text-sm md:inline-block">
         Filtrar por categorias
       </h5>
@@ -22,7 +21,10 @@ const CategoriesNavbar = async () => {
         </li>
         {data.map((category) => (
           <li key={category.id}>
-            <Link href={`/products/categories/${category.id}`}>
+            <Link
+              // href={`/products/categories/${category.id}`}
+              href={`/products?categoryId=${category.id}`}
+            >
               <Badge variant={"secondary"} className="text-nowrap py-1">
                 {category.name}
               </Badge>

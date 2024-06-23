@@ -4,7 +4,6 @@ import { Toaster } from "@/components/ui/sonner";
 import ReactQueryProvider from "@/providers/react-query-provider";
 import { esMX } from "@clerk/localizations";
 import { ClerkProvider } from "@clerk/nextjs";
-import { QueryClient } from "@tanstack/react-query";
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import "./globals.css";
@@ -28,8 +27,6 @@ export const metadata: Metadata = {
     },
   ],
 };
-
-const queryClient = new QueryClient();
 
 export default function RootLayout({
   children,

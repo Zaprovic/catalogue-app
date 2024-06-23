@@ -13,7 +13,7 @@ const ProductCardList = ({ products }: { products: SelectProductType[] }) => {
 
   return (
     <div className={`${style.productContainer} w-full place-items-center`}>
-      {filteredProducts.map((product) => (
+      {products.map((product) => (
         <ProductCard key={product.id} {...product} />
       ))}
     </div>

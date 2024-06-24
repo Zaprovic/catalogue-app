@@ -1,6 +1,7 @@
 import Footer from "@/components/footer/footer";
 import Header from "@/components/global/header";
 import { Toaster } from "@/components/ui/sonner";
+import ReactQueryProvider from "@/providers/react-query-provider";
 import { esMX } from "@clerk/localizations";
 import { ClerkProvider } from "@clerk/nextjs";
 import type { Metadata } from "next";
@@ -40,10 +41,12 @@ export default function RootLayout({
             attribute="class"
             enableSystem
             disableTransitionOnChange
-          > */}
+            > */}
           <Header />
           {/* from p-6 to p-0 */}
-          <div className="flex-1 overflow-visible p-0">{children}</div>
+          <ReactQueryProvider>
+            <div className="flex-1 overflow-visible p-0">{children}</div>
+          </ReactQueryProvider>
           <Footer />
           <Toaster
             toastOptions={{

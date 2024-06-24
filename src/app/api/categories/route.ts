@@ -3,8 +3,6 @@ import { CategoryTable } from "@/db/schema";
 import { NextResponse } from "next/server";
 
 export async function GET() {
-  //todo: check what happens with allCategories variable
-
   try {
     const allCategories = (await db.select().from(CategoryTable).all()).map(
       ({ id, name }) => ({

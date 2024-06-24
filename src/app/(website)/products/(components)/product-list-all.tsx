@@ -1,26 +1,25 @@
-"use client";
 import ProductCard from "@/components/product-card";
-import { useProducts } from "@/hooks/useProducts";
+import { db } from "@/db/main";
+import { CategoryTable, ProductCategoryTable, ProductTable } from "@/db/schema";
 import style from "@/styles.module.css";
-import { SelectCategoryType, SelectProductType } from "@/types";
-import { useSearchParams } from "next/navigation";
-import { useState } from "react";
+import { asc, eq } from "drizzle-orm";
 
 type props = {
   categoryId?: number;
 };
 
-const ProductListAll = () => {
+const ProductListAll = async ({ categoryId }: props) => {
   // const [products, setProducts] = useState<SelectProductType[]>([]);
   // const [categories, setCategories] = useState<SelectCategoryType[]>([]);
-  const [loading, setLoading] = useState(true);
+  // const [loading, setLoading] = useState(true);
 
-  const searchParams = useSearchParams();
-  const categoryID = searchParams.get("categoryId");
-  const { categoriesQuery, productsQuery } = useProducts(categoryID);
+  // const searchParams = useSearchParams();
+  // const categoryID = searchParams.get("categoryId");
 
-  const categories = categoriesQuery.data as SelectCategoryType[];
-  const products = productsQuery.data as SelectProductType[];
+  // const category = categories?.find((c) => c.id === Number(categoryID));
+
+  // const categories = categoriesQuery.data as SelectCategoryType[];
+  // const products = productsQuery.data as SelectProductType[];
 
   // useEffect(() => {
   //   const fetchAll = async () => {
@@ -62,23 +61,57 @@ const ProductListAll = () => {
   //   fetchAll();
   // }, [categoryID]);
 
-  const category = categories?.find((c) => c.id === Number(categoryID));
+  const products = await db
+    .select()
+    .from(ProductTable)
+    .orderBy(asc(ProductTable.title));
+
+  const categories = await db.select().from(CategoryTable).all();
+  const category = categories.find((c) => c.id === Number(categoryId));
+
+  const productsByCategory = (
+    await db
+      .select({
+        id: ProductTable.id,
+        categoryId: ProductCategoryTable.categoryId,
+        title: ProductTable.title,
+        price: ProductTable.price,
+        discountPercentage: ProductTable.discountPercentage,
+        description: ProductTable.description,
+        brand: ProductTable.brand,
+        userId: ProductTable.userId,
+        image: ProductTable.image,
+      })
+      .from(ProductCategoryTable)
+      .innerJoin(
+        ProductTable,
+        eq(ProductTable.id, ProductCategoryTable.productId),
+      )
+  )
+    .filter((p) => p.categoryId === Number(categoryId))
+    .map(({ categoryId, ...rest }) => rest);
 
   return (
     <>
-      {productsQuery.isLoading ? (
+      {false ? (
         <span>Loading...</span>
       ) : (
         <>
           <h4 className="my-4 bg-background text-xl font-semibold md:my-0 md:pb-5">
-            {category ? category.name : "TODOS LOS PRODUCTOS"}
+            {category
+              ? `${category.name} (${productsByCategory.length} productos)`
+              : `TODOS LOS PRODUCTOS (${products.length} productos)`}
           </h4>
           <div
             className={`${style.productContainer} w-full place-items-center`}
           >
-            {products.map((product) => (
-              <ProductCard key={product.id + Math.random()} {...product} />
-            ))}
+            {categoryId
+              ? productsByCategory.map((product) => (
+                  <ProductCard key={product.id} {...product} />
+                ))
+              : products.map((product) => (
+                  <ProductCard key={product.id} {...product} />
+                ))}
           </div>
         </>
       )}

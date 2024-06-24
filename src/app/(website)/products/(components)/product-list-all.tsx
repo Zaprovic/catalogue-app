@@ -2,13 +2,17 @@ import ProductCard from "@/components/product-card";
 import { db } from "@/db/main";
 import { CategoryTable, ProductCategoryTable, ProductTable } from "@/db/schema";
 import style from "@/styles.module.css";
+import { SelectProductType } from "@/types";
 import { asc, eq } from "drizzle-orm";
 
 type props = {
-  categoryId?: number;
+  categoryId: number | undefined | null;
+  productName: string | undefined | null;
 };
 
-const ProductListAll = async ({ categoryId }: props) => {
+const ProductListAll = async ({ categoryId, productName }: props) => {
+  /**
+   * 
   // const [products, setProducts] = useState<SelectProductType[]>([]);
   // const [categories, setCategories] = useState<SelectCategoryType[]>([]);
   // const [loading, setLoading] = useState(true);
@@ -60,6 +64,7 @@ const ProductListAll = async ({ categoryId }: props) => {
 
   //   fetchAll();
   // }, [categoryID]);
+   */
 
   const products = await db
     .select()
@@ -87,34 +92,32 @@ const ProductListAll = async ({ categoryId }: props) => {
         ProductTable,
         eq(ProductTable.id, ProductCategoryTable.productId),
       )
+      .orderBy(asc(ProductTable.title))
   )
     .filter((p) => p.categoryId === Number(categoryId))
     .map(({ categoryId, ...rest }) => rest);
 
+  const filterByName = (product: SelectProductType) =>
+    !productName ||
+    product.title.toLowerCase().includes(productName.toLowerCase());
+
+  const filteredProducts = productsByCategory.filter(filterByName);
+  const allFilteredProducts = products.filter(filterByName);
+
+  const productsToShow = categoryId ? filteredProducts : allFilteredProducts;
+
   return (
     <>
-      {false ? (
-        <span>Loading...</span>
-      ) : (
-        <>
-          <h4 className="my-4 bg-background text-xl font-semibold md:my-0 md:pb-5">
-            {category
-              ? `${category.name} (${productsByCategory.length} productos)`
-              : `TODOS LOS PRODUCTOS (${products.length} productos)`}
-          </h4>
-          <div
-            className={`${style.productContainer} w-full place-items-center`}
-          >
-            {categoryId
-              ? productsByCategory.map((product) => (
-                  <ProductCard key={product.id} {...product} />
-                ))
-              : products.map((product) => (
-                  <ProductCard key={product.id} {...product} />
-                ))}
-          </div>
-        </>
-      )}
+      <h4 className="my-4 text-balance bg-background text-base font-semibold md:my-0 md:pb-5 md:text-xl">
+        {category
+          ? `${category.name} (${productsToShow.length} productos)`
+          : `TODOS LOS PRODUCTOS (${productsToShow.length} productos)`}
+      </h4>
+      <div className={`${style.productContainer} w-full place-items-center`}>
+        {productsToShow.map((product) => (
+          <ProductCard key={product.id} {...product} />
+        ))}
+      </div>
     </>
   );
 };

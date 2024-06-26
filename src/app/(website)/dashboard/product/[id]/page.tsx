@@ -15,7 +15,7 @@ const Page = async ({ params }: { params: { id: string } }) => {
 
   return (
     <main className="p-6">
-      <section className="grid w-full grid-cols-1 gap-4 md:grid-cols-2">
+      <section className="grid w-full grid-cols-1 gap-4 lg:grid-cols-2">
         <ProductUpdateForm {...singleProduct} />
         <ProductCategoryUpdateForm
           categories={categories}

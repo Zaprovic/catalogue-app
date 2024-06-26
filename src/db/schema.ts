@@ -13,6 +13,9 @@ export const ProductTable = sqliteTable("Product", {
   description: text("description"),
   price: integer("price").notNull(),
   discountPercentage: real("discount_percentage").default(0),
+  isAvailable: integer("is_available", { mode: "boolean" })
+    .notNull()
+    .default(true),
   image: text("image", { mode: "text" }),
   brand: text("brand"),
   userId: text("user_id")

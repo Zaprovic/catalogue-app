@@ -13,10 +13,17 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { UpdateProductSchema } from "@/schemas/product";
 import { type UpdateProductType } from "@/types";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { SelectItem } from "@radix-ui/react-select";
 import { IconLoader2 } from "@tabler/icons-react";
 import { usePathname } from "next/navigation";
 import { useForm } from "react-hook-form";
@@ -49,7 +56,7 @@ const ProductUpdateForm = (product: UpdateProductType) => {
   };
 
   return (
-    <Card className="w-full">
+    <Card className="w-full bg-background">
       <CardHeader>
         <CardTitle>Actualizar producto</CardTitle>
       </CardHeader>
@@ -109,7 +116,7 @@ const ProductUpdateForm = (product: UpdateProductType) => {
               )}
             />
 
-            <div className="flex gap-3 sm:grid sm:grid-cols-2">
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
               <FormField
                 control={form.control}
                 name="price"
@@ -132,7 +139,7 @@ const ProductUpdateForm = (product: UpdateProductType) => {
                     <FormControl>
                       <Input {...field} value={field.value ?? 0} />
                     </FormControl>
-                    <FormDescription>
+                    <FormDescription className="text-xs">
                       Porcentaje de descuento (En caso de aplicar)
                     </FormDescription>
                     <FormMessage />
@@ -149,6 +156,32 @@ const ProductUpdateForm = (product: UpdateProductType) => {
                     <FormControl>
                       <Input {...field} value={field.value ?? ""} />
                     </FormControl>
+
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="isAvailable"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Disponibilidad del producto</FormLabel>
+                    <Select onValueChange={field.onChange} defaultValue={"1"}>
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Disponibilidad" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        <SelectItem value={"1"}>
+                          <span>Disponible</span>
+                        </SelectItem>
+                        <SelectItem value={"0"}>
+                          <span>No disponible</span>
+                        </SelectItem>
+                      </SelectContent>
+                    </Select>
 
                     <FormMessage />
                   </FormItem>

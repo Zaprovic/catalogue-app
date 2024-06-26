@@ -86,6 +86,7 @@ const ProductListAll = async ({ categoryId, productName }: props) => {
         brand: ProductTable.brand,
         userId: ProductTable.userId,
         image: ProductTable.image,
+        isAvailable: ProductTable.isAvailable,
       })
       .from(ProductCategoryTable)
       .innerJoin(
@@ -114,9 +115,15 @@ const ProductListAll = async ({ categoryId, productName }: props) => {
           : `TODOS LOS PRODUCTOS (${productsToShow.length} productos)`}
       </h4>
       <div className={`${style.productContainer} w-full place-items-center`}>
-        {productsToShow.map((product) => (
-          <ProductCard key={product.id} {...product} />
-        ))}
+        {productsToShow.length === 0 ? (
+          <span className="w-full text-sm -tracking-wider">
+            No hay coincidencias
+          </span>
+        ) : (
+          productsToShow.map((product) => (
+            <ProductCard key={product.id} {...product} isAvailable />
+          ))
+        )}
       </div>
     </>
   );

@@ -10,12 +10,12 @@ type props = {
 export default function ProductPage({ searchParams }: props) {
   const { categoryId, productName } = searchParams;
 
-  console.log(productName);
-
   return (
     <div className="relative flex h-screen flex-1 gap-10 overflow-y-auto">
-      <section className="relative mx-auto w-full">
-        <SearchbarProducts />
+      <section className="relative mx-auto h-full w-full flex-1">
+        <div className="sticky top-0 z-10 bg-background pb-8">
+          <SearchbarProducts />
+        </div>
         <ProductListAll
           categoryId={Number(categoryId)}
           productName={productName}

@@ -11,6 +11,7 @@ const productBaseSchema = {
   image: z.string().url({
     message: "Por favor coloca una URL valida",
   }),
+  isAvailable: z.enum(["0", "1"]),
 };
 
 export const SelectProductSchema = createSelectSchema(

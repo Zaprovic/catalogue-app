@@ -17,3 +17,6 @@ export type SelectProductCategoryType = InferSelectModel<
 export type InsertProductCategoryType = InferInsertModel<
   typeof ProductCategoryTable
 >;
+
+// sorting methods
+type SortMethods = "asc" | "desc" | "discount";

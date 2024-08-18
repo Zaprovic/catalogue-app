@@ -17,7 +17,6 @@ export default async function ProductPage({ searchParams }: props) {
   const products = await db.select().from(ProductTable);
 
   const categories = await db.select().from(CategoryTable).all();
-  // const category = categories.find((c) => c.id === Number(categoryId));
 
   const productsByCategory = (
     await db

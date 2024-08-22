@@ -1,23 +1,31 @@
 import CategoriesFilterBtn from "@/components/categories-filter-btn";
 import CategoriesNavbar from "@/components/categories-navbar";
 import PrevBtn from "@/components/prev-btn";
+import ProductSortBtn from "@/components/products-sort-btn";
 import { Skeleton } from "@/components/ui/skeleton";
 import { db } from "@/db/main";
 import { CategoryTable, ProductTable } from "@/db/schema";
+import { SortMethods } from "@/types";
 import { ReactNode, Suspense } from "react";
-
-//! Searchbar not working properly
 
 const Layout = async ({ children }: { children: ReactNode }) => {
   const categories = await db.select().from(CategoryTable).all();
   const products = await db.select().from(ProductTable).all();
 
+  const onSortChange = async (s: SortMethods) => {
+    if (s === "asc") {
+    }
+  };
+
   return (
     <>
       <main className="relative overflow-visible p-0">
-        <div className="sticky top-[calc(76px-0rem)] z-10 mb-2 flex w-full justify-between gap-4 bg-background p-6 md:hidden">
+        <div className="sticky top-[calc(76px-0rem)] z-10 mb-2 flex w-full justify-between gap-4 bg-background p-6 xl:hidden">
           <PrevBtn />
-          <CategoriesFilterBtn categories={categories} />
+          <div className="flex gap-2">
+            <CategoriesFilterBtn categories={categories} />
+            <ProductSortBtn />
+          </div>
         </div>
 
         {/* <div>
@@ -35,7 +43,7 @@ const Layout = async ({ children }: { children: ReactNode }) => {
                 </div>
               }
             >
-              <CategoriesNavbar />
+              <CategoriesNavbar categories={categories} />
             </Suspense>
 
             {children}

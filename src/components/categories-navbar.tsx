@@ -1,13 +1,34 @@
-import { db } from "@/db/main";
-import { CategoryTable } from "@/db/schema";
+"use client";
+import { cn } from "@/lib/utils";
+import { SelectCategoryType } from "@/types";
 import Link from "next/link";
+import { usePathname, useSearchParams } from "next/navigation";
 import { Badge } from "./ui/badge";
 
-const CategoriesNavbar = async () => {
-  const data = await db.select().from(CategoryTable).all();
+type props = {
+  categories: SelectCategoryType[];
+};
+
+const CategoriesNavbar = ({ categories: data }: props) => {
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const categoryId = searchParams.get("categoryId");
+
+  const buildUrl = (categoryId: string | null) => {
+    const params = new URLSearchParams(searchParams);
+    if (categoryId) {
+      params.set("categoryId", categoryId);
+    } else {
+      params.delete("categoryId");
+    }
+    const paramString = params.toString();
+    return paramString ? `${pathname}?${paramString}` : pathname;
+  };
+
+  const url = buildUrl(categoryId);
 
   return (
-    <nav className="flex w-auto flex-col gap-3 overflow-hidden">
+    <nav className="hidden w-auto flex-col gap-3 overflow-hidden xl:flex">
       <h5 className="-tracking-tracking-widest hidden text-nowrap text-sm md:inline-block">
         Filtrar por categorias
       </h5>
@@ -21,11 +42,13 @@ const CategoriesNavbar = async () => {
         </li>
         {data.map((category) => (
           <li key={category.id}>
-            <Link
-              // href={`/products/categories/${category.id}`}
-              href={`/products?categoryId=${category.id}`}
-            >
-              <Badge variant={"secondary"} className="text-nowrap py-1">
+            <Link href={`/products?categoryId=${category.id}`}>
+              <Badge
+                variant={"secondary"}
+                className={cn("text-nowrap py-1", {
+                  "": categoryId && url.endsWith(categoryId),
+                })}
+              >
                 {category.name}
               </Badge>
             </Link>

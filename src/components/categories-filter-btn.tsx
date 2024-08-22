@@ -41,8 +41,6 @@ const CategoriesFilterBtn = ({
 
   const url = buildUrl(categorySearchParam);
 
-  console.log(url);
-
   const onclick = () => {
     setIsOpen(false);
   };
@@ -51,10 +49,7 @@ const CategoriesFilterBtn = ({
     <div className="flex items-center justify-between">
       <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
         <DropdownMenuTrigger asChild>
-          <Button
-            variant={"secondary"}
-            className="flex w-full gap-2 px-4 md:hidden"
-          >
+          <Button variant={"secondary"} className="flex w-full gap-2 px-4">
             <span className="text-sm font-semibold -tracking-wide">
               Filtrar
             </span>

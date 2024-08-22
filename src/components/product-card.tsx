@@ -5,7 +5,7 @@ import { SelectProductType } from "@/types";
 import Link from "next/link";
 import AddCartBtn from "./add-cart-btn";
 import { Button } from "./ui/button";
-import {Badge} from "./ui/badge"
+import { Badge } from "./ui/badge";
 import {
   Card,
   CardContent,
@@ -65,15 +65,10 @@ const ProductCard = (product: SelectProductType) => {
             )}
           </div>
           {product.discountPercentage !== 0 && (
-            <Badge className="absolute right-3 hover:bg-secondary-foreground top-12 grid aspect-square place-items-center rounded-xl text-base bg-secondary-foreground p-1">
-              
-                {product.discountPercentage}%
-              
+            <Badge className="absolute right-3 top-12 grid aspect-square place-items-center rounded-xl bg-secondary-foreground p-1 text-base hover:bg-secondary-foreground">
+              {product.discountPercentage}%
             </Badge>
-
-            
-
-            )}
+          )}
         </Link>
         <CardFooter className="flex w-full flex-col items-center justify-center gap-3 p-0">
           <AddCartBtn {...product} />

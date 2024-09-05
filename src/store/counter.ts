@@ -1,3 +1,4 @@
+import { calculatePriceWithDiscount } from "@/lib/utils";
 import { SelectProductType } from "@/types";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
@@ -28,10 +29,22 @@ export const useStoreItems = create(
       filterSearch: "",
       setFilteredSearch: (products) => set({ filterSearch: products }),
       pressedProducts: {}, // Initialize an empty object
-      addToCart: (product: Product) =>
-        set((state) => ({
-          cartItems: [...state.cartItems, product],
-        })),
+      addToCart: (product: Product) => {
+        if (product.discountPercentage !== 0) {
+          const discountedPrice = calculatePriceWithDiscount(
+            product.price,
+            product.discountPercentage as number,
+          );
+
+          return set((state) => ({
+            cartItems: [...state.cartItems, { ...product, discountedPrice }],
+          }));
+        } else {
+          return set((state) => ({
+            cartItems: [...state.cartItems, product],
+          }));
+        }
+      },
       removeFromCart: (productId: number) =>
         set((state) => {
           const productIndex = state.cartItems.findIndex(
@@ -90,17 +103,3 @@ export const useStoreItems = create(
     },
   ),
 );
-
-// import { create } from "zustand";
-
-// type useStoreType = {
-//   items: number;
-//   increaseItems: () => void;
-//   decreaseItems: () => void;
-// };
-
-// export const useStoreItems = create<useStoreType>()((set, get) => ({
-//   items: 0,
-//   increaseItems: () => set((state) => ({ items: state.items + 1 })),
-//   decreaseItems: () => set((state) => ({ items: state.items - 1 })),
-// }));

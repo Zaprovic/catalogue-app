@@ -7,6 +7,10 @@ import CheckoutForm from "./checkout-form";
 const CheckoutCard = () => {
   const cartItems = useStoreItems((state) => state.cartItems);
 
+  cartItems.forEach((item) => {
+    console.log(item.discountPercentage);
+  });
+
   const totalPrice = formatPricetoCOP(calculateTotalPrice(cartItems));
 
   return (

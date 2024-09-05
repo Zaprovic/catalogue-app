@@ -21,8 +21,16 @@ export async function getProducts() {
 }
 
 export function calculateTotalPrice(cartItems: SelectProductType[]) {
+  // calculate total price with discount
+
   return cartItems
-    .map((item) => item.price)
+    .map((item) => {
+      if (item.discountPercentage !== null) {
+        return item.price - (item.price * item.discountPercentage ?? 0) / 100;
+      } else {
+        return item.price;
+      }
+    })
     .reduce((acc, price) => acc + price, 0);
 }
 

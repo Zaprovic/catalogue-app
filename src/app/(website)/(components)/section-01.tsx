@@ -25,7 +25,7 @@ const Section01 = () => {
       </figure>
       <figure className="relative hidden items-center justify-center bg-black sm:flex">
         <Image
-          src={"/images/home/desktop/desktop-01.png"}
+          src={"/images/home/desktop/desktop-05.jpg"}
           alt="Mobile image 01"
           width={1440}
           height={629}

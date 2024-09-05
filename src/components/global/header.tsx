@@ -15,7 +15,7 @@ async function Header() {
     ? routes
     : routes.filter((route) => route.isPublic);
   return (
-    <header className="sticky top-0 z-50 flex items-center justify-between bg-secondary-foreground px-5 py-5 text-primary-foreground lg:px-6">
+    <header className="sticky top-0 z-50 flex items-center justify-between bg-primary px-5 py-5 text-primary-foreground lg:px-6">
       <div className="flex gap-10 lg:gap-16">
         <Link href={"/"} className="flex gap-2">
           <span className="font-bold">YeseCommerce</span>

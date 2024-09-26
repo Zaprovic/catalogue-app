@@ -36,7 +36,7 @@ export default function RootLayout({
   return (
     <ClerkProvider localization={esMX}>
       <html lang="en" suppressHydrationWarning>
-        <body className={`${inter.className} flex min-h-screen flex-col`}>
+        <body className={`${inter.className} relative flex h-full flex-col`}>
           {/* <ThemeProvider
             attribute="class"
             enableSystem
@@ -45,7 +45,7 @@ export default function RootLayout({
           <Header />
           {/* from p-6 to p-0 */}
           <ReactQueryProvider>
-            <div className="flex-1 overflow-visible p-0">{children}</div>
+            <div className="flex-1">{children}</div>
           </ReactQueryProvider>
           <Footer />
           <Toaster

@@ -28,8 +28,8 @@ const CategoriesNavbar = ({ categories: data }: props) => {
   const url = buildUrl(categoryId);
 
   return (
-    <nav className="hidden w-auto flex-col gap-3 overflow-hidden xl:flex">
-      <h5 className="-tracking-tracking-widest hidden text-nowrap text-sm md:inline-block">
+    <nav className="sticky left-0 hidden w-auto flex-col gap-3 overflow-hidden xl:flex">
+      <h5 className="hidden text-nowrap text-sm font-medium -tracking-widest md:inline-block">
         Filtrar por categorias
       </h5>
       <ul className="hidden flex-col gap-2 md:flex">

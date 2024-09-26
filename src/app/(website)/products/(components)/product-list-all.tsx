@@ -58,7 +58,7 @@ const ProductListAll = async ({
 
   return (
     <>
-      <h4 className="my-4 text-balance bg-background text-base font-semibold md:my-0 md:pb-5 md:text-xl">
+      <h4 className="sticky my-4 text-balance bg-background text-base font-semibold md:my-0 md:pb-5 md:text-xl">
         {category
           ? `${category.name} (${productsToShow.length} productos)`
           : `TODOS LOS PRODUCTOS (${productsToShow.length} productos)`}

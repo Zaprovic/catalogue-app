@@ -57,7 +57,7 @@ const CategoriesFilterBtn = ({
           </Button>
         </DropdownMenuTrigger>
 
-        <DropdownMenuContent className="w-fit">
+        <DropdownMenuContent className="h-[300px] w-fit overflow-y-scroll">
           <DropdownMenuLabel>Categorias</DropdownMenuLabel>
           <DropdownMenuGroup className="flex flex-col items-start justify-start gap-0">
             <DropdownMenuItem className="w-full">

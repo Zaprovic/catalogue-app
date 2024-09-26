@@ -2,6 +2,7 @@ import CategoriesFilterBtn from "@/components/categories-filter-btn";
 import CategoriesNavbar from "@/components/categories-navbar";
 import PrevBtn from "@/components/prev-btn";
 import ProductSortBtn from "@/components/products-sort-btn";
+import SearchbarProducts from "@/components/searchbar-products";
 import { Skeleton } from "@/components/ui/skeleton";
 import { db } from "@/db/main";
 import { CategoryTable, ProductTable } from "@/db/schema";
@@ -19,20 +20,21 @@ const Layout = async ({ children }: { children: ReactNode }) => {
 
   return (
     <>
-      <main className="relative overflow-visible p-0">
-        <div className="sticky top-[calc(76px-0rem)] z-10 mb-2 flex w-full justify-between gap-4 bg-background p-6 xl:hidden">
-          <PrevBtn />
-          <div className="flex gap-2">
-            <CategoriesFilterBtn categories={categories} />
-            <ProductSortBtn />
+      <main className="relative">
+        <div className="border-gray/20 fixed top-[76px] z-10 flex w-full flex-col gap-4 border border-b-2 bg-background p-6 xl:hidden">
+          <div className="flex w-full justify-between">
+            <PrevBtn />
+            <div className="flex gap-2">
+              <CategoriesFilterBtn categories={categories} />
+              <ProductSortBtn />
+            </div>
+          </div>
+          <div>
+            <SearchbarProducts />
           </div>
         </div>
 
-        {/* <div>
-          <SearchProductsForm products={products} />
-        </div> */}
-
-        <div className="p-6">
+        <div className="relative mt-[208px] px-6 py-4 xl:mt-[76px]">
           <div className="flex justify-center md:gap-12">
             <Suspense
               fallback={

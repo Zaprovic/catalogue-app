@@ -52,11 +52,8 @@ export default async function ProductPage({ searchParams }: props) {
   const productsToShow = categoryId ? filteredProducts : allFilteredProducts;
 
   return (
-    <div className="relative flex h-screen flex-1 gap-10 overflow-y-auto">
-      <section className="relative mx-auto h-full w-full flex-1">
-        <div className="sticky top-0 z-10 bg-background pb-8">
-          <SearchbarProducts />
-        </div>
+    <div className="flex flex-1 gap-10 overflow-y-scroll">
+      <section className="mx-auto w-full">
         <ProductListAll
           products={products}
           categories={categories}

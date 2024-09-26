@@ -11,11 +11,8 @@ export default async function Home() {
   return (
     <main className="mx-auto flex h-full flex-col gap-4">
       <Section01 />
-
       <CarouselCategories />
-
       <Section02 />
-
       <CarouselProducts />
     </main>
   );

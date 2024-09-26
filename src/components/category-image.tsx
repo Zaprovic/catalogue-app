@@ -49,7 +49,7 @@ const CategoryImage = async ({ id, name, src }: props) => {
             {name}
           </h5>
           <Link
-            href={`/products/categories/${id}`}
+            href={`/products?categoryId=${id}`}
             className="text-sm font-medium -tracking-wider hover:underline"
           >
             Buscar productos

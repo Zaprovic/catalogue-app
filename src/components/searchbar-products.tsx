@@ -20,7 +20,7 @@ const SearchbarProducts = () => {
 
   return (
     <Input
-      placeholder="Buscar productos aqui"
+      placeholder="Buscar productos..."
       onChange={(event) => handleSearch(event.target.value)}
       defaultValue={searchParams.get("productName")?.toString()}
     />

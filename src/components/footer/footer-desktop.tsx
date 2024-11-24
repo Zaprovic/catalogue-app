@@ -15,7 +15,7 @@ import FooterItem from "./footer-item";
 const FooterDesktop = ({ children }: { children?: ReactNode }) => {
   const { user } = useUser();
   return (
-    <footer className="sticky bottom-0 flex h-fit bg-secondary px-12 py-6 text-sm">
+    <footer className="sticky bottom-0 flex h-fit bg-secondary px-12 py-4 text-sm -tracking-wider">
       <FooterItem title="Formas de pago">
         <li className="flex gap-3">
           <IconTransactionDollar />
@@ -51,9 +51,6 @@ const FooterDesktop = ({ children }: { children?: ReactNode }) => {
           <span>+57 3002103171</span>
         </li>
       </FooterItem>
-
-      <Separator orientation="vertical" className="mx-4 h-auto" />
-      <FooterItem title="Seguridad" />
     </footer>
   );
 };
